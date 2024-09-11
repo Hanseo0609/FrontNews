@@ -1,4 +1,4 @@
-import * as styleD from './styles/Navbar';
+import * as styleD from '../styles/Navbar';
 
 export default function Navbar() {
   return (
