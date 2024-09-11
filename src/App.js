@@ -4,7 +4,7 @@ function App() {
     <div className="App">    
       <Navbar />
       <div>
-        refresh time
+        refresh time!!
       </div>
     </div>
   );
