@@ -1,20 +1,10 @@
 import Navbar from "../src/components/Navbar"
+import Line from "./components/Line";
 function App() {
   return (
     <div className="App">    
       <Navbar />
-      <div>
-        refresh time time refresh
-        practice
-        practice
-        asd
-        asdasd
-        asdasd
-        asd
-      </div>
-      <div>
-        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      </div>
+      <Line />
     </div>
   );
 }
