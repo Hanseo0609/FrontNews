@@ -5,6 +5,15 @@ function App() {
       <Navbar />
       <div>
         refresh time time refresh
+        practice
+        practice
+        asd
+        asdasd
+        asdasd
+        asd
+      </div>
+      <div>
+        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
       </div>
     </div>
   );
