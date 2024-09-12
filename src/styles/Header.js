@@ -11,21 +11,24 @@ export const Header = styled.div`
 
 export const HeaderNews = styled.div`
   font-size: 22px;
-  margin: 0px 30px 0px 100px;
+  font-weight: bold;
+  margin: 0px 30px 0px 150px;
 `;
 
 export const HeaderCommunity = styled.div`
   font-size: 22px;
+  font-weight: bold;
   margin-right: 30px;
 `;
 
 export const HeaderQuiz = styled.div`
   font-size: 22px;
+  font-weight: bold;
   margin-right: 30px;
 `;
 
 export const HeaderSearch = styled.input`
-  width: 200px;
+  width: 500px;
   height: 40px;
   border: 1px solid black;
   border-right: none;
@@ -35,8 +38,9 @@ export const HeaderSearch = styled.input`
   z-index: 100;
   display: flex;
   box-sizing: border-box;
+  
   &:focus {
-    width: 300px;
+    width: 600px;
     border-radius: 5px 0px 0px 5px;
   }
 `;
@@ -58,7 +62,7 @@ export const HeaderSearchBtn = styled.button`
 
 export const HeaderSearchWrapper = styled.div`
   position: absolute;
-  left: 27%;
+  left: 24%;
   display: flex;
   align-items: center;
   z-index: 100;
@@ -75,5 +79,5 @@ export const HeaderRealTimeSearch = styled.div`
   border: 1px solid black;
   border-radius: 5px;
   padding-left: 10px;
-  margin-left: 730px;
+  margin-left: 1060px;
 `;

@@ -7,6 +7,7 @@ function App() {
       <Navbar />
       <Line />
       <Header />
+      <Line />
     </div>
   );
 }

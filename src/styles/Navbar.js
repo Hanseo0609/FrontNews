@@ -4,14 +4,15 @@ export const Navbar = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
+  height: 90px;
 `;
 
 export const LogoImg = styled.img`
   position: absolute;
-  margin-top: 15px;
+  margin-top: 25px;
   width: 120px;
   height: 35px;
-  margin-right: 1200px;
+  margin-right: 1500px;
 `;
 
 export const Profile = styled.div`
@@ -24,7 +25,7 @@ export const ProfileImg = styled.img`
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  margin-left: 1220px;
+  margin-left: 1500px;
 `;
 
 export const LogoutImg = styled.img`
