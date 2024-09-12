@@ -3,7 +3,8 @@ import Header from "./components/Header";
 import Line from "./components/Line";
 function App() {
   return (
-    <div className="App">    
+    <div className="App">   
+      <p>asdasfafqw</p> 
       <Navbar />
       <Line />
       <Header />
