@@ -1,9 +1,9 @@
-import sd from '../styles/Register';
+import * as styleD from '../styles/Login';
 
-export default function Register() {
+export default function Login() {
 return (
     <div>
-        <styleD.LogoImg src='./images/Logo.png' />
+        <styleD.LogoImg src='./source/Logo.png' />
 				<styleD.Wrapper>
 					<styleD.InputWarpper>
 						<div>아이디</div>
