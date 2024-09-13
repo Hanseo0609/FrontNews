@@ -32,8 +32,8 @@ function App() {
           <div style={{border: '1px solid',  marginTop: '20px', height: '150px', width: '700px', borderRight: 'none', justifyContent: 'space-between'}}>
             <p style={{paddingLeft: '15px', color: '#666666'}}>AI가 추천해주는 오늘의 기사를 만나보세요.</p>
             <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '35px'}}>
-              <p style={{paddingLeft: '15px'}}>오늘 나에게 맞춰 추천된 기사  150건</p>
-              <button style={{marginRight: "10px"}}>선호도 설정하러 가기</button>
+              <p style={{paddingLeft: '15px', fontWeight:'bold'}}>오늘 나에게 맞춰 추천된 기사  150건</p>
+              <sd.preferenceBtn>선호도 설정하러 가기</sd.preferenceBtn>
             </div>
           </div>
 
@@ -41,6 +41,9 @@ function App() {
 
           </div>
         </div>
+
+        <hr style={{marginTop: '50px'}}/>
+       
       </sd.Content>
 
     </div>

@@ -43,3 +43,13 @@ export const Recommend = styled.div`
     border-right: 'none';
     justify-content: 'space-between';
 `;
+
+export const preferenceBtn = styled.button`
+    margin-right: 10px;
+    width: 300px;
+    border-radius: 30px;
+    border-color: #D2AC10;
+    background-color: transparent;
+    color: #D2AC10;
+    font-weight: bold;
+`;
