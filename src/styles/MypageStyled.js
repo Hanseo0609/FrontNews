@@ -53,3 +53,19 @@ export const preferenceBtn = styled.button`
     color: #D2AC10;
     font-weight: bold;
 `;
+
+export const subBtn = styled.button`
+    width: '100px';
+    background-color: '#BBBBBB';
+    border-radius: '30px';
+`
+
+export const actBtn = styled.button`
+    
+    
+    width: '100px';
+    height: '30px';
+    color: 'white';
+    border: 'none';
+    margin-left: '200px';
+`;
