@@ -1,4 +1,4 @@
-import * as sd from './styles/MypageStyled.js';
+import * as styleD from './styles/MypageStyled.js';
 
 
 function mypageBogaungam() {
@@ -6,25 +6,25 @@ function mypageBogaungam() {
     <div>
 
       <div>
-        <sd.Logo>
-          <sd.LogoSize src='image\logo.png'/>
-        </sd.Logo>
+        <styleD.Logo>
+          <styleD.LogoSize src='image\logo.png'/>
+        </styleD.Logo>
       </div>
 
       <hr/>
 
-      <sd.Content>
-        <sd.TopContent>
+      <styleD.Content>
+        <styleD.TopContent>
           <h1>마이페이지</h1>
-          <sd.TopText>보관함</sd.TopText>
-          <sd.TopText>계정 정보</sd.TopText>
-          <sd.TopText>선호 뉴스 관리</sd.TopText>
-        </sd.TopContent>
+          <styleD.TopText>보관함</styleD.TopText>
+          <styleD.TopText>계정 정보</styleD.TopText>
+          <styleD.TopText>선호 뉴스 관리</styleD.TopText>
+        </styleD.TopContent>
 
-        <sd.Box>
+        <styleD.Box>
           <p style={{color: '#ffffff', paddingLeft: '15px'}}>프론트황제 김한서님, 반가워요!!</p>
           <div style={{color: '#ffffff', paddingRight: '15px'}}>로그아웃</div>
-        </sd.Box>
+        </styleD.Box>
 
         <div style={{display: 'flex'}}>
 
@@ -32,7 +32,7 @@ function mypageBogaungam() {
             <p style={{paddingLeft: '15px', color: '#666666'}}>AI가 추천해주는 오늘의 기사를 만나보세요.</p>
             <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '35px'}}>
               <p style={{paddingLeft: '15px', fontWeight:'bold'}}>오늘 나에게 맞춰 추천된 기사  150건</p>
-              <sd.preferenceBtn>선호도 설정하러 가기</sd.preferenceBtn>
+              <styleD.preferenceBtn>선호도 설정하러 가기</styleD.preferenceBtn>
             </div>
           </div>
 
@@ -43,7 +43,7 @@ function mypageBogaungam() {
 
         <hr style={{marginTop: '50px'}}/>
        
-      </sd.Content>
+      </styleD.Content>
 
     </div>
   );

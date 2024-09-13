@@ -1,5 +1,5 @@
-import './styled.js';
-import * as sd from './styled.js';
+import './styles/MypageStyled.js';
+import * as sd from './styles/MypageStyled.js';
 
 
 function App() {
