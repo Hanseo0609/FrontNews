@@ -1,9 +1,12 @@
+import Login from './components/Login.js';
 import MainPage from './pages/MainPage.js';
+import Register from './components/Register.js'
 
 function App() {
   return (
     <div>
-      <MainPage></MainPage>
+      <Register></Register>
+      {/* <MainPage></MainPage> */}
     </div>
   );
 }
