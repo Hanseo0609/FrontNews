@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
 	flex-direction: column;
 	margin: 0 auto;
 	width: 500px;
-	height: 322px;
+	height: 800px;
 	border-radius: 15px;
 	box-sizing: border-box;
 	
@@ -30,11 +30,11 @@ export const Wrapper = styled.div`
 `;
 
 export const InputWarpper = styled.div`
-
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 `;
+
 export const OptionWrapper = styled.div`
 	display: flex;
 	justify-content: center;
@@ -51,8 +51,6 @@ export const OptionWrapper = styled.div`
 			content: none;
 		}
 	}
-	
-
 `;
 
 export const InputDefault = styled.input`
@@ -62,4 +60,12 @@ export const InputDefault = styled.input`
 	height: 40px;
 	border: 1px solid lightgrey;
 	border-radius: 5px;
+`;
+
+export const SelectBox = styled.select`
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  width: 450px;
+  padding: 12px;
+  margin: 0px;
 `;
