@@ -5,6 +5,7 @@ export const Navbar = styled.div`
   justify-content: center;
   text-align: center;
   height: 90px;
+  margin-right: 160px;
 `;
 
 export const LogoImg = styled.img`
@@ -12,7 +13,7 @@ export const LogoImg = styled.img`
   margin-top: 25px;
   width: 120px;
   height: 35px;
-  margin-right: 1500px;
+  margin-right: 1240px;
 `;
 
 export const Profile = styled.div`
