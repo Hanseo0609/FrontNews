@@ -1,4 +1,5 @@
-import sd from '../styles/Register';
+
+import * as styleD from '../styles/Register';
 
 export default function Register() {
 return (
@@ -20,6 +21,6 @@ return (
 					<a href='#'>비밀번호 찾기</a>
 					<a href='#'>회원가입</a>
 				</styleD.OptionWrapper>
-    </div>    
+    </div>   
 )
 }
