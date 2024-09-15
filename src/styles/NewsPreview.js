@@ -17,16 +17,16 @@ export const MainContentText = styled.p`
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 10px;
-  margin-left: 75px;
+  margin-left: 135px;
 `;
 
 export const MainContentBox = styled.div`
-  width: 1340px;
+  width: 1620px;
   height: 400px;
   background-color: #eee;
   position: relative;
-
-  left: 4%;
+  left: 7%;
+  border-radius: 5px;
 `;
 
 export const KeywordBtn = styled.p`
@@ -39,7 +39,7 @@ export const KeywordBtn = styled.p`
   border-radius: 5px;
   margin: 0;
   margin-left: 5px;
-
+  background-color: transparent;
   &:hover {
     background-color: #2C2C2C;
     color: white;
@@ -56,10 +56,17 @@ export const NewsImg = styled.img`
 export const TodayNewsContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 1200px;
+  width: 1452px;
   height: 180px;
   border: 1px solid black;
   border-radius: 5px;
   position: absolute;
   left: 5%;
+`;
+
+export const SeeMoreBtn = styled.button`
+  border: none;
+  border-radius: 5px;
+  background-color: #FDCB02;
+  padding: 8px;
 `;

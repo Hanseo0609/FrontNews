@@ -1,13 +1,16 @@
-import './styles/MypageStyled.js';
-import Navbar from './components/Navbar.js';
-import Headers from './components/Header.js';
-import MypageBogaungam from './components/MypageBogaunham.js';
-
+import Login from './components/Login.js';
+import MainPage from './pages/MainPage.js';
+import Register from './components/Register.js'
+import MypageStorage from './components/MypageStorage.js';
+import MypageInfo from './components/MypageInfo.js'
 
 function App() {
   return (
     <div>
-      <MypageBogaungam/>
+      {/* <Register></Register> */}
+      {/* <MainPage></MainPage> */}
+      <MypageStorage></MypageStorage>
+      {/* <MypageInfo></MypageInfo> */}
     </div>
   );
 }
