@@ -1,13 +1,13 @@
-import './styles/MypageStyled.js';
+import './styles/MypageStorage.js';
 import Navbar from './components/Navbar.js';
 import Headers from './components/Header.js';
-import MypageBogaungam from './components/MypageBogaunham.js';
+import MypageStorage from './components/MypageStorage.js';
 
 
 function App() {
   return (
     <div>
-      <MypageBogaungam/>
+      <MypageStorage/>
     </div>
   );
 }
