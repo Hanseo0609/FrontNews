@@ -41,7 +41,7 @@ export default function MypageBogaungam() {
         </div>
 
         <div style={{display: 'flex'}}>
-            <div style={{width: '900px', height: '300px'}}>
+            <div style={{width: '850px', height: '300px'}}>
                 <hr style={{marginTop: '50px', height: '5px', backgroundColor: '#D2AC10'}}/>
                 <h3 style={{color: '#D2AC10'}}>나의 활동 보관함</h3>
                 <hr style={{color: '#666666'}}/>
@@ -49,7 +49,7 @@ export default function MypageBogaungam() {
                 <div style={{display: 'flex'}}>
                     <div style={{width: '450px', height: '40px', marginTop: '15px', marginRight: '10px', color: '#666666', borderRight: '1px solid', alignItems: 'center'}}>
                         최근 본 기사
-                        <button style={{backgroundColor: '#BBBBBB', borderRadius: '30px', width: '100px', height: '30px', color: 'white', border: 'none', marginLeft: '230px', fontSize: '20px'}}>0</button>
+                        <button style={{backgroundColor: '#BBBBBB', borderRadius: '30px', width: '100px', height: '30px', color: 'white', border: 'none', marginLeft: '300px', fontSize: '20px'}}>0</button>
                     </div>
 
                     <div style={{width: '450px', height: '25px', marginTop: '15px', marginRight: '10px', color: '#666666'}}>
