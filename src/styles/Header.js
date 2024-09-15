@@ -12,7 +12,7 @@ export const Header = styled.div`
 export const HeaderNews = styled.div`
   font-size: 22px;
   font-weight: bold;
-  margin: 0px 30px 0px 150px;
+  margin: 0px 30px 0px 140px;
 `;
 
 export const HeaderCommunity = styled.div`
