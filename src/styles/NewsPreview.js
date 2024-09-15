@@ -21,12 +21,12 @@ export const MainContentText = styled.p`
 `;
 
 export const MainContentBox = styled.div`
-  width: 1340px;
+  width: 1620px;
   height: 400px;
   background-color: #eee;
   position: relative;
 
-  left: 4%;
+  left: 7%;
 `;
 
 export const KeywordBtn = styled.p`
