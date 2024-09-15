@@ -1,3 +1,4 @@
+import { type } from '@testing-library/user-event/dist/type';
 import styled from 'styled-components';
 
 export const MypageContainer = styled.div`
@@ -108,4 +109,70 @@ export const MypageActComment = styled.div`
     width: 700px;
     height: 300px;
     margin-left: 20px;
+`;
+
+export const MypageKeywordContainer = styled.div`
+    display:flex;
+    align-items:center;
+`
+
+export const MypageKeywordCheckbox = styled.input`
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #d0d5dd;
+    position: relative;
+    transition: all 0.3s;
+    appearance: none;
+    margin-right: 30px;
+
+    &:checked {
+        background-color: black;
+        border: 1px solid black;
+    }
+
+    &:checked::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        border: 3px solid white;
+        border-radius: 50%;
+        background-color: transparent;
+        transform: translate(-50%, -50%);
+  }
+`;
+
+export const UserInfoContainer = styled.div`
+    display: flex;
+    margin-top: 10px;
+`;
+
+export const UserInfo = styled.p`
+    margin-left: 30px;
+    font-weight: 500;
+    width: 250px;
+`;
+
+export const UserInfoUpdate = styled.a`
+    margin-top: 16px;
+    margin-left: 100px;
+    text-decoration: underline;
+    color: #69CBFB;
+`;
+
+export const PasswordUpdateBtn = styled.button`
+    margin-left: 30px;
+    margin-top: 12px;
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid;
+`;
+
+export const Newsletter = styled.p`
+    margin-right: 10px;
+    width: 150px;
 `;

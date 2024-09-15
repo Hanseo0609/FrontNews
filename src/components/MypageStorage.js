@@ -1,4 +1,4 @@
-import * as styleD from '../styles/MypageStorage';
+import * as styleD from '../styles/Mypage';
 import Navbar from './Navbar';
 import Line from './Line';
 
@@ -14,7 +14,7 @@ export default function MypageStorage() {
             style={{ fontSize: '40px', margin: '0px', marginRight: '20px', color: 'black' }}>
             마이페이지
           </styleD.MypageHeaderBtn>
-          <styleD.MypageHeaderBtn>보관함</styleD.MypageHeaderBtn>
+          <styleD.MypageHeaderBtn style={{color: 'black'}}>보관함</styleD.MypageHeaderBtn>
           <styleD.MypageHeaderBtn>계정 정보</styleD.MypageHeaderBtn>
           <styleD.MypageHeaderBtn>선호 뉴스 관리</styleD.MypageHeaderBtn>
         </styleD.MypageHeader>
@@ -61,20 +61,6 @@ export default function MypageStorage() {
 
             <styleD.MypageActStorageDetail>
               <styleD.MypageActStorageDetails>
-                <p style={{width: '120px'}}>공감한 기사</p>
-                <styleD.MypageActDetailsBtn>0</styleD.MypageActDetailsBtn>
-              </styleD.MypageActStorageDetails>
-
-              <styleD.MypageActStorageDetails>
-                <p style={{width: '120px'}}>차단한 기자</p>
-                <styleD.MypageActDetailsBtn>0</styleD.MypageActDetailsBtn>
-              </styleD.MypageActStorageDetails>
-            </styleD.MypageActStorageDetail>
-
-            <hr style={{ color: '#666666', marginTop: '15px' }} />
-
-            <styleD.MypageActStorageDetail>
-              <styleD.MypageActStorageDetails>
                 <p style={{width: '120px'}}>댓글단 기사</p>
                 <styleD.MypageActDetailsBtn>0</styleD.MypageActDetailsBtn>
               </styleD.MypageActStorageDetails>
@@ -93,6 +79,22 @@ export default function MypageStorage() {
             <styleD.ActStorageText>최근 단 댓글</styleD.ActStorageText>
           </styleD.MypageActComment>
         </styleD.MypageActivityContainer>
+
+        <hr style={{height: '5px', backgroundColor: '#D2AC10' }} />
+        
+        <div>
+          <styleD.ActStorageText>키워드 관리</styleD.ActStorageText>
+
+          <styleD.MypageKeywordContainer>
+            정치 <styleD.MypageKeywordCheckbox type="checkbox"/>
+            경제 <styleD.MypageKeywordCheckbox type="checkbox"/>
+            사회 <styleD.MypageKeywordCheckbox type="checkbox"/>
+            기술 <styleD.MypageKeywordCheckbox type="checkbox"/>
+            연예 <styleD.MypageKeywordCheckbox type="checkbox"/>
+            스포츠 <styleD.MypageKeywordCheckbox type="checkbox"/>
+          </styleD.MypageKeywordContainer>
+
+        </div>
       </styleD.MypageContainer>
     </div>
   );
