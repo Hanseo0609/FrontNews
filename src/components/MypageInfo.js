@@ -1,6 +1,7 @@
 import * as styleD from '../styles/Mypage';
 import Navbar from './Navbar';
 import Line from './Line';
+import { Link } from "react-router-dom";
 
 export default function MypageStorage() {
   return (
@@ -14,9 +15,10 @@ export default function MypageStorage() {
             style={{ fontSize: '40px', margin: '0px', marginRight: '20px', color: 'black' }}>
             마이페이지
           </styleD.MypageHeaderBtn>
-          <styleD.MypageHeaderBtn>보관함</styleD.MypageHeaderBtn>
+          <styleD.MypageHeaderBtn>
+          <Link to='/MypageStorage'style={{textDecoration: 'none', color: '#b3b3b3'}}>보관함</Link>
+          </styleD.MypageHeaderBtn>
           <styleD.MypageHeaderBtn style={{color: 'black'}}>계정 정보</styleD.MypageHeaderBtn>
-          <styleD.MypageHeaderBtn>선호 뉴스 관리</styleD.MypageHeaderBtn>
         </styleD.MypageHeader>
 
         <styleD.MypageStatus>

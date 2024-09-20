@@ -1,6 +1,7 @@
 import * as styleD from '../styles/Mypage';
 import Navbar from './Navbar';
 import Line from './Line';
+import { Link } from "react-router-dom";
 
 export default function MypageStorage() {
   return (
@@ -15,8 +16,9 @@ export default function MypageStorage() {
             마이페이지
           </styleD.MypageHeaderBtn>
           <styleD.MypageHeaderBtn style={{color: 'black'}}>보관함</styleD.MypageHeaderBtn>
-          <styleD.MypageHeaderBtn>계정 정보</styleD.MypageHeaderBtn>
-          <styleD.MypageHeaderBtn>선호 뉴스 관리</styleD.MypageHeaderBtn>
+          <styleD.MypageHeaderBtn>
+            <Link to='/MypageInfo'style={{textDecoration: 'none', color: '#b3b3b3'}}>계정 정보</Link>
+          </styleD.MypageHeaderBtn>
         </styleD.MypageHeader>
 
         <styleD.MypageStatus>
@@ -51,7 +53,7 @@ export default function MypageStorage() {
                 <styleD.MypageActDetailsBtn style={{ backgroundColor: '#BBBBBB', borderRadius: '30px', width: '100px', height: '30px', color: 'white', border: 'none', marginLeft: '230px', fontSize: '20px' }}>0</styleD.MypageActDetailsBtn>
               </styleD.MypageActStorageDetails>
 
-              <styleD.MypageActStorageDetails>
+              <styleD.MypageActStorageDetails style={{marginLeft: '45px'}}>
                 <p style={{width: '120px'}}>구독한 언론사</p>
                 <styleD.MypageActDetailsBtn>0</styleD.MypageActDetailsBtn>
               </styleD.MypageActStorageDetails>
@@ -65,7 +67,7 @@ export default function MypageStorage() {
                 <styleD.MypageActDetailsBtn>0</styleD.MypageActDetailsBtn>
               </styleD.MypageActStorageDetails>
 
-              <styleD.MypageActStorageDetails>
+              <styleD.MypageActStorageDetails style={{marginLeft: '45px'}}>
                 <p style={{width: '120px'}}>스크랩한 기사</p>
                 <styleD.MypageActDetailsBtn>0</styleD.MypageActDetailsBtn>
               </styleD.MypageActStorageDetails>

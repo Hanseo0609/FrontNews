@@ -9,9 +9,7 @@ export default function Navbar() {
         <styleD.LogoImg src='./source/Logo.png' />
       </Link>
       <styleD.Profile>
-        <Link to="/MypageStorage">
-          <styleD.ProfileImg src='./source/Shape.png' />
-        </Link>
+        <Link to="/MypageStorage"><styleD.ProfileImg src='./source/Shape.png' /></Link>
         <div style={{ marginLeft: '15px' }}>
           <p>COIN님</p>
           <p>asd@coin.com</p>

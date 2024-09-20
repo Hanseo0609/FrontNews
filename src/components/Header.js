@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
 import * as styleD from '../styles/Header';
 
 export default function Header() {
   return (
       <styleD.Header>
         <styleD.HeaderNews>뉴스보기</styleD.HeaderNews>
-        <styleD.HeaderCommunity>게시판</styleD.HeaderCommunity>
+        <styleD.HeaderCommunity>
+          <Link to='/CommunityMain' style={{textDecoration: 'none', color: 'black'}}>게시판</Link>
+        </styleD.HeaderCommunity>
         <styleD.HeaderQuiz>퀴즈</styleD.HeaderQuiz>
         <styleD.HeaderSearchWrapper>
           <styleD.HeaderSearch className='search-input' placeholder='키워드를 입력해 주세요' />
