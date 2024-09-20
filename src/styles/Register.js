@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LogoImg = styled.img`
 	display: block;
-  width: 250px;
+  	width: 250px;
 	margin: 84px auto 96px auto;
 `;
 
@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
 	height: 800px;
 	border-radius: 15px;
 	box-sizing: border-box;
-	
+
 	button {
 		background-color: #FDCB02;
 		width: 452px;
@@ -33,6 +33,7 @@ export const InputWarpper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	
 `;
 
 export const OptionWrapper = styled.div`
