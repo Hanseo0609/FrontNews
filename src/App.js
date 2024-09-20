@@ -7,10 +7,11 @@ import MypageInfo from './components/MypageInfo.js'
 function App() {
   return (
     <div>
-      {/* <Register></Register> */}
-      {/* <MainPage></MainPage> */}
+      <Login></Login>
+      <Register></Register>
+      <MainPage></MainPage>
       <MypageStorage></MypageStorage>
-      {/* <MypageInfo></MypageInfo> */}
+      <MypageInfo></MypageInfo>
     </div>
   );
 }
