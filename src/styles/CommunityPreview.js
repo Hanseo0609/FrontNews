@@ -16,7 +16,7 @@ export const MainContentText = styled.p`
 `;
 
 export const MainContentBox = styled.div`
-  width: 1620px;
+  width: 1520px;
   height: 320px;
   background-color: #eee;
   position: relative;
@@ -60,7 +60,7 @@ export const TodayNewsContainer = styled.div`
 `;
 
 export const CommunityBox = styled.div`
-  width: 1610px;
+  width: 1520px;
   border: 1px solid #d9d9d9;
   border-radius: 5px;
   background-color: transparent;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const MypageContainer = styled.div`
     margin-top: 40px;
-    padding: 0px 200px 0px 200px;
+    padding: 0px 150px 0px 150px;
 `;
 
 export const MypageHeader = styled.div`
@@ -70,7 +70,7 @@ export const MypageActivityContainer = styled.div`
 `;
 
 export const MypageActStorage = styled.div`
-    width: 862px;
+    width: 920px;
     height: 360px;
 `;
 
