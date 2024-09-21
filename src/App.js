@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from './components/Login.js';
+import Login from './pages/Login.js';
 import MainPage from './pages/MainPage.js';
-import Register from './components/Register.js'
-import MypageStorage from './components/MypageStorage.js';
-import MypageInfo from './components/MypageInfo.js'
-import CommunityMain from './components/CommunityMain.js'
+import Register from './pages/Register.js'
+import MypageStorage from './pages/MypageStorage.js';
+import MypageInfo from './pages/MypageInfo.js'
+import CommunityMain from './pages/CommunityMain.js'
 
 function App() {
   return (
