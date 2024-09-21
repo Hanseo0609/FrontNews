@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Line from '../components/Line';
 import { Link } from "react-router-dom";
 
-export default function MypageStorage() {
+export default function CommunityMain() {
   return (
     <div>
       <Navbar />
