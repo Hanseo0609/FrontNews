@@ -1,4 +1,5 @@
 import * as styleD from '../styles/Register';
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -43,8 +44,9 @@ export default function Login() {
           <div>전화번호</div>
           <styleD.InputDefault type='password' />
         </styleD.InputWarpper>
-
-        <button type='submit'>제출하기</button>
+        <button type='submit'>
+          <Link to='/Login'>제출하기</Link>
+        </button>
       </styleD.Wrapper>
     </div>
   )
