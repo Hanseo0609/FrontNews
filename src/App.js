@@ -1,15 +1,14 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login.js';
 import MainPage from './pages/MainPage.js';
 import Register from './pages/Register.js'
 import MypageStorage from './pages/MypageStorage.js';
 import MypageInfo from './pages/MypageInfo.js'
 import CommunityMain from './pages/CommunityMain.js'
-import TodaysNewsPage from "./components/TodaysNewsPage.js";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<MainPage/>}></Route>
         <Route path="/MypageStorage" element={<MypageStorage/>}></Route>
@@ -17,9 +16,8 @@ function App() {
         <Route path="/Login" element={<Login/>}></Route>
         <Route path="/Register" element={<Register/>}></Route>
         <Route path="/CommunityMain" element={<CommunityMain/>}></Route>
-        <Route path="/TodayNewsPage" element={<TodaysNewsPage/>}></Route>
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
