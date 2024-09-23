@@ -1,9 +1,12 @@
 import * as styleD from '../styles/CommunityPreview';
+import { Link } from "react-router-dom";
 
 export default function CommunityPreview() {
   return (
     <div style={{height: '600px'}}>
-      <styleD.MainContentText>게시판</styleD.MainContentText>
+      <styleD.MainContentText>
+      <Link to='/CommunityMain' style={{textDecoration: 'none', color: 'black'}}>게시판</Link>
+      </styleD.MainContentText>
       <styleD.MainContentBox>
         <styleD.CommunityBox>
           <p>와 음바페 미쳤는데???</p>

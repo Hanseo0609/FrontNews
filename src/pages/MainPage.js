@@ -16,7 +16,7 @@ function MainPage() {
       <Line />
       <NewsPreview />
       <TodayNewsPreview />
-      <Link to='/CommunityMain' style={{textDecoration: 'none', color: 'black'}}><Community /></Link>
+      <Community />
     </div>
   )
 }

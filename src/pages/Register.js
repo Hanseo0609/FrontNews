@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Login() {
   return (
     <div>
-      <styleD.LogoImg src='./source/Logo.png' />
+      <Link to='/'><styleD.LogoImg src='./source/Logo.png' /></Link>
       <styleD.Wrapper>
         <styleD.InputWarpper>
           <div>아이디(메일)</div>
