@@ -5,6 +5,7 @@ import Register from './pages/Register.js'
 import MypageStorage from './pages/MypageStorage.js';
 import MypageInfo from './pages/MypageInfo.js'
 import CommunityMain from './pages/CommunityMain.js'
+import TodaysNewsPage from "./components/TodaysNewsPage.js";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Login" element={<Login/>}></Route>
         <Route path="/Register" element={<Register/>}></Route>
         <Route path="/CommunityMain" element={<CommunityMain/>}></Route>
+        <Route path="/TodayNewsPage" element={<TodaysNewsPage/>}></Route>
       </Routes>
     </BrowserRouter>
   );

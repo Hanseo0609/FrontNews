@@ -4,7 +4,9 @@ import * as styleD from '../styles/Header';
 export default function Header() {
   return (
       <styleD.Header>
-        <styleD.HeaderNews>뉴스보기</styleD.HeaderNews>
+        <styleD.HeaderNews>
+          <Link to='/TodayNewsPage' style={{textDecoration: 'none', color: 'black'}}>뉴스보기</Link>
+        </styleD.HeaderNews>
         <styleD.HeaderCommunity>
           <Link to='/CommunityMain' style={{textDecoration: 'none', color: 'black'}}>게시판</Link>
         </styleD.HeaderCommunity>
