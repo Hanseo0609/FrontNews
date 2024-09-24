@@ -2,9 +2,26 @@ import * as styleD from '../styles/Communuty';
 import Navbar from '../components/Navbar';
 import Line from '../components/Line';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 export default function CommunityMain() {
-
+  function WriteModal() {
+    return (
+      alert("Are you sure?")
+    );
+  }
+  
+  async function postData() {
+    try {
+      const response = await axios.post('210.181.138.119:8050/users/login', {
+        email: "aa1",
+        password: "bb1"
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div>
@@ -33,19 +50,10 @@ export default function CommunityMain() {
             <styleD.CommunityCotentComentFont style={{ width: '100px' }}>조회수</styleD.CommunityCotentComentFont>
           </styleD.CommunityCotentComent>
           <hr style={{ color: 'black' }}></hr>
-          <styleD.WriteBtn onClick={WriteModal}>글쓰기</styleD.WriteBtn>
+          <styleD.WriteBtn onClick={postData}>글쓰기</styleD.WriteBtn>
         </styleD.CommunityContainer>
       </div>
     </div>
-
-    
   );
-  function WriteModal() {
-    return (
-      <div>
-        console.log("Are you sure?");
-      </div>
-    );
-  }
 }
 
