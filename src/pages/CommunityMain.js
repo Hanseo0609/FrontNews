@@ -1,4 +1,4 @@
-import * as styleD from '../styles/Communuty';
+import * as styleD from '../styles/Community';
 import Navbar from '../components/Navbar';
 import Line from '../components/Line';
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ export default function CommunityMain() {
       alert("Are you sure?")
     );
   }
-  
+
   async function postData() {
     try {
       const response = await axios.post('210.181.138.119:8050/users/login', {
@@ -50,7 +50,9 @@ export default function CommunityMain() {
             <styleD.CommunityCotentComentFont style={{ width: '100px' }}>조회수</styleD.CommunityCotentComentFont>
           </styleD.CommunityCotentComent>
           <hr style={{ color: 'black' }}></hr>
-          <styleD.WriteBtn onClick={postData}>글쓰기</styleD.WriteBtn>
+          <Link to='/CommunityWrite'>
+            <styleD.WriteBtn onClick={postData}>글쓰기</styleD.WriteBtn>
+          </Link>
         </styleD.CommunityContainer>
       </div>
     </div>
