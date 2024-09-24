@@ -5,6 +5,7 @@ export const Navbar = styled.div`
   justify-content: center;
   text-align: center;
   height: 90px;
+  width: 1920px;
 `;
 
 export const LogoImg = styled.img`

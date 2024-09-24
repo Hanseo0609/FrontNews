@@ -6,10 +6,12 @@ import MypageStorage from './pages/MypageStorage.js';
 import MypageInfo from './pages/MypageInfo.js'
 import CommunityMain from './pages/CommunityMain.js'
 import TodaysNewsPage from "./components/TodaysNewsPage.js";
+import ScrollToTop from "./components/ScrollToTop.js";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainPage/>}></Route>
         <Route path="/MypageStorage" element={<MypageStorage/>}></Route>
