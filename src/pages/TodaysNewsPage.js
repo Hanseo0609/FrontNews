@@ -1,5 +1,5 @@
 import { Container, Options, Theme1, Theme2, Top, Search, SearchBox, Main, News, NewsHr, Title, Content, Keyword, Frame, Unnamed } from '../styles/TodaysNewsPage';
-import Line from './Line';
+import Line from '../components/Line';
 import Navbar from '../components/Navbar';
 
 export default function TodaysNewsPage() {

@@ -5,7 +5,7 @@ import Register from './pages/Register.js'
 import MypageStorage from './pages/MypageStorage.js';
 import MypageInfo from './pages/MypageInfo.js'
 import CommunityMain from './pages/CommunityMain.js'
-import TodaysNewsPage from "./components/TodaysNewsPage.js";
+import TodaysNewsPage from "./pages/TodaysNewsPage.js";
 
 function App() {
   return (
