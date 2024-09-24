@@ -55,3 +55,16 @@ export const HeaderSearchWrapper = styled.div`
     z-index: 100;
     box-sizing: border-box;
 `;
+
+export const WriteBtn = styled.button`
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  position: relative;
+  left: 98%;
+  top: 85%;
+  &:active {
+    background-color: #b3b3b3;
+  }
+`;
