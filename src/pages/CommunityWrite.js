@@ -1,16 +1,11 @@
 import * as styleD from '../styles/Community';
 import Navbar from '../components/Navbar';
 import Line from '../components/Line';
-import ReactMarkdown from "react-markdown";
+import { Editor } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor.css';
 import { Link } from "react-router-dom";
 
 export default function CommunityWrite() {
-
-  const markdownText = `
-  # 안녕하세요!
-  저는 현재 리액트에서 \`react-markdown\`를 이용하여 **마크다운**을 랜더링하고 있습니다.
-  `;
-
   return (
     <div>
       <Navbar />
@@ -30,7 +25,7 @@ export default function CommunityWrite() {
 
       <div style={{ backgroundColor: '#D9D9D9', width: '1920px', height: '1080px' }}>
         <styleD.CommunityContainer>
-          <div style={{ textAlign: 'center', fontSize: '25px', paddingTop: '40px' }}>글쓰기</div>
+          <div style={{ textAlign: 'center', fontSize: '25px', paddingTop: '40px', fontWeight: 'bold' }}>글쓰기</div>
           <div style={{ paddingLeft: '50px', paddingRight: '50px' }}>
             <styleD.WriteHeader style={{ marginTop: '50px' }}>
               <h3>카테고리</h3>
@@ -43,6 +38,24 @@ export default function CommunityWrite() {
                 <option>스포츠</option>
               </styleD.SelectCategoryBox>
             </styleD.WriteHeader>
+            <styleD.WriteHeader>
+              <h3>제목</h3>
+              <styleD.WriteTitle />
+            </styleD.WriteHeader>
+
+            <styleD.WriteContent>
+              <Editor
+                initialValue="글을 입력하세요"
+                previewStyle="vertical"
+                height="600px"
+                initialEditType="wysiwyg"
+                useCommandShortcut={false}
+              />
+            </styleD.WriteContent>
+            <div style={{ textAlign: 'right' }}>
+              <styleD.WriteSubmitBtn>작성하기</styleD.WriteSubmitBtn>
+            </div>
+
           </div>
         </styleD.CommunityContainer>
       </div>

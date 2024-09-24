@@ -78,5 +78,22 @@ export const SelectCategoryBox = styled.select`
     border-radius: 5px;
     width: 150px;
     height: 42px;
-    margin: 10px 0px 40px 0px;
+    margin: 10px 0px 0px 20px;
+`;
+
+export const WriteTitle = styled.input`
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    height: 35px;
+    width: 600px;
+    margin: 10px 0px 0px 58px;
+`;
+
+export const WriteContent = styled.div`
+    margin: 50px 0px 0px 0px;
+`;
+
+export const WriteSubmitBtn = styled.button`
+    margin: 30px 0px 0px 0px;
+    height: 35px;
 `;
