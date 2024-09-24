@@ -55,3 +55,28 @@ export const HeaderSearchWrapper = styled.div`
     z-index: 100;
     box-sizing: border-box;
 `;
+
+export const WriteBtn = styled.button`
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  position: relative;
+  left: 98%;
+  top: 85%;
+  &:active {
+    background-color: #b3b3b3;
+  }
+`;
+
+export const WriteHeader = styled.div`
+    display: flex;
+`;
+
+export const SelectCategoryBox = styled.select`
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    width: 150px;
+    height: 42px;
+    margin: 10px 0px 40px 0px;
+`;
