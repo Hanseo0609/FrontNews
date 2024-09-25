@@ -2,6 +2,7 @@ import * as styled from '../styles/PopNews';
 
 const Popup = (props) => {
   const { onClose } = props;
+
   return (
     <styled.PopBox>
       <styled.InnerBox>
