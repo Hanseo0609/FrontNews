@@ -9,6 +9,7 @@ import CommunityMain from './pages/CommunityMain.js'
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainPage/>}></Route>
         <Route path="/MypageStorage" element={<MypageStorage/>}></Route>

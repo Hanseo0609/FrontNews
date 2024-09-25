@@ -20,7 +20,7 @@ export default function Navbar() {
   
     return (
       <styleD.Profile>
-        <Link to="/MypageStorage"><styleD.ProfileImg src='./source/Shape.png' /></Link>
+        <Link style={{width: '45px', marginRight: '1450px'}} to="/MypageStorage"><styleD.ProfileImg src='./source/Shape.png' /></Link>
         <div style={{ marginLeft: '15px' }}>
           <p>COIN님</p>
           <p>asd@coin.com</p>
