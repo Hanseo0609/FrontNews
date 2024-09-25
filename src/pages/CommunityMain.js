@@ -31,13 +31,15 @@ export default function CommunityMain() {
             <styleD.CommunityCotentComentFont style={{ width: '100px' }}>조회수</styleD.CommunityCotentComentFont>
           </styleD.CommunityCotentComent>
           <hr style={{ color: 'black' }}></hr>
-          <div style={{display: 'flex', border: '1px solid #b3b3b3', borderRadius: '5px'}}>
-            <p style={{ width: '150px', marginLeft: '60px' }}>1</p>
-            <p style={{ width: '920px', marginLeft: '300px' }}>와 음바페 미쳤는데???</p>
-            <p style={{ width: '380px' }}>메시메시</p>
-            <p style={{ width: '280px'}}>2024/09/25</p>
-            <p style={{ width: '80px' }}>5</p>
-          </div>
+          <Link to='/CommunityPost' style={{textDecoration: 'none', color: 'black'}}>
+            <div style={{ display: 'flex', border: '1px solid #b3b3b3', borderRadius: '5px' }}>
+              <p style={{ width: '150px', marginLeft: '60px' }}>1</p>
+              <p style={{ width: '920px', marginLeft: '300px' }}>와 음바페 미쳤는데???</p>
+              <p style={{ width: '380px' }}>메시메시</p>
+              <p style={{ width: '280px' }}>2024/09/25</p>
+              <p style={{ width: '80px' }}>5</p>
+            </div>
+          </Link>
           <Link to='/CommunityWrite'>
             <styleD.WriteBtn>글쓰기</styleD.WriteBtn>
           </Link>
