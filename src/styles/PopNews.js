@@ -40,3 +40,13 @@ export const TextBox = styled.div`
 export const Link = styled.a`
   margin-left: 10%;
 `
+
+export const ExitBtn = styled.button`
+  border: none;
+  border-radius: 5px;
+  background-color: #FDCB02;
+  width: 100px;
+  height: 30px;
+  margin-left: 10%;
+  margin-top: 10px;
+`

@@ -5,10 +5,12 @@ import { useState } from 'react';
 import React from 'react';
 
 export default function TodayNewsPreview() {
-  const [popup, setPopup] = useState(false);
+  const [popup, setPopup] = useState([false, false, false]);
 
-  const togglePopup = () => {
-    setPopup(!popup);
+  const togglePopup = (index) => {
+    const newPopup = [...popup];
+    newPopup[index] = !newPopup[index];
+    setPopup(newPopup);
   };
 
   return (
@@ -17,28 +19,23 @@ export default function TodayNewsPreview() {
         <styleD.MainContentText>오늘의 뉴스</styleD.MainContentText>
       </Link>
       <styleD.MainContentBox style={{ height: '680px' }}>
-        <styleD.TodayNewsContainer style={{ marginTop: '50px' }}>
-          <styleD.NewsImg />
-          <div style={{ margin: '0px 0px 60px 30px' }}>
-            <p style={{ fontWeight: 'bold' }}>제목</p>
-            <p className='todayNewsContent'>내용</p>
-            <styleD.SeeMoreBtn onClick={togglePopup} value='false'>자세히</styleD.SeeMoreBtn>
-            {popup && (
-              <div>
-                <Popup onClose={togglePopup} />
-              </div>
-            )}
-          </div>
-        </styleD.TodayNewsContainer>
-        <styleD.TodayNewsContainer style={{ marginTop: '250px' }}>
-          <styleD.NewsImg />
-          <div style={{ margin: '0px 0px 60px 30px' }}>
-            <p style={{ fontWeight: 'bold' }}>제목</p>
-            <p className='todayNewsContent'>내용</p>
-            <styleD.SeeMoreBtn>자세히</styleD.SeeMoreBtn>
-          </div>
-        </styleD.TodayNewsContainer>
-        <styleD.TodayNewsContainer style={{ marginTop: '450px' }}>
+        {
+          [0, 1, 2].map((_, index) => {
+            return (
+              <styleD.TodayNewsContainer style={{ marginTop: 50 + 200 * index + 'px' }} key={index + 2}>
+                <styleD.NewsImg />
+                <div style={{ margin: '0px 0px 60px 30px', position: 'relative' }}>
+                  <p style={{ fontWeight: 'bold' }}>제목</p>
+                  <p className='todayNewsContent'>내용</p>
+                  <styleD.SeeMoreBtn onClick={() => togglePopup(index)}>자세히</styleD.SeeMoreBtn>
+                  <Popup isOpen={popup[index]} onClose={() => togglePopup(index)} />
+                </div>
+              </styleD.TodayNewsContainer>
+            )
+          })
+        }
+       
+        {/* <styleD.TodayNewsContainer style={{ marginTop: '50px' }}>
           <styleD.NewsImg />
           <div style={{ margin: '0px 0px 60px 30px' }}>
             <p style={{ fontWeight: 'bold' }}>제목</p>
@@ -46,6 +43,7 @@ export default function TodayNewsPreview() {
             <styleD.SeeMoreBtn>자세히</styleD.SeeMoreBtn>
           </div>
         </styleD.TodayNewsContainer>
+        */}
       </styleD.MainContentBox>
       <hr style={{ margin: "100px 0px 0px 0px", width: "auto" }}></hr>
     </div>
