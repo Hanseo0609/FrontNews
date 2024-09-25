@@ -9,7 +9,7 @@ export default function TodaysNewsPage() {
       <Line/>
       <Options>
         <Theme1>
-          <p>오늘의 뉴스 |&nbsp; </p>
+          <p>오늘의 뉴스11 |&nbsp; </p>
           <p>주간뉴스 |&nbsp; </p>
           <p>월간 뉴스</p>
         </Theme1>
