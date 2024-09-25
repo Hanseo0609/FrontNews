@@ -13,7 +13,7 @@ export default function TodayNewsPreview() {
 
   return (
     <div>
-      <Link to='/TodayNewsPage' style={{textDecoration: 'none', color: 'black'}}>
+      <Link to='/TodaysNewsPage' style={{textDecoration: 'none', color: 'black'}}>
         <styleD.MainContentText>오늘의 뉴스</styleD.MainContentText>
       </Link>
       <styleD.MainContentBox style={{ height: '680px' }}>
