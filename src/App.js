@@ -9,6 +9,7 @@ import CommunityWrite from "./pages/CommunityWrite.js";
 import CommunityPost from "./pages/CommunityPost.js";
 import TodaysNewsPage from "./pages/TodaysNewsPage.js";
 import ScrollToTop from "./components/ScrollToTop.js";
+import Popup from "./components/PopNews.js";
 
 function App() {
   return (
