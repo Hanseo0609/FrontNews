@@ -21,12 +21,6 @@ export const HeaderCommunity = styled.div`
   margin-right: 30px;
 `;
 
-export const HeaderQuiz = styled.div`
-  font-size: 22px;
-  font-weight: bold;
-  margin-right: 30px;
-`;
-
 export const HeaderSearch = styled.input`
   width: 500px;
   height: 40px;
