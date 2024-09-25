@@ -7,7 +7,7 @@ export const Container = styled.div`
 export const TodaysNewsContainer = styled.div`
   display: flex;
   p {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     margin: 30px 20px 10px 0;
   }
   p.selected {
@@ -21,7 +21,7 @@ export const NewsContainer = styled.div`
 
 export const NewsCategoryContainer = styled(TodaysNewsContainer)`
   p {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0 10px 0 0;
   }
 `;
