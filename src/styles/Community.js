@@ -96,10 +96,14 @@ export const WriteContent = styled.div`
 export const WriteSubmitBtn = styled.button`
     margin: 30px 0px 0px 0px;
     height: 35px;
-    background-color: white;
+    background-color: #eaede6;
     border: 1px solid #eaede6;
     border-radius: 5px;
     &:active {
     background-color: #b3b3b3;
   }
+`;
+
+export const PostHeader = styled.div`
+    padding: 30px 0px 0px 0px;
 `;
