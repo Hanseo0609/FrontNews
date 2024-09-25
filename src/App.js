@@ -8,6 +8,7 @@ import CommunityMain from './pages/CommunityMain.js'
 import CommunityWrite from "./pages/CommunityWrite.js";
 import TodaysNewsPage from "./pages/TodaysNewsPage.js";
 import ScrollToTop from "./components/ScrollToTop.js";
+import Popup from "./components/PopNews.js";
 
 function App() {
   return (
