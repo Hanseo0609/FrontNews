@@ -91,7 +91,7 @@ export default function MypageStorage() {
             정치 <styleD.MypageKeywordCheckbox type="checkbox"/>
             경제 <styleD.MypageKeywordCheckbox type="checkbox"/>
             사회 <styleD.MypageKeywordCheckbox type="checkbox"/>
-            기술 <styleD.MypageKeywordCheckbox type="checkbox"/>
+            과학 <styleD.MypageKeywordCheckbox type="checkbox"/>
             연예 <styleD.MypageKeywordCheckbox type="checkbox"/>
             스포츠 <styleD.MypageKeywordCheckbox type="checkbox"/>
           </styleD.MypageKeywordContainer>
