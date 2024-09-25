@@ -1,171 +1,50 @@
-import { Container, Options, Theme1, Theme2, Top, Search, SearchBox, Main, News, NewsHr, Title, Content, Keyword, Frame, Unnamed } from '../styles/TodaysNewsPage';
+import { Link } from 'react-router-dom';
 import Line from '../components/Line';
 import Navbar from '../components/Navbar';
+import Header from '../components/Header';
+import * as styleD from '../styles/TodaysNewsPage';
 
 export default function TodaysNewsPage() {
   return (
-    <Container>
+    <div>
       <Navbar />
       <Line/>
-      <Options>
-        <Theme1>
-          <p>오늘의 뉴스!! |&nbsp; </p>
-          <p>주간뉴스 |&nbsp; </p>
-          <p>월간 뉴스</p>
-        </Theme1>
-        <Top>
-          <Theme2>
-            <p style={{ fontWeight: 800, color: 'black' }}>정치 |&nbsp; </p>
-            <p>과학 |&nbsp; </p>
-            <p>스포츠 |&nbsp; </p>
-            <p>사회 |&nbsp; </p>
-            <p>시사 |&nbsp; </p>
-            <p>경제 |&nbsp; </p>
+      <Header />
+      <Line />
+      <styleD.NewsContainer>
+        <styleD.TodaysNewsContainer>
+            <p className='selected'>오늘의 뉴스</p>
+            <p>주간 뉴스</p>
+            <p>월간 뉴스</p>
+        </styleD.TodaysNewsContainer>
+        <styleD.NewsCategoryContainer>
+            <p className='selected'>과학</p>
+            <p>경제</p>
+            <p>사회</p>
             <p>생활</p>
-          </Theme2>
-          <Search>
-            <SearchBox />
-          </Search>
-        </Top>
-      </Options>
-      <Main>
-        <div style={{display: 'block'}}>
-            <div style={{display: 'flex'}}>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-            </div>
-            <div style={{display: 'flex'}}>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-            </div>
-            <div style={{display: 'flex'}}>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-            </div>
-            <div style={{display: 'flex'}}>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-            </div>
-            <div style={{display: 'flex'}}>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-            </div>
-            <div style={{display: 'flex'}}>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-            </div>
-            <div style={{display: 'flex'}}>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-            </div>
-            <div style={{display: 'flex'}}>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-                <News>
-                    <img src="sample.png" alt="news" />
-                    <div>
-                    <Title>제목</Title>
-                    <Content>본문</Content>
-                    </div>
-                </News>
-            </div>
-         
-        </div>
-        <Keyword>
-          <Frame>
-            <Unnamed>오늘의 키워드(가제)</Unnamed>
-          </Frame>
-        </Keyword>
-      </Main>
-    </Container>
+            <p>세계</p>
+            <p>스포츠</p>
+            <p>문화</p>
+            <p>IT</p>
+            <p>연예</p>
+            <p>정치</p>
+        </styleD.NewsCategoryContainer>
+        <styleD.NewsBoxContainer>
+            {
+                Array(10).fill(0).map((_, index) => (
+                    <styleD.NewsBox key={index}>
+											<styleD.NewsImg>
+                      	<img src='https://picsum.photos/100/100' alt=''/>
+											</styleD.NewsImg>
+                      <div>
+                        <styleD.NewsTitle>제목</styleD.NewsTitle>
+                        <styleD.NewsContent>본문</styleD.NewsContent>
+                      </div>
+                    </styleD.NewsBox>
+                ))
+            }
+        </styleD.NewsBoxContainer>
+      </styleD.NewsContainer>
+    </div>
   );
 }
