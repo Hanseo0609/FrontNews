@@ -1,11 +1,25 @@
 import * as styleD from '../styles/Community';
 import Navbar from '../components/Navbar';
 import Line from '../components/Line';
-import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from '@toast-ui/react-editor';
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
 
 export default function CommunityWrite() {
+  async function postData() {
+    try {
+      const response = await axios.post('210.181.138.119:8050/users/login', {
+        email: "aa1",
+        password: "bb1"
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       <Navbar />
@@ -53,7 +67,7 @@ export default function CommunityWrite() {
               />
             </styleD.WriteContent>
             <div style={{ textAlign: 'right' }}>
-              <styleD.WriteSubmitBtn>작성하기</styleD.WriteSubmitBtn>
+              <styleD.WriteSubmitBtn onClick={postData}>작성하기</styleD.WriteSubmitBtn>
             </div>
 
           </div>
