@@ -5,7 +5,7 @@ export default function Header() {
   return (
       <styleD.Header>
         <styleD.HeaderNews>
-          <Link to='/TodayNewsPage' style={{textDecoration: 'none', color: 'black'}}>뉴스보기</Link>
+          <Link to='/TodaysNewsPage' style={{textDecoration: 'none', color: 'black'}}>뉴스보기</Link>
         </styleD.HeaderNews>
         <styleD.HeaderCommunity>
           <Link to='/CommunityMain' style={{textDecoration: 'none', color: 'black'}}>게시판</Link>
