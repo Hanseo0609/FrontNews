@@ -2,8 +2,9 @@ import * as styleD from '../styles/Navbar';
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
-export default function Navbar() {
-  const [status, setStatus] = useState("200");
+export default function Navbar(props) {
+  console.log(props.status);
+  const [status, setStatus] = useState(props.status ? props.status : "200");
 
   function IsLogin({ status, setStatus }) {
     return (
