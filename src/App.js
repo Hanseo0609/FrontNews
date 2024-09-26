@@ -9,6 +9,8 @@ import CommunityWrite from './pages/CommunityWrite.js'
 import CommunityPost from './pages/CommunityPost.js'
 import ScrollToTop from './components/ScrollToTop.js';
 import TodaysNewsPage from './pages/TodaysNewsPage.js';
+import FindMyId from './components/FindMyId.js';
+
 function App() {
   return (
     <Router>
@@ -23,6 +25,7 @@ function App() {
         <Route path="/CommunityWrite" element={<CommunityWrite/>}></Route>
         <Route path="/CommunityPost" element={<CommunityPost/>}></Route>
         <Route path="/TodaysNewsPage" element={<TodaysNewsPage/>}></Route>
+        <Route path="/FindMyId" element={<FindMyId/>}></Route>
       </Routes>
     </Router>
   );
