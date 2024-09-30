@@ -17,7 +17,7 @@ export default function Login() {
 				<button type='submit'>로그인</button>
 			</styleD.Wrapper>
 			<styleD.OptionWrapper>
-				<a href='#'>아이디 찾기</a>
+				<Link to="/FindMyId">아이디 찾기</Link>
 				<a href='#'>비밀번호 찾기</a>
 				<Link to='/Register'>회원가입</Link>
 			</styleD.OptionWrapper>
