@@ -5,8 +5,12 @@ import Register from './pages/Register.js'
 import MypageStorage from './pages/MypageStorage.js';
 import MypageInfo from './pages/MypageInfo.js'
 import CommunityMain from './pages/CommunityMain.js'
+import CommunityWrite from './pages/CommunityWrite.js'
+import CommunityPost from './pages/CommunityPost.js'
 import ScrollToTop from './components/ScrollToTop.js';
 import TodaysNewsPage from './pages/TodaysNewsPage.js';
+import FindMyId from './components/FindMyId.js';
+
 function App() {
   return (
     <Router>
@@ -18,7 +22,10 @@ function App() {
         <Route path="/Login" element={<Login/>}></Route>
         <Route path="/Register" element={<Register/>}></Route>
         <Route path="/CommunityMain" element={<CommunityMain/>}></Route>
+        <Route path="/CommunityWrite" element={<CommunityWrite/>}></Route>
+        <Route path="/CommunityPost" element={<CommunityPost/>}></Route>
         <Route path="/TodaysNewsPage" element={<TodaysNewsPage/>}></Route>
+        <Route path="/FindMyId" element={<FindMyId/>}></Route>
       </Routes>
     </Router>
   );

@@ -18,16 +18,12 @@ export default function TodaysNewsPage() {
             <p>월간 뉴스</p>
         </styleD.TodaysNewsContainer>
         <styleD.NewsCategoryContainer>
-            <p className='selected'>과학</p>
+            <p className='selected'>정치</p>
             <p>경제</p>
-            <p>사회</p>
-            <p>생활</p>
-            <p>세계</p>
-            <p>스포츠</p>
-            <p>문화</p>
-            <p>IT</p>
-            <p>연예</p>
-            <p>정치</p>
+						<p>사회</p>
+						<p>과학</p>
+						<p>연예</p>
+						<p>스포츠</p>
         </styleD.NewsCategoryContainer>
         <styleD.NewsBoxContainer>
             {
