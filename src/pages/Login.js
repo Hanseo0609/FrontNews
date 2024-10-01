@@ -70,8 +70,8 @@ export default function Login() {
 				<button type='submit' onClick={postLogin}>로그인</button>
 			</styleD.Wrapper>
 			<styleD.OptionWrapper>
-				<a href='#'>아이디 찾기</a>
-				<a href='#'>비밀번호 찾기</a>
+				<Link to='/FindMyId'>아이디 찾기</Link>
+				<Link to='#'>비밀번호 찾기</Link>
 				<Link to='/Register'>회원가입</Link>
 			</styleD.OptionWrapper>
 		</div>
