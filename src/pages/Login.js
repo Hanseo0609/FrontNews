@@ -11,16 +11,16 @@ export default function Login() {
 	const [userPassword, setUserPassword] = useState("");
 
 	//access 토큰 쿠키 저장
-	var setAccessToken = function(accessToken, exp){
+	var setAccessToken = function (accessToken, exp) {
 		var date = new Date();
-		date.setTime(date.getTime() + exp*24*60*60*1000);
+		date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
 		document.cookie = 'accessToken=' + accessToken + ';expires=' + date.toUTCString() + ';path=/'
 	}
 
 	//refresh 토큰 쿠키 저장
-	var setRefreshToken = function(refreshToken, exp){
+	var setRefreshToken = function (refreshToken, exp) {
 		var date = new Date();
-		date.setTime(date.getTime() + exp*24*60*60*1000);
+		date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
 		document.cookie = 'refreshToken=' + refreshToken + ';expires=' + date.toUTCString() + ';path=/'
 	}
 
