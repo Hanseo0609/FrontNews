@@ -1,6 +1,6 @@
 import * as styleD from '../styles/FindMyId';
 import { Link } from "react-router-dom";
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 
 export default function FindMyPassword() {
 	return (
