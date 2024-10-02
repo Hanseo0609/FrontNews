@@ -47,7 +47,7 @@ export default function CommunityPost() {
             </div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <Link to='/CommunityMain'>
+            <Link to='/CommunityMainPage'>
               <styleD.WriteSubmitBtn>목록으로</styleD.WriteSubmitBtn>
             </Link>
           </div>

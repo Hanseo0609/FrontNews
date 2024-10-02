@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login.js';
+import LoginPage from './pages/LoginPage.js';
 import MainPage from './pages/MainPage.js';
-import Register from './pages/Register.js'
-import MypageStorage from './pages/MypageStorage.js';
-import MypageInfo from './pages/MypageInfo.js'
-import CommunityMain from './pages/CommunityMain.js'
-import CommunityWrite from './pages/CommunityWrite.js'
-import CommunityPost from './pages/CommunityPost.js'
+import RegisterPage from './pages/RegisterPage.js'
+import MypageStoragePage from './pages/MypageStoragePage.js';
+import MypageInfoPage from './pages/MypageInfoPage.js'
+import CommunityMainPage from './pages/CommunityMainPage.js'
+import CommunityWritePage from './pages/CommunityWritePage.js'
+import CommunityPostPage from './pages/CommunityPostPage.js'
 import ScrollToTop from './components/ScrollToTop.js';
 import TodaysNewsPage from './pages/TodaysNewsPage.js';
-import FindMyId from './pages/FindMyId.js';
-import FindMyPassword from './pages/FindMyPassword.js';
+import FindMyIdPage from './pages/FindMyIdPage.js';
+import FindMyPasswordPage from './pages/FindMyPasswordPage.js';
 
 function App() {
   return (
@@ -18,16 +18,16 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainPage/>}></Route>
-        <Route path="/MypageStorage" element={<MypageStorage/>}></Route>
-        <Route path="/MypageInfo" element={<MypageInfo/>}></Route>
-        <Route path="/Login" element={<Login/>}></Route>
-        <Route path="/Register" element={<Register/>}></Route>
-        <Route path="/CommunityMain" element={<CommunityMain/>}></Route>
-        <Route path="/CommunityWrite" element={<CommunityWrite/>}></Route>
-        <Route path="/CommunityPost" element={<CommunityPost/>}></Route>
+        <Route path="/MypageStoragePage" element={<MypageStoragePage/>}></Route>
+        <Route path="/MypageInfoPage" element={<MypageInfoPage/>}></Route>
+        <Route path="/LoginPage" element={<LoginPage/>}></Route>
+        <Route path="/RegisterPage" element={<RegisterPage/>}></Route>
+        <Route path="/CommunityMainPage" element={<CommunityMainPage/>}></Route>
+        <Route path="/CommunityWritePage" element={<CommunityWritePage/>}></Route>
+        <Route path="/CommunityPostPage" element={<CommunityPostPage/>}></Route>
         <Route path="/TodaysNewsPage" element={<TodaysNewsPage/>}></Route>
-        <Route path="/FindMyId" element={<FindMyId/>}></Route>
-        <Route path="/FindMyPassword" element={<FindMyPassword/>}></Route>
+        <Route path="/FindMyIdPage" element={<FindMyIdPage/>}></Route>
+        <Route path="/FindMyPasswordPage" element={<FindMyPasswordPage/>}></Route>
       </Routes>
     </Router>
   );

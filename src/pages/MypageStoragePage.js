@@ -17,7 +17,7 @@ export default function MypageStorage() {
           </styleD.MypageHeaderBtn>
           <styleD.MypageHeaderBtn style={{color: 'black'}}>보관함</styleD.MypageHeaderBtn>
           <styleD.MypageHeaderBtn>
-            <Link to='/MypageInfo'style={{textDecoration: 'none', color: '#b3b3b3'}}>계정 정보</Link>
+            <Link to='/MypageInfoPage'style={{textDecoration: 'none', color: '#b3b3b3'}}>계정 정보</Link>
           </styleD.MypageHeaderBtn>
         </styleD.MypageHeader>
 

@@ -8,7 +8,7 @@ export default function Header() {
           <Link to='/TodaysNewsPage' style={{textDecoration: 'none', color: 'black'}}>뉴스보기</Link>
         </styleD.HeaderNews>
         <styleD.HeaderCommunity>
-          <Link to='/CommunityMain' style={{textDecoration: 'none', color: 'black'}}>게시판</Link>
+          <Link to='/CommunityMainPage' style={{textDecoration: 'none', color: 'black'}}>게시판</Link>
         </styleD.HeaderCommunity>
         <styleD.HeaderSearchWrapper>
           <styleD.HeaderSearch className='search-input' placeholder='키워드를 입력해 주세요' />

@@ -16,7 +16,7 @@ export default function MypageSInfo() {
             마이페이지
           </styleD.MypageHeaderBtn>
           <styleD.MypageHeaderBtn>
-          <Link to='/MypageStorage'style={{textDecoration: 'none', color: '#b3b3b3'}}>보관함</Link>
+          <Link to='/MypageStoragePage'style={{textDecoration: 'none', color: '#b3b3b3'}}>보관함</Link>
           </styleD.MypageHeaderBtn>
           <styleD.MypageHeaderBtn style={{color: 'black'}}>계정 정보</styleD.MypageHeaderBtn>
         </styleD.MypageHeader>
