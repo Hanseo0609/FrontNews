@@ -47,6 +47,7 @@ export default function Login() {
 			if (response.data["status"] === 201) {
 				console.log(response.data);
 				alert('로그인 성공!!');
+				localStorage.setItem("nickname", response.data["data"]["nickname"])
 				setToken(response.data["data"]["access_token"], response.data["data"]["refresh_token"]);
 				// setAccessToken(response.data["data"]["access_token"], 1);
 				// setRefreshToken(response.data["data"]["refresh_token"], 100);

@@ -22,7 +22,7 @@ export default function Navbar(props) {
 
     return (
       <styleD.Profile>
-        <Link style={{width: '45px', marginRight: '1450px'}} to="/MypageStorage"><styleD.ProfileImg src='./source/Shape.png' /></Link>
+        <Link style={{width: '45px', marginRight: '1450px'}} to="/MypageStoragePage"><styleD.ProfileImg src='./source/Shape.png' /></Link>
         <div style={{ marginLeft: '15px' }}>
           <p>COIN님</p>
           <p>asd@coin.com</p>
@@ -35,8 +35,8 @@ export default function Navbar(props) {
   function NoLogin() {
     return (
       <div style={{ marginLeft: '1520px', marginTop: '50px' }}>
-        <Link to='/Login'>로그인 </Link>
-        <Link to='/Register'>회원가입</Link>
+        <Link to='/LoginPage'>로그인 </Link>
+        <Link to='/RegisterPage'>회원가입</Link>
       </div>
     )
   }
