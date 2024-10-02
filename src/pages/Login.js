@@ -39,6 +39,7 @@ export default function Login() {
 	}
 
 	async function postLogin() {
+		console.log(`${serverURL}/users/login`);
 		try {
 			const response = await axios.post(`${serverURL}/users/login`, {
 				email: userEmail,  // 이메일 형식 권장
