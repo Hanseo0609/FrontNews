@@ -9,7 +9,7 @@ import CommunityWrite from './pages/CommunityWrite.js'
 import CommunityPost from './pages/CommunityPost.js'
 import ScrollToTop from './components/ScrollToTop.js';
 import TodaysNewsPage from './pages/TodaysNewsPage.js';
-import FindMyId from './components/FindMyId.js';
+import FindMyId from './pages/FindMyId.js';
 
 function App() {
   return (

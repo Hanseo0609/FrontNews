@@ -7,14 +7,14 @@ export const LogoImg = styled.img`
 `;
 
 export const Wrapper = styled.div`
-	margin-top: 120px;
+	margin-top: 100px;
 	padding: 24px;
 	border: 1px solid lightgrey;
 	display: flex;
 	flex-direction: column;
 	margin: 0 auto;
 	width: 500px;
-	height: 800px;
+	height: 850px;
 	border-radius: 15px;
 	box-sizing: border-box;
 
@@ -69,4 +69,9 @@ export const SelectBox = styled.select`
   width: 450px;
   padding: 12px;
   margin: 0px;
+`;
+
+export const registerText = styled.p`
+	margin-top: -12px;
+	color: gray;
 `;
