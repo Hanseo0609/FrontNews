@@ -11,17 +11,23 @@ export default function Login() {
 	const [userPassword, setUserPassword] = useState("");
 
 	//access 토큰 쿠키 저장
-	var setAccessToken = function (accessToken, exp) {
-		var date = new Date();
-		date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
-		document.cookie = 'accessToken=' + accessToken + ';expires=' + date.toUTCString() + ';path=/'
-	}
+	// var setAccessToken = function (accessToken, exp) {
+	// 	var date = new Date();
+	// 	date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+	// 	document.cookie = 'accessToken=' + accessToken + ';expires=' + date.toUTCString() + ';path=/'
+	// }
 
 	//refresh 토큰 쿠키 저장
-	var setRefreshToken = function (refreshToken, exp) {
-		var date = new Date();
-		date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
-		document.cookie = 'refreshToken=' + refreshToken + ';expires=' + date.toUTCString() + ';path=/'
+	// var setRefreshToken = function (refreshToken, exp) {
+	// 	var date = new Date();
+	// 	date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+	// 	document.cookie = 'refreshToken=' + refreshToken + ';expires=' + date.toUTCString() + ';path=/'
+	// }
+
+	//토큰 로컬 스토리지 저장
+	var setToken = function(accessToken, refreshToken){
+		localStorage.setItem("accessToken", accessToken)
+		localStorage.setItem("refreshToken", refreshToken)
 	}
 
 	function onChangeEmail(evevt) {
@@ -41,8 +47,9 @@ export default function Login() {
 			if (response.data["status"] === 201) {
 				console.log(response.data);
 				alert('로그인 성공!!');
-				setAccessToken(response.data["data"]["access_token"], 1);
-				setRefreshToken(response.data["data"]["refresh_token"], 100);
+				setToken(response.data["data"]["access_token"], response.data["data"]["refresh_token"]);
+				// setAccessToken(response.data["data"]["access_token"], 1);
+				// setRefreshToken(response.data["data"]["refresh_token"], 100);
 				document.location.href = '/';
 
 			} else if (response.data["status"] === 400) {
