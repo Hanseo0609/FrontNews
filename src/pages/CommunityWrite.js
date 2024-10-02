@@ -8,22 +8,6 @@ import axios from 'axios';
 
 
 export default function CommunityWrite() {
-  async function postData() {
-    try {
-      const response = await axios.post('http://210.181.138.119/users/register', {
-        user_email: "aa1@example.com",  // 이메일 형식 권장
-        user_password: "bb1",
-        user_name: "John Doe",
-        user_number: "010-1234-5678",  // 숫자 형식이 기대된다면 수정
-        user_nickname: "asd",
-        user_age: 25,  // 숫자값
-      });
-      console.log(response.data);  // response.data로 출력
-    } catch (error) {
-      console.error(error);  // 에러 메시지 출력
-    }
-  }
-
   return (
     <div>
       <Navbar />
@@ -71,7 +55,7 @@ export default function CommunityWrite() {
               />
             </styleD.WriteContent>
             <div style={{ textAlign: 'right' }}>
-              <styleD.WriteSubmitBtn onClick={postData}>작성하기</styleD.WriteSubmitBtn>
+              <styleD.WriteSubmitBtn>작성하기</styleD.WriteSubmitBtn>
             </div>
 
           </div>

@@ -78,7 +78,7 @@ export default function Login() {
 			</styleD.Wrapper>
 			<styleD.OptionWrapper>
 				<Link to='/FindMyId'>아이디 찾기</Link>
-				<Link to='#'>비밀번호 찾기</Link>
+				<Link to='/FindMyPassword'>비밀번호 찾기</Link>
 				<Link to='/Register'>회원가입</Link>
 			</styleD.OptionWrapper>
 		</div>
