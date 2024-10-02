@@ -165,6 +165,10 @@ export default function Login() {
         <button type='submit' onClick={postResiter}>
           제출하기
         </button>
+
+        <div style={{marginLeft: '35%', marginTop: '10px'}}>
+          <Link to='/Login'>로그인으로 돌아가기</Link>
+        </div>
       </styleD.Wrapper>
     </div>
   )

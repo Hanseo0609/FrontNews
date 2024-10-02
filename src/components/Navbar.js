@@ -18,7 +18,8 @@ export default function Navbar(props) {
     const handleLogout = () => {
       setStatus("400");
     };
-  
+    
+
     return (
       <styleD.Profile>
         <Link style={{width: '45px', marginRight: '1450px'}} to="/MypageStorage"><styleD.ProfileImg src='./source/Shape.png' /></Link>
