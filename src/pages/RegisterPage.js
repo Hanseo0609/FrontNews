@@ -109,7 +109,7 @@ export default function Login() {
           user_age: userAge,  // 숫자값
         });
         alert("회원가입 성공!!")
-        document.location.href = '/Login'
+        document.location.href = '/LoginPage'
         console.log(response.data);  // response.data로 출력
       } catch (error) {
         console.error(error);  // 에러 메시지 출력
