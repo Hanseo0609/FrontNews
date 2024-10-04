@@ -19,7 +19,6 @@ export default function Navbar(props) {
       setStatus("400");
     };
     
-
     return (
       <styleD.Profile>
         <Link style={{width: '45px', marginRight: '1450px'}} to="/MypageStoragePage"><styleD.ProfileImg src='./source/Shape.png' /></Link>
