@@ -26,8 +26,13 @@ export default function Login() {
 
 	//토큰 로컬 스토리지 저장
 	var setToken = function(accessToken, refreshToken){
-		localStorage.setItem("accessToken", accessToken)
-		localStorage.setItem("refreshToken", refreshToken)
+		localStorage.setItem("accessToken", accessToken);
+		localStorage.setItem("refreshToken", refreshToken);
+	}
+
+	//아이디 로컬 스토리지 저장
+	var storageEmail = function(userEmail){
+		localStorage.setItem("userEmail", userEmail);
 	}
 
 	function onChangeEmail(evevt) {
@@ -47,19 +52,19 @@ export default function Login() {
 			if (response.data["status"] === 201) {
 				console.log(response.data);
 				alert('로그인 성공!!');
-				localStorage.setItem("nickname", response.data["data"]["nickname"])
+				localStorage.setItem("nickname", response.data["data"]["nickname"]);
 				setToken(response.data["data"]["access_token"], response.data["data"]["refresh_token"]);
+				storageEmail(userEmail);
 				// setAccessToken(response.data["data"]["access_token"], 1);
 				// setRefreshToken(response.data["data"]["refresh_token"], 100);
 				document.location.href = '/';
 
-			} else if (response.data["status"] === 400) {
+			} else{
 				console.log(response.data)
-				alert('로그인 실패!!')
 			}
-
 		} catch (error) {
 			console.error(error);  // 에러 메시지 출력
+			alert('계정 또는 비밀번호를 다시 확인하세요!!')
 		}
 	}
 
