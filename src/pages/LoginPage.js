@@ -30,11 +30,6 @@ export default function Login() {
 		localStorage.setItem("refreshToken", refreshToken);
 	}
 
-	//아이디 로컬 스토리지 저장
-	var storageEmail = function(userEmail){
-		localStorage.setItem("userEmail", userEmail);
-	}
-
 	function onChangeEmail(evevt) {
 		setUserEmail(evevt.target.value)
 	}
@@ -53,8 +48,9 @@ export default function Login() {
 				console.log(response.data);
 				alert('로그인 성공!!');
 				localStorage.setItem("nickname", response.data["data"]["nickname"]);
+				localStorage.setItem("userEmail", response.data["data"]["email"]);
+				localStorage.setItem("phoneNumber", response.data["data"]["number"]);
 				setToken(response.data["data"]["access_token"], response.data["data"]["refresh_token"]);
-				storageEmail(userEmail);
 				// setAccessToken(response.data["data"]["access_token"], 1);
 				// setRefreshToken(response.data["data"]["refresh_token"], 100);
 
