@@ -1,6 +1,37 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import * as styleD from '../styles/NewsPreview';
 
 export default function NewsPreview() {
+
+  const serverURL = process.env.REACT_APP_SERVER_URL;
+  const [news, setNews] = useState([]);
+
+  const newsPreviewLoad = async () => {
+    try {
+			const response = await axios.get(`${serverURL}/users/newsPreview`);
+      if (response.data["status"] === 201) {
+        console.log(response.data);
+        setNews(response.data["data"]);
+      }
+    } catch(error) {
+      console.log(error);
+    }
+  };
+
+  const prevBtn = () => {
+
+  }
+
+  const nextBtn = () => {
+    
+  }
+
+  useEffect(() => {
+    newsPreviewLoad();
+  }, []);   
+
+
   return (
     <styleD.MainContentWrap>
       <styleD.MainContentText>뉴스 요약</styleD.MainContentText>
@@ -13,15 +44,21 @@ export default function NewsPreview() {
             <styleD.KeywordBtn>스포츠</styleD.KeywordBtn>
             <styleD.KeywordBtn>경제</styleD.KeywordBtn>
           </div>
+          <button>이전</button>
+          <button>다음</button>
         </div>
 
         <div style={{display: 'flex', marginTop: '110px'}}>
           <styleD.NewsImg style={{ width: '420px', height: '320px' }} />
-          <div style={{marginLeft: '30px'}}>
-            <p className='todayNewsTitle'>으악</p>
-            <p className='todayNewsContent'>안녕하세요</p>
-          </div>
+            {news.map((item, index) => (
+              <div key={index} style={{marginLeft: '30px'}}>
+                <p>{item.title}으악</p>
+                <p>{item.content}내용</p>
+              </div>
+            ))}
+            <p>내용</p>
         </div>
+        
       </styleD.MainContentBox>
       <hr style={{ margin: "100px 0px 0px 0px" }}></hr>
     </styleD.MainContentWrap>

@@ -57,6 +57,7 @@ export default function Login() {
 				storageEmail(userEmail);
 				// setAccessToken(response.data["data"]["access_token"], 1);
 				// setRefreshToken(response.data["data"]["refresh_token"], 100);
+
 				document.location.href = '/';
 
 			} else{
