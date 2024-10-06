@@ -176,3 +176,8 @@ export const Newsletter = styled.p`
     margin-right: 10px;
     width: 150px;
 `;
+
+export const KeywordUpdateBtn = styled.button`
+    width: 100px;
+    height: 30px;
+`;

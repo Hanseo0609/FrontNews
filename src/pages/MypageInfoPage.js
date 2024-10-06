@@ -7,10 +7,10 @@ export default function MypageSInfo() {
 
   //닉네임 가져오기
   const nickname = localStorage.getItem("nickname");
-  
   //아이디 가져오기
   const userEmail = localStorage.getItem("userEmail");
-
+  //전화번호 가져오기
+  const phoneNumber = localStorage.getItem("phoneNumber");
   return (
     <div>
       <Navbar />
@@ -50,7 +50,7 @@ export default function MypageSInfo() {
 
             <styleD.UserInfoContainer>
                 <p style={{color: '#666666', width: '100px'}}>전화번호</p>
-                <styleD.UserInfo>+82 10 1234 5678</styleD.UserInfo>
+                <styleD.UserInfo>{phoneNumber}</styleD.UserInfo>
                 <styleD.UserInfoUpdate>수정</styleD.UserInfoUpdate>
             </styleD.UserInfoContainer>
             <hr style={{ color: '#666666', marginTop: '5px' }} />
