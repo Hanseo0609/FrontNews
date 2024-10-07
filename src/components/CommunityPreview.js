@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function CommunityPreview() {
   return (
-    <div style={{height: '600px'}}>
+    <div style={{ height: '600px' }}>
       <styleD.MainContentText>
-      <Link to='/CommunityMainPage' style={{textDecoration: 'none', color: 'black'}}>게시판</Link>
+        <Link to='/CommunityMainPage' style={{ textDecoration: 'none', color: 'black' }}>게시판</Link>
       </styleD.MainContentText>
       <styleD.MainContentBox>
         <styleD.CommunityBox>
