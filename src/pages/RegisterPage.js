@@ -104,7 +104,7 @@ export default function Login() {
           user_email: userEmail,  // 이메일 형식 권장
           user_password: userPassword,
           user_name: userName,
-          user_number: userNumber,  // 숫자 형식이 기대된다면 수정
+          user_number: userNumber.toString(),
           user_nickname: userNickname,
           user_age: userAge,  // 숫자값
         });
@@ -159,7 +159,7 @@ export default function Login() {
 
         <styleD.InputWarpper>
           <div>전화번호</div>
-          <styleD.InputDefault type='text' onChange={onChangeNumber} />
+          <styleD.InputDefault type='number' onChange={onChangeNumber} />
         </styleD.InputWarpper>
 
         <button type='submit' onClick={postResiter}>

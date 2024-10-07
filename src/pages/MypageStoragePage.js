@@ -28,7 +28,7 @@ export default function MypageStorage() {
             keyword: "정치",
           },
           {
-            headers: { access_token: localStorage.getItem('accessToken') },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -43,7 +43,7 @@ export default function MypageStorage() {
             keyword: "정치",
           },
           {
-            headers: { access_token: localStorage.getItem('accessToken') },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -59,7 +59,7 @@ export default function MypageStorage() {
           keyword: "경제",
         },
           {
-            headers: { access_token: localStorage.getItem('accessToken'), },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -74,7 +74,7 @@ export default function MypageStorage() {
             keyword: "경제",
           },
           {
-            headers: { access_token: localStorage.getItem('accessToken') },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -90,7 +90,7 @@ export default function MypageStorage() {
           keyword: "사회",
         },
           {
-            headers: { access_token: localStorage.getItem('accessToken'), },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -105,7 +105,7 @@ export default function MypageStorage() {
             keyword: "사회",
           },
           {
-            headers: { access_token: localStorage.getItem('accessToken') },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -121,7 +121,7 @@ export default function MypageStorage() {
           keyword: "과학",
         },
           {
-            headers: { access_token: localStorage.getItem('accessToken'), },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -136,7 +136,7 @@ export default function MypageStorage() {
             keyword: "과학",
           },
           {
-            headers: { access_token: localStorage.getItem('accessToken') },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -152,7 +152,7 @@ export default function MypageStorage() {
           keyword: "연예",
         },
           {
-            headers: { access_token: localStorage.getItem('accessToken'), },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -167,7 +167,7 @@ export default function MypageStorage() {
             keyword: "연예",
           },
           {
-            headers: { access_token: localStorage.getItem('accessToken') },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -183,7 +183,7 @@ export default function MypageStorage() {
           keyword: "스포츠",
         },
           {
-            headers: { access_token: localStorage.getItem('accessToken'), },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -198,7 +198,7 @@ export default function MypageStorage() {
             keyword: "스포츠",
           },
           {
-            headers: { access_token: localStorage.getItem('accessToken') },
+            headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
           });
 
         console.log(response.data);
@@ -212,7 +212,9 @@ export default function MypageStorage() {
   async function getKeyword() {
     try {
       const response = await axios.get(`${serverURL}/users/keyword`, {
-        headers: { access_token: localStorage.getItem('accessToken') },
+        headers: { 
+          Authorization: "Bearer " + localStorage.getItem('accessToken') 
+        },
       });
 
       console.log(response.data)
