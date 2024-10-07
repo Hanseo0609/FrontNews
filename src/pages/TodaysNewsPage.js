@@ -5,6 +5,37 @@ import Header from '../components/Header';
 import * as styleD from '../styles/TodaysNewsPage';
 
 export default function TodaysNewsPage() {
+
+  // const serverURL = process.env.REACT_APP_SERVER_URL;
+  // const { news_id } = useParams();
+  // const [ newsData, setNewsData ] = useState({
+  //   keyword: '키워드',
+  //   itemCount: '1',
+  // });
+
+  // useEffect(() => {
+  //   getNewsData();
+  // }, [news_id]);
+
+  // async function getNewsData() {
+  //   try {
+  //     const response = await axios.get(`${serverURL}/news/getNewsList/{keyword}/{itemCount}`);
+  //     if (response.data.status === 200) {
+  //       setNewsData(response.data.data);
+  //       console.log(response.data);
+  //       alert("뉴스 조회 성공")
+  //     } else if (response.data.status === 404) {
+  //       alert("뉴스 조회 실패");
+  //     } else {
+  //       alert("뉴스 조회 실패")
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("서버 오류임");
+  //   }
+  // }
+
+
   return (
     <div>
       <Navbar />
@@ -14,11 +45,10 @@ export default function TodaysNewsPage() {
       <styleD.NewsContainer>
         <styleD.TodaysNewsContainer>
             <p className='selected'>오늘의 뉴스</p>
-            <p>주간 뉴스</p>
-            <p>월간 뉴스</p>
         </styleD.TodaysNewsContainer>
         <styleD.NewsCategoryContainer>
-            <p className='selected'>정치</p>
+            <p className='selected'>전체</p>
+            <p>정치</p>
             <p>경제</p>
 						<p>사회</p>
 						<p>과학</p>
