@@ -123,7 +123,6 @@ export default function Login() {
     <div>
       <Link to='/'><styleD.LogoImg src='./source/Logo.png' /></Link>
       <styleD.Wrapper>
-
         <styleD.InputWarpper>
           <div>아이디(메일)</div>
           <styleD.InputDefault type='mail' onChange={onChangeEmail} />

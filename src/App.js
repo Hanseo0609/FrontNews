@@ -11,6 +11,8 @@ import ScrollToTop from './components/ScrollToTop.js';
 import TodaysNewsPage from './pages/TodaysNewsPage.js';
 import FindMyIdPage from './pages/FindMyIdPage.js';
 import FindMyPasswordPage from './pages/FindMyPasswordPage.js';
+import NewsView from './components/NewsView.js';
+import MypageDetailPage from './pages/MypageDetailPage.js'
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
         <Route path="/TodaysNewsPage" element={<TodaysNewsPage/>}></Route>
         <Route path="/FindMyIdPage" element={<FindMyIdPage/>}></Route>
         <Route path="/FindMyPasswordPage" element={<FindMyPasswordPage/>}></Route>
+        <Route path="/NewsView" element={<NewsView/>}></Route>
+        <Route path="/MypageDetailPage" element={<MypageDetailPage/>}></Route>
       </Routes>
     </Router>
   );

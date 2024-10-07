@@ -181,3 +181,58 @@ export const KeywordUpdateBtn = styled.button`
     width: 100px;
     height: 30px;
 `;
+
+export const DetailSideBar = styled.div`
+    border: 5px solid #D2AC10;
+    width: 255px;
+    height: 700px;
+    border-radius: 15px;
+    margin-right: 50px;
+`;
+
+export const DetailMenus = styled.div`
+    margin-top: 25px;
+    display: flex;
+`;
+
+export const SideBarOption = styled.div`
+    border-bottom: 5px solid #D2AC10;
+    height: 120px;
+`;
+
+export const SideBarOptionfinal = styled.div`
+    height: 120px;
+`;
+
+export const SideBarText = styled.p`
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    margin: 55px 0 0 0;
+    color: gray;
+`;
+
+export const DetailOption = styled.div`
+    border: 2px solid black;
+    width: 600px;
+    height: 700px;
+    border-radius: 15px;
+    margin-right: 50px;
+
+`;
+
+export const DetailOptionHeader = styled.div`
+    border-bottom: 2px solid black;
+    width: 600px;
+    height: 50px;
+`;
+
+export const DetailOptionHeaderText = styled.p`
+    font-weight: bold;
+    font-size: 30px;
+    margin: 10px 10px 10px 10px;
+`;
+
+export const DetailWrapper = styled.div`
+  display: flex;
+`;
