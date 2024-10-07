@@ -11,7 +11,7 @@ export default function Navbar(props) {
   //리프레쉬 토큰 가져오기
   const refreshToken = localStorage.getItem("refreshToken");
 
-  console.log(props.status);
+  // console.log(props.status);
   const [status, setStatus] = useState(props.status ? props.status : "200");
 
   useEffect(() => {

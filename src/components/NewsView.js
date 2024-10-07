@@ -10,9 +10,10 @@ export default function NewsView() {
   const serverURL = process.env.REACT_APP_SERVER_URL;
   const { news_id } = useParams();
   const [newsData, setNewsData] = useState({
-    title: '기사 제목',
-    date: '2024-05-01',
-    content: '기사 본문'
+    article_title: '기사 제목',
+    article_createat: '2024-05-01',
+    article_content: '기사 본문',
+    article_id: 20
   });
 
   useEffect(() => {
@@ -23,8 +24,8 @@ export default function NewsView() {
     try {
       const response = await axios.get(`${serverURL}/news/getNews/20`);
       if (response.data.status === 200) {
-        setNewsData(response.data.data);
-        console.log(response.data);
+        setNewsData(response.data.data["news"]);
+        console.log(response.data.data["news"]);
       } else {
         alert("뉴스 데이터 로딩 실패");
       }
@@ -41,12 +42,12 @@ export default function NewsView() {
       <Header />
       <styled.liner />
       <div>
-        <styled.Title>{newsData.title}</styled.Title>
-        <styled.Date>{newsData.date}</styled.Date>
+        <styled.Title>{newsData.article_title}</styled.Title>
+        <styled.Date>{newsData.article_createat}</styled.Date>
       </div>
       <styled.Headliner />
       <div>
-        <styled.Content>{newsData.content}</styled.Content>
+        <styled.Content>{newsData.article_content}</styled.Content>
       </div>
     </div>
   );
