@@ -26,8 +26,8 @@ export default function Login() {
 
 	//토큰 로컬 스토리지 저장
 	var setToken = function(accessToken, refreshToken){
-		localStorage.setItem("accessToken", accessToken)
-		localStorage.setItem("refreshToken", refreshToken)
+		localStorage.setItem("accessToken", accessToken);
+		localStorage.setItem("refreshToken", refreshToken);
 	}
 
 	function onChangeEmail(evevt) {
@@ -39,7 +39,6 @@ export default function Login() {
 	}
 
 	async function postLogin() {
-		console.log(`${serverURL}/users/login`);
 		try {
 			const response = await axios.post(`${serverURL}/users/login`, {
 				email: userEmail,  // 이메일 형식 권장
@@ -48,18 +47,20 @@ export default function Login() {
 			if (response.data["status"] === 201) {
 				console.log(response.data);
 				alert('로그인 성공!!');
+				localStorage.setItem("nickname", response.data["data"]["nickname"]);
+				localStorage.setItem("userEmail", response.data["data"]["email"]);
+				localStorage.setItem("phoneNumber", response.data["data"]["number"]);
 				setToken(response.data["data"]["access_token"], response.data["data"]["refresh_token"]);
 				// setAccessToken(response.data["data"]["access_token"], 1);
 				// setRefreshToken(response.data["data"]["refresh_token"], 100);
 				document.location.href = '/';
 
-			} else if (response.data["status"] === 400) {
+			} else{
 				console.log(response.data)
-				alert('로그인 실패!!')
 			}
-
 		} catch (error) {
 			console.error(error);  // 에러 메시지 출력
+			alert('계정 또는 비밀번호를 다시 확인하세요!!')
 		}
 	}
 
@@ -78,9 +79,9 @@ export default function Login() {
 				<button type='submit' onClick={postLogin}>로그인</button>
 			</styleD.Wrapper>
 			<styleD.OptionWrapper>
-				<Link to='/FindMyId'>아이디 찾기</Link>
-				<Link to='/FindMyPassword'>비밀번호 찾기</Link>
-				<Link to='/Register'>회원가입</Link>
+				<Link to='/FindMyIdPage'>아이디 찾기</Link>
+				<Link to='/FindMyPasswordPage'>비밀번호 찾기</Link>
+				<Link to='/RegisterPage'>회원가입</Link>
 			</styleD.OptionWrapper>
 		</div>
 	)

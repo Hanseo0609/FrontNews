@@ -4,6 +4,13 @@ import Line from '../components/Line';
 import { Link } from "react-router-dom";
 
 export default function MypageSInfo() {
+
+  //닉네임 가져오기
+  const nickname = localStorage.getItem("nickname");
+  //아이디 가져오기
+  const userEmail = localStorage.getItem("userEmail");
+  //전화번호 가져오기
+  const phoneNumber = localStorage.getItem("phoneNumber");
   return (
     <div>
       <Navbar />
@@ -16,14 +23,13 @@ export default function MypageSInfo() {
             마이페이지
           </styleD.MypageHeaderBtn>
           <styleD.MypageHeaderBtn>
-          <Link to='/MypageStorage'style={{textDecoration: 'none', color: '#b3b3b3'}}>보관함</Link>
+          <Link to='/MypageStoragePage'style={{textDecoration: 'none', color: '#b3b3b3'}}>보관함</Link>
           </styleD.MypageHeaderBtn>
           <styleD.MypageHeaderBtn style={{color: 'black'}}>계정 정보</styleD.MypageHeaderBtn>
         </styleD.MypageHeader>
 
         <styleD.MypageStatus>
-          <p>프론트황제 김한서님, 반가워요!</p>
-          <p style={{ textDecoration: 'underline' }}>로그아웃</p>
+          <p>{nickname}님, 반가워요!</p>
         </styleD.MypageStatus>
 
         <div style={{marginTop: '30px'}}>
@@ -31,20 +37,20 @@ export default function MypageSInfo() {
 
             <styleD.UserInfoContainer>
                 <p style={{color: '#666666', width: '100px'}}>아이디(메일)</p>
-                <styleD.UserInfo>kim_han_seo@legendKingSuper.AlphaMail</styleD.UserInfo>
+                <styleD.UserInfo>{userEmail}</styleD.UserInfo>
             </styleD.UserInfoContainer>
             <hr style={{ color: '#666666', marginTop: '5px' }} />
 
             <styleD.UserInfoContainer>
                 <p style={{color: '#666666', width: '100px'}}>닉네임</p>
-                <styleD.UserInfo>발로란트의신그건바로나김한서!!</styleD.UserInfo>
+                <styleD.UserInfo>{nickname}</styleD.UserInfo>
                 <styleD.UserInfoUpdate>수정</styleD.UserInfoUpdate>
             </styleD.UserInfoContainer>
             <hr style={{ color: '#666666', marginTop: '5px' }} />
 
             <styleD.UserInfoContainer>
                 <p style={{color: '#666666', width: '100px'}}>전화번호</p>
-                <styleD.UserInfo>+82 10 1234 5678</styleD.UserInfo>
+                <styleD.UserInfo>{phoneNumber}</styleD.UserInfo>
                 <styleD.UserInfoUpdate>수정</styleD.UserInfoUpdate>
             </styleD.UserInfoContainer>
             <hr style={{ color: '#666666', marginTop: '5px' }} />

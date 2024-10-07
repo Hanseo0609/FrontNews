@@ -6,35 +6,34 @@ import * as styleD from '../styles/TodaysNewsPage';
 
 export default function TodaysNewsPage() {
 
-  const serverURL = process.env.REACT_APP_SERVER_URL;
-  const { news_id } = useParams();
-  const [newsData, setNewsData] = useState({
-    keyword: '키워드',
-    itemCount: '1',
-  });
+  // const serverURL = process.env.REACT_APP_SERVER_URL;
+  // const { news_id } = useParams();
+  // const [ newsData, setNewsData ] = useState({
+  //   keyword: '키워드',
+  //   itemCount: '1',
+  // });
 
-  useEffect(() => {
-    getNewsData();
-  }, [news_id]);
+  // useEffect(() => {
+  //   getNewsData();
+  // }, [news_id]);
 
-  async function getNewsData() {
-    try {
-      const response = await axios.get(`${serverURL}/news/getNewsList/{keyword}/{itemCount}`);
-      if (response.data.status === 200) {
-        setNewsData(response.data.data);
-        console.log(response.data);
-        alert("뉴스 조회 성공")
-      } else if (response.data.status === 404) {
-        alert("뉴스 조회 실패");
-      } else {
-        alert("뉴스 조회 실패")
-      }
-    } catch (error) {
-      console.error(error);
-      alert("서버 오류임");
-    }
-  }
-
+  // async function getNewsData() {
+  //   try {
+  //     const response = await axios.get(`${serverURL}/news/getNewsList/{keyword}/{itemCount}`);
+  //     if (response.data.status === 200) {
+  //       setNewsData(response.data.data);
+  //       console.log(response.data);
+  //       alert("뉴스 조회 성공")
+  //     } else if (response.data.status === 404) {
+  //       alert("뉴스 조회 실패");
+  //     } else {
+  //       alert("뉴스 조회 실패")
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("서버 오류임");
+  //   }
+  // }
 
 
   return (
