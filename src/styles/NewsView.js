@@ -5,10 +5,11 @@ export const Title = styled.p`
   font-weight: bold;
   margin-left: 15%;
   margin-bottom: 10px; // 제목과 날짜 사이의 간격을 조절합니다
+  width: 1350px;
 `;
 
 export const Date = styled.p`
-  font-size: 15px;
+  font-size: 30px;
   color: #808080;
   margin-left: 15%;
   margin-top: 0; // 날짜를 제목에 더 가깝게 붙입니다
@@ -18,6 +19,7 @@ export const Content = styled.p`
   font-size: 28px;
   color: #000000;
   margin-left: 15%;
+  width: 1350px;
 `;
 
 export const Headliner = styled.hr`
