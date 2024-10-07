@@ -1,4 +1,5 @@
 import * as styled from '../styles/PopNews';
+import { Link } from 'react-router-dom';
 
 const Popup = ({ isOpen, onClose }) => {
   return (
@@ -10,7 +11,7 @@ const Popup = ({ isOpen, onClose }) => {
             <styled.TextBox>
               <styled.Title>조회한 뉴스 제목</styled.Title>
               <styled.Content>뉴스 요약 본문</styled.Content>
-              <styled.Link href="/">원문 보기</styled.Link>
+              <Link to="/NewsView" style={{textDecoration:"none", marginLeft:"100px", fontSize:"25px", border:"1px solid black", borderRadius:"5px", backgroundColor:"skyblue"}}>원문 보기</Link>
               <br />
               <styled.ExitBtn onClick={onClose}>닫기</styled.ExitBtn>
             </styled.TextBox>
