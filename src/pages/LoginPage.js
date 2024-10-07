@@ -53,6 +53,7 @@ export default function Login() {
 				setToken(response.data["data"]["access_token"], response.data["data"]["refresh_token"]);
 				// setAccessToken(response.data["data"]["access_token"], 1);
 				// setRefreshToken(response.data["data"]["refresh_token"], 100);
+
 				document.location.href = '/';
 
 			} else{
