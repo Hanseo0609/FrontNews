@@ -45,11 +45,10 @@ export default function TodaysNewsPage() {
       <styleD.NewsContainer>
         <styleD.TodaysNewsContainer>
             <p className='selected'>오늘의 뉴스</p>
-            <p>주간 뉴스</p>
-            <p>월간 뉴스</p>
         </styleD.TodaysNewsContainer>
         <styleD.NewsCategoryContainer>
-            <p className='selected'>정치</p>
+            <p className='selected'>전체</p>
+            <p>정치</p>
             <p>경제</p>
 						<p>사회</p>
 						<p>과학</p>
