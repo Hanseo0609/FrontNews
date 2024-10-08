@@ -20,7 +20,7 @@ export default function NewsPreview() {
     article_title: '기사 제목',
     article_createat: '2024-05-01',
     article_content: '기사 본문',
-    article_id: 20,
+    article_id: 0,
     article_image: 'image.png'
   });
 
@@ -55,7 +55,7 @@ export default function NewsPreview() {
   return (
     <styleD.MainContentWrap>
       <styleD.MainContentText>뉴스 요약</styleD.MainContentText>
-      <styleD.MainContentBox style={{ height: '540px', display: 'flex' }}>
+      <styleD.MainContentBox style={{ height: '540px' }}>
         <div>
           <p style={{ fontWeight: 'bold', fontSize: '24px', margin: '10px 0px 0px 0px', padding: '15px 0px 10px 15px' }}>키워드</p>
           <div style={{ display: 'flex', paddingLeft: '15px' }}>
@@ -72,11 +72,11 @@ export default function NewsPreview() {
               )
             })}
           </div>
-          <button>이전</button>
-          <button>다음</button>
+          <button className='prevBtn'>{'<'}</button>
+          <button className='nextBtn'>{'>'}</button>
         </div>
 
-        <div style={{ display: 'flex', marginTop: '110px' }}>
+        <div style={{ display: 'flex', marginLeft: '60px' }}>
           <styleD.NewsImg src={newsData.article_image} style={{ width: '420px', height: '320px', borderRadius:'15px', marginRight:'20px'}} />
           {/* {news.map((item, index) => (
             <div key={index} style={{ marginLeft: '30px' }}>

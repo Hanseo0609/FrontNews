@@ -15,3 +15,16 @@
     color: white;
   }
 }
+
+.prevBtn {
+  padding: 10px;
+  font-size: 60px;
+  border: none;
+}
+
+
+.nextBtn {
+  padding: 10px;
+  font-size: 60px;
+  border: none;
+}
