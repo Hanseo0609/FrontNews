@@ -85,7 +85,7 @@ export default function NewsPreview() {
             </div>
           ))} */}
           <div>
-          <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '500px', fontWeight:'bold', fontSize:'30px', width:'' }}>
+          <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', width: '500px', fontWeight:'bold', fontSize:'30px', width:'' }}>
             {newsData.article_title}
           </p>
           <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '800px' }}>
