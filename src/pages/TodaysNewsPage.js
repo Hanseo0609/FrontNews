@@ -60,7 +60,7 @@ export default function TodaysNewsPage() {
 						<p>연예</p>
 						<p>스포츠</p>
         </styleD.NewsCategoryContainer>
-        <Link to="/NewsView">
+        <Link to="/NewsView" style={{textDecoration: 'none', color: 'black'}}>
         <styleD.NewsBoxContainer>
             {
                 Array(10).fill(0).map((_, index) => (
