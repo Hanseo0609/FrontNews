@@ -76,7 +76,7 @@ export default function NewsPreview() {
           <button className='nextBtn'>{'>'}</button>
         </div>
 
-        <div style={{ display: 'flex', marginTop: '30px', marginLeft:'120px' }}>
+        <div style={{ display: 'flex', marginLeft:'120px' }}>
           <styleD.NewsImg src={newsData.article_image} style={{ width: '420px', height: '320px', borderRadius:'15px', marginRight:'20px'}} />
           {/* {news.map((item, index) => (
             <div key={index} style={{ marginLeft: '30px' }}>
