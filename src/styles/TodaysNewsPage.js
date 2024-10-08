@@ -63,3 +63,14 @@ export const NewsContent = styled.p`
   font-size: 1.2rem;
   color: gray;
 `;
+
+export const ArticleTitle = styled.p`
+  font-weight: bold;
+  width: 500px;
+  font-size: 27px;
+`;
+
+export  const ArticalContent = styled.p`
+  width: 500px;
+  height: 200px;
+`;

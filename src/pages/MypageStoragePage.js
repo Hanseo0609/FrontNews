@@ -257,7 +257,19 @@ export default function MypageStorage() {
             </div>
           </styleD.RecommendFirstBox>
           <styleD.RecommendSecondBox>
-
+          <styleD.ProfileImageSetter>
+            <styleD.ProfileSetterTitle>프로필 사진 변경</styleD.ProfileSetterTitle>
+            <styleD.ProfileImage>
+              <input type='checkbox' />
+              <styleD.DefaultProfile src='./source/profile.png' alt='DefaultProfileImg' />
+              <p style={{marginLeft:'10px', marginTop:'10px'}}>기본 프로필 사진</p>
+            </styleD.ProfileImage>
+            <styleD.ProfileImage>
+              <input type='checkbox' />
+              <styleD.DefaultProfile src='./source/shape.png' style={{borderRadius:'50px'}} alt='DefaultProfileImg' />
+              <p style={{marginLeft:'23px', marginTop:'10px'}}>이미지 선택</p>
+            </styleD.ProfileImage>
+          </styleD.ProfileImageSetter>
           </styleD.RecommendSecondBox>
         </styleD.RecommendContainer>
 

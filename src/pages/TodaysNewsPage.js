@@ -3,38 +3,42 @@ import Line from '../components/Line';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import * as styleD from '../styles/TodaysNewsPage';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import React from 'react';
+import axios from 'axios';
 
 export default function TodaysNewsPage() {
 
-  // const serverURL = process.env.REACT_APP_SERVER_URL;
-  // const { news_id } = useParams();
-  // const [ newsData, setNewsData ] = useState({
-  //   keyword: '키워드',
-  //   itemCount: '1',
-  // });
+  const serverURL = process.env.REACT_APP_SERVER_URL;
+  const [news, setNews] = useState([]);
 
-  // useEffect(() => {
-  //   getNewsData();
-  // }, [news_id]);
+  const { news_id } = useParams();
+  const [newsData, setNewsData] = useState({
+    article_title: '기사 제목',
+    article_createat: '2024-05-01',
+    article_content: '기사 본문',
+    article_id: 20
+  });
 
-  // async function getNewsData() {
-  //   try {
-  //     const response = await axios.get(`${serverURL}/news/getNewsList/{keyword}/{itemCount}`);
-  //     if (response.data.status === 200) {
-  //       setNewsData(response.data.data);
-  //       console.log(response.data);
-  //       alert("뉴스 조회 성공")
-  //     } else if (response.data.status === 404) {
-  //       alert("뉴스 조회 실패");
-  //     } else {
-  //       alert("뉴스 조회 실패")
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     alert("서버 오류임");
-  //   }
-  // }
+  const todaysnewsPreviewLoad = async () => {
+    try {
+      const response = await axios.get(`${serverURL}/news/getNews/20`);
+      if (response.data.status === 200) {
+        setNewsData(response.data.data["news"]);
+        console.log(response.data.data["news"]);
+      } else {
+        alert("뉴스 데이터 로딩 실패");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("서버 오류임");
+    }
+  };
 
+  useEffect(() => {
+    todaysnewsPreviewLoad();
+  }, [news_id]);
 
   return (
     <div>
@@ -64,8 +68,8 @@ export default function TodaysNewsPage() {
                       	<img src='https://picsum.photos/100/100' alt=''/>
 											</styleD.NewsImg>
                       <div>
-                        <styleD.NewsTitle>제목</styleD.NewsTitle>
-                        <styleD.NewsContent>본문</styleD.NewsContent>
+                        <styleD.ArticleTitle ><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{newsData.article_title}</p></styleD.ArticleTitle>
+                        <styleD.ArticalContent><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow:'ellipsis', height:'200px'}}>{newsData.article_content}</p></styleD.ArticalContent>
                       </div>
                     </styleD.NewsBox>
                 ))

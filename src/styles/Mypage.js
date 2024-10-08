@@ -236,3 +236,24 @@ export const DetailOptionHeaderText = styled.p`
 export const DetailWrapper = styled.div`
   display: flex;
 `;
+
+export const ProfileImageSetter = styled.div`
+    display: flex;
+`;
+
+export const ProfileImage = styled.div`
+    margin-right: 80px;
+`;
+
+export const DefaultProfile = styled.img`
+    width: 90px;
+    height: 90px;
+    margin-top: 15px;
+`;
+
+export const ProfileSetterTitle = styled.p`
+    font-weight: bold;
+    color: #D2AC10;
+    font-size: 25px;
+    margin: 15px 50px 0px 20px;
+`;
