@@ -1,11 +1,20 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as styleD from '../styles/NewsPreview';
+import '../styles/btn.css';
 
 export default function NewsPreview() {
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
-  const [news, setNews] = useState([]);
+
+  let data = ['정치', '경제', '사회', '과학', '연예', '스포츠'];
+  let [btnActive, setBtnActive] = useState("");
+
+  const toggleActive = (e) => {
+    setBtnActive((prev) => {
+      return e.target.value;
+    });
+  };
 
   const [newsData, setNewsData] = useState({
     article_title: '기사 제목',
@@ -50,10 +59,18 @@ export default function NewsPreview() {
         <div>
           <p style={{ fontWeight: 'bold', fontSize: '24px', margin: '10px 0px 0px 0px', padding: '15px 0px 10px 15px' }}>키워드</p>
           <div style={{ display: 'flex', paddingLeft: '15px' }}>
-            <styleD.KeywordBtn>IT</styleD.KeywordBtn>
-            <styleD.KeywordBtn>정치</styleD.KeywordBtn>
-            <styleD.KeywordBtn>스포츠</styleD.KeywordBtn>
-            <styleD.KeywordBtn>경제</styleD.KeywordBtn>
+            {data.map((item, index) => {
+              return (
+                <div>
+                  <button
+                    value={index}
+                    className={"btn" + (index == btnActive ? " active" : "")}
+                    onClick={toggleActive} >
+                    {item}
+                  </button>
+                </div>
+              )
+            })}
           </div>
           <button>이전</button>
           <button>다음</button>
