@@ -62,7 +62,7 @@ export default function MypageSInfo() {
             <hr style={{ color: '#666666', marginTop: '5px' }} />
         </div>
 
-        <hr style={{height: '5px', backgroundColor: '#D2AC10', marginTop: '60px' }} />
+        {/* <hr style={{height: '5px', backgroundColor: '#D2AC10', marginTop: '60px' }} />
         
         <div>
           <styleD.ActStorageText>뉴스레터 약관</styleD.ActStorageText>
@@ -80,7 +80,7 @@ export default function MypageSInfo() {
             <styleD.Newsletter>개인정보 3자 제공</styleD.Newsletter>
             <styleD.MypageKeywordCheckbox type="checkbox" style={{marginTop: '17px'}}/>
           </div>
-        </div>
+        </div> */}
         
       </styleD.MypageContainer>
     </div>

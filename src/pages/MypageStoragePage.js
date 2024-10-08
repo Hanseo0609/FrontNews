@@ -12,219 +12,221 @@ export default function MypageStorage() {
   //닉네임 가져오기
   const nickname = localStorage.getItem("nickname");
 
-  const [politicsKeyword, setPoliticsKeyword] = useState(false);
-  const [economyKeyword, setEconomyKeyword] = useState(false);
-  const [societyKeyword, setSocietyKeyword] = useState(false);
-  const [scienceKeyword, setScienceKeyword] = useState(false);
-  const [loveKeyword, setLoveKeyword] = useState(false);
-  const [sportKeyword, setSportKeyword] = useState(false);
+  // const [politicsKeyword, setPoliticsKeyword] = useState(false);
+  // const [economyKeyword, setEconomyKeyword] = useState(false);
+  // const [societyKeyword, setSocietyKeyword] = useState(false);
+  // const [scienceKeyword, setScienceKeyword] = useState(false);
+  // const [loveKeyword, setLoveKeyword] = useState(false);
+  // const [sportKeyword, setSportKeyword] = useState(false);
 
-  async function postKeyword() {
-    if (politicsKeyword) {
-      console.log(localStorage.getItem('accessToken'));
-      try {
-        const response = await axios.post(`${serverURL}/users/keywordAdd`,
-          {
-            keyword: "정치",
-          },
-          {
-            headers: { access_token: localStorage.getItem('accessToken') },
-          });
+  // async function postKeyword() {
+  //   if (politicsKeyword) {
+  //     console.log(localStorage.getItem('accessToken'));
+  //     try {
+  //       const response = await axios.post(`${serverURL}/users/keywordAdd`,
+  //         {
+  //           keyword: "정치",
+  //         },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }else{
-      try {
-        const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-          {
-            keyword: "정치",
-          },
-          {
-            headers: { access_token: localStorage.getItem('accessToken') },
-          });
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }else{
+  //     try {
+  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
+  //         {
+  //           keyword: "정치",
+  //         },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }
 
-    if (economyKeyword) {
-      try {
-        const response = await axios.post(`${serverURL}/users/keywordAdd`, {
-          keyword: "경제",
-        },
-          {
-            headers: { access_token: localStorage.getItem('accessToken'), },
-          });
+  //   if (economyKeyword) {
+  //     try {
+  //       const response = await axios.post(`${serverURL}/users/keywordAdd`, {
+  //         keyword: "경제",
+  //       },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }else{
-      try {
-        const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-          {
-            keyword: "경제",
-          },
-          {
-            headers: { access_token: localStorage.getItem('accessToken') },
-          });
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }else{
+  //     try {
+  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
+  //         {
+  //           keyword: "경제",
+  //         },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }
 
-    if (societyKeyword) {
-      try {
-        const response = await axios.post(`${serverURL}/users/keywordAdd`, {
-          keyword: "사회",
-        },
-          {
-            headers: { access_token: localStorage.getItem('accessToken'), },
-          });
+  //   if (societyKeyword) {
+  //     try {
+  //       const response = await axios.post(`${serverURL}/users/keywordAdd`, {
+  //         keyword: "사회",
+  //       },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }else{
-      try {
-        const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-          {
-            keyword: "사회",
-          },
-          {
-            headers: { access_token: localStorage.getItem('accessToken') },
-          });
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }else{
+  //     try {
+  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
+  //         {
+  //           keyword: "사회",
+  //         },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }
 
-    if (scienceKeyword) {
-      try {
-        const response = await axios.post(`${serverURL}/users/keywordAdd`, {
-          keyword: "과학",
-        },
-          {
-            headers: { access_token: localStorage.getItem('accessToken'), },
-          });
+  //   if (scienceKeyword) {
+  //     try {
+  //       const response = await axios.post(`${serverURL}/users/keywordAdd`, {
+  //         keyword: "과학",
+  //       },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }else{
-      try {
-        const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-          {
-            keyword: "과학",
-          },
-          {
-            headers: { access_token: localStorage.getItem('accessToken') },
-          });
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }else{
+  //     try {
+  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
+  //         {
+  //           keyword: "과학",
+  //         },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }
 
-    if (loveKeyword) {
-      try {
-        const response = await axios.post(`${serverURL}/users/keywordAdd`, {
-          keyword: "연예",
-        },
-          {
-            headers: { access_token: localStorage.getItem('accessToken'), },
-          });
+  //   if (loveKeyword) {
+  //     try {
+  //       const response = await axios.post(`${serverURL}/users/keywordAdd`, {
+  //         keyword: "연예",
+  //       },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }else{
-      try {
-        const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-          {
-            keyword: "연예",
-          },
-          {
-            headers: { access_token: localStorage.getItem('accessToken') },
-          });
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }else{
+  //     try {
+  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
+  //         {
+  //           keyword: "연예",
+  //         },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }
 
-    if (sportKeyword) {
-      try {
-        const response = await axios.post(`${serverURL}/users/keywordAdd`, {
-          keyword: "스포츠",
-        },
-          {
-            headers: { access_token: localStorage.getItem('accessToken'), },
-          });
+  //   if (sportKeyword) {
+  //     try {
+  //       const response = await axios.post(`${serverURL}/users/keywordAdd`, {
+  //         keyword: "스포츠",
+  //       },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }else{
-      try {
-        const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-          {
-            keyword: "스포츠",
-          },
-          {
-            headers: { access_token: localStorage.getItem('accessToken') },
-          });
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }else{
+  //     try {
+  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
+  //         {
+  //           keyword: "스포츠",
+  //         },
+  //         {
+  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
+  //         });
 
-        console.log(response.data);
+  //       console.log(response.data);
 
-      } catch (error) {
-        console.error(error);  // 에러 메시지 출력
-      }
-    }
-  }
+  //     } catch (error) {
+  //       console.error(error);  // 에러 메시지 출력
+  //     }
+  //   }
+  // }
 
-  async function getKeyword() {
-    try {
-      const response = await axios.get(`${serverURL}/users/keyword`, {
-        headers: { access_token: localStorage.getItem('accessToken') },
-      });
+  // async function getKeyword() {
+  //   try {
+  //     const response = await axios.get(`${serverURL}/users/keyword`, {
+  //       headers: { 
+  //         Authorization: "Bearer " + localStorage.getItem('accessToken') 
+  //       },
+  //     });
 
-      console.log(response.data)
+  //     console.log(response.data)
 
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
-  useEffect(() => {
-    getKeyword();
-  }, []);
+  // useEffect(() => {
+  //   getKeyword();
+  // }, []);
 
   return (
     <div>
@@ -257,7 +259,19 @@ export default function MypageStorage() {
             </div>
           </styleD.RecommendFirstBox>
           <styleD.RecommendSecondBox>
-
+          <styleD.ProfileImageSetter>
+            <styleD.ProfileSetterTitle>프로필 사진 변경</styleD.ProfileSetterTitle>
+            <styleD.ProfileImage>
+              <input type='checkbox' />
+              <styleD.DefaultProfile src='./source/profile.png' alt='DefaultProfileImg' />
+              <p style={{marginLeft:'10px', marginTop:'10px'}}>기본 프로필 사진</p>
+            </styleD.ProfileImage>
+            <styleD.ProfileImage>
+              <input type='checkbox' />
+              <styleD.DefaultProfile src='./source/shape.png' style={{borderRadius:'50px'}} alt='DefaultProfileImg' />
+              <p style={{marginLeft:'23px', marginTop:'10px'}}>이미지 선택</p>
+            </styleD.ProfileImage>
+          </styleD.ProfileImageSetter>
           </styleD.RecommendSecondBox>
         </styleD.RecommendContainer>
 
@@ -302,23 +316,23 @@ export default function MypageStorage() {
           </styleD.MypageActComment>
         </styleD.MypageActivityContainer>
 
-        <hr style={{ height: '5px', backgroundColor: '#D2AC10' }} />
+        {/* <hr style={{ height: '5px', backgroundColor: '#D2AC10' }} />
 
         <div>
           <styleD.ActStorageText>키워드 관리</styleD.ActStorageText>
 
           <styleD.MypageKeywordContainer>
-            정치 <styleD.MypageKeywordCheckbox type="checkbox" onChange={setPoliticsKeyword} />
-            경제 <styleD.MypageKeywordCheckbox type="checkbox" onChange={setEconomyKeyword} />
-            사회 <styleD.MypageKeywordCheckbox type="checkbox" onChange={setSocietyKeyword} />
-            과학 <styleD.MypageKeywordCheckbox type="checkbox" onChange={setScienceKeyword} />
-            연예 <styleD.MypageKeywordCheckbox type="checkbox" onChange={setLoveKeyword} />
-            스포츠 <styleD.MypageKeywordCheckbox type="checkbox" onChange={setSportKeyword} />
+            정치 <styleD.MypageKeywordCheckbox type="checkbox" />
+            경제 <styleD.MypageKeywordCheckbox type="checkbox" />
+            사회 <styleD.MypageKeywordCheckbox type="checkbox" />
+            과학 <styleD.MypageKeywordCheckbox type="checkbox" />
+            연예 <styleD.MypageKeywordCheckbox type="checkbox" />
+            스포츠 <styleD.MypageKeywordCheckbox type="checkbox" />
 
-            <styleD.KeywordUpdateBtn onClick={postKeyword}>키워드 저장</styleD.KeywordUpdateBtn>
+            <styleD.KeywordUpdateBtn>키워드 저장</styleD.KeywordUpdateBtn>
           </styleD.MypageKeywordContainer>
 
-        </div>
+        </div> */}
       </styleD.MypageContainer>
     </div>
   );
