@@ -18,7 +18,8 @@ const Popup = ({ isOpen, onClose }) => {
     article_title: '기사 제목',
     article_createat: '2024-05-01',
     article_content: '기사 본문',
-    article_id: 20
+    article_id: 20,
+    article_image: 'image.png'
   });
 
   const togglePopup = (index) => {
@@ -28,7 +29,7 @@ const Popup = ({ isOpen, onClose }) => {
 
   const todaysnewsPreviewLoad = async () => {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/20`);
+      const response = await axios.get(`${serverURL}/news/getNews/30`);
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
         console.log(response.data.data["news"]);
@@ -51,7 +52,7 @@ const Popup = ({ isOpen, onClose }) => {
       {isOpen && (
         <styled.PopBox style={{ position: 'absolute', top: '-10px', left: '-280px', zIndex: '1000' }}>
           <styled.InnerBox>
-            <styled.Img src="logo192.png" />
+            <styled.Img src={newsData.article_image} />
             <styled.TextBox>
               <styled.Title><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '1000px' }}>
                     {newsData.article_title}

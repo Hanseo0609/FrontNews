@@ -11,12 +11,13 @@ export default function NewsPreview() {
     article_title: '기사 제목',
     article_createat: '2024-05-01',
     article_content: '기사 본문',
-    article_id: 20
+    article_id: 20,
+    article_image: 'image.png'
   });
 
   const newsPreviewLoad = async () => {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/20`);
+      const response = await axios.get(`${serverURL}/news/getNews/22`);
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
         console.log(response.data.data["news"]);
@@ -59,7 +60,7 @@ export default function NewsPreview() {
         </div>
 
         <div style={{ display: 'flex', marginTop: '110px' }}>
-          <styleD.NewsImg style={{ width: '420px', height: '320px' }} />
+          <styleD.NewsImg src={newsData.article_image} style={{ width: '420px', height: '320px', borderRadius:'15px', marginRight:'20px'}} />
           {/* {news.map((item, index) => (
             <div key={index} style={{ marginLeft: '30px' }}>
               <p>{item.title}으악</p>
@@ -67,7 +68,7 @@ export default function NewsPreview() {
             </div>
           ))} */}
           <div>
-          <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '500px' }}>
+          <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '500px', fontWeight:'bold', fontSize:'30px', width:'' }}>
             {newsData.article_title}
           </p>
           <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '800px' }}>

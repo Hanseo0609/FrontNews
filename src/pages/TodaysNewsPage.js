@@ -18,12 +18,13 @@ export default function TodaysNewsPage() {
     article_title: '기사 제목',
     article_createat: '2024-05-01',
     article_content: '기사 본문',
-    article_id: 20
+    article_id: 20,
+    article_image: 'image.png'
   });
 
   const todaysnewsPreviewLoad = async () => {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/20`);
+      const response = await axios.get(`${serverURL}/news/getNews/21`);
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
         console.log(response.data.data["news"]);
@@ -59,21 +60,23 @@ export default function TodaysNewsPage() {
 						<p>연예</p>
 						<p>스포츠</p>
         </styleD.NewsCategoryContainer>
+        <Link to="/NewsView">
         <styleD.NewsBoxContainer>
             {
                 Array(10).fill(0).map((_, index) => (
                     <styleD.NewsBox key={index}>
 											<styleD.NewsImg>
-                      	<img src='https://picsum.photos/100/100' alt=''/>
+                      	<img src={newsData.article_image} alt=''/>
 											</styleD.NewsImg>
                       <div>
-                        <styleD.ArticleTitle ><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{newsData.article_title}</p></styleD.ArticleTitle>
+                        <styleD.ArticleTitle ><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textDecoration:'none'}}>{newsData.article_title}</p></styleD.ArticleTitle>
                         <styleD.ArticalContent><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow:'ellipsis', height:'200px'}}>{newsData.article_content}</p></styleD.ArticalContent>
                       </div>
                     </styleD.NewsBox>
                 ))
             }
         </styleD.NewsBoxContainer>
+        </Link>
       </styleD.NewsContainer>
     </div>
   );

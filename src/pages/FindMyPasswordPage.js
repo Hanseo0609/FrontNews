@@ -8,7 +8,7 @@ export default function FindMyPassword() {
             <Navbar status="400"/>
             
 			<styleD.FindMyIdBorder>
-            <styleD.FindMyIdTitle>비밀번호 찾기</styleD.FindMyIdTitle>
+            <styleD.FindMyIdTitle>비밀번호 변경</styleD.FindMyIdTitle>
             <styleD.FindMyIdHr />
             <styleD.FindMyIdContent>
             <div>
