@@ -72,12 +72,12 @@ export default function NewsPreview() {
               )
             })}
           </div>
-          <button className='prevBtn'>{'<'}</button>
-          <button className='nextBtn'>{'>'}</button>
         </div>
 
-        <div style={{ display: 'flex', marginLeft:'120px' }}>
-          <styleD.NewsImg src={newsData.article_image} style={{ width: '420px', height: '320px', borderRadius:'15px', marginRight:'20px'}} />
+        <div style={{ display: 'flex', marginTop: '30px', marginLeft:'120px'}}>
+
+          <button style={{border: 'none', fontSize: '40px', backgroundColor: '#eee', marginLeft: '-20px', color: '#656565'}}>◀️</button>
+          <styleD.NewsImg src={newsData.article_image} style={{ width: '420px', height: '320px', borderRadius:'15px', marginRight:'20px', marginLeft: '40px'}} />
           {/* {news.map((item, index) => (
             <div key={index} style={{ marginLeft: '30px' }}>
               <p>{item.title}으악</p>
@@ -85,13 +85,14 @@ export default function NewsPreview() {
             </div>
           ))} */}
           <div>
-          <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', width: '500px', fontWeight:'bold', fontSize:'30px', width:'' }}>
+          <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', width: '500px', fontWeight:'bold', fontSize:'30px', width:'800px' }}>
             {newsData.article_title}
           </p>
           <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '800px' }}>
             {newsData.article_content}
           </p>
           </div>
+          <button style={{border: 'none', fontSize: '40px', marginLeft: '50px', backgroundColor: '#eee', color: '#656565'}}>▶️</button>
         </div>
 
       </styleD.MainContentBox>
