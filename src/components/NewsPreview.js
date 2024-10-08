@@ -55,7 +55,7 @@ export default function NewsPreview() {
   return (
     <styleD.MainContentWrap>
       <styleD.MainContentText>뉴스 요약</styleD.MainContentText>
-      <styleD.MainContentBox style={{ height: '540px', display: 'flex' }}>
+      <styleD.MainContentBox style={{ height: '500px' }}>
         <div>
           <p style={{ fontWeight: 'bold', fontSize: '24px', margin: '10px 0px 0px 0px', padding: '15px 0px 10px 15px' }}>키워드</p>
           <div style={{ display: 'flex', paddingLeft: '15px' }}>
@@ -76,7 +76,7 @@ export default function NewsPreview() {
           <button>다음</button>
         </div>
 
-        <div style={{ display: 'flex', marginTop: '110px' }}>
+        <div style={{ display: 'flex', marginTop: '30px', marginLeft:'120px' }}>
           <styleD.NewsImg src={newsData.article_image} style={{ width: '420px', height: '320px', borderRadius:'15px', marginRight:'20px'}} />
           {/* {news.map((item, index) => (
             <div key={index} style={{ marginLeft: '30px' }}>
