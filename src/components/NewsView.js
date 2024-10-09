@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export default function NewsView() {
 
@@ -17,7 +17,6 @@ export default function NewsView() {
     article_image: 'image.png',
     article_url: 'http'
   });
-
   const [comment, setComment] = useState("");
   const [newsComment, setNewsComment] = useState([]);
 
@@ -77,7 +76,11 @@ export default function NewsView() {
     }
   }
 
-  const getNewsData = async (id) => {
+  useEffect(() => {
+    getNewsData();
+  }, []);
+
+  async function getNewsData(props) {
     try {
       const url = new URL(window.location.href);
       const searchParams = new URLSearchParams(url.search);
@@ -95,13 +98,7 @@ export default function NewsView() {
       console.error(error);
       alert("서버 오류임");
     }
-  };
-
-  useEffect(() => {
-    if (articleId) {
-      getNewsData(articleId); // 전달받은 articleId로 뉴스 데이터를 가져옴
-    }
-  }, [articleId]);
+  }
 
   async function deleteComment() {
     try{
@@ -143,6 +140,7 @@ export default function NewsView() {
         <p>출처 : {newsData.article_url}</p>
         <styled.Content style={{ textAlign: 'left', lineHeight: '50px' }}>{newsData.article_content}</styled.Content>
       </div>
+
 
       <div style={{ display: 'flex', marginLeft: '280px' }}>
         <textarea onChange={onChangeComment} style={{ width: '1200px', height: '100px', marginRight: '20px' }}></textarea>

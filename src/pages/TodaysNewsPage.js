@@ -13,7 +13,7 @@ export default function TodaysNewsPage() {
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
   const [loading, setLoading] = useState(true); // 데이터 로딩 상태
-  const [currId, setCurrId] = useState(0);
+
 
   const [newsId, setNewsId] = useState(16);
   const [newArray, setNewArray] = useState([]);
@@ -56,7 +56,6 @@ export default function TodaysNewsPage() {
 
   useEffect(() => {
     loadArrayNews();
-    console.log(newsData.article_id);
   }, []);
 
   return (
