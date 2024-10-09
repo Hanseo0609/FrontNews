@@ -1,6 +1,6 @@
 import * as styleD from '../styles/Login';
 import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function Login() {
@@ -9,6 +9,7 @@ export default function Login() {
 
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");
+	const [autoLogin, setAutoLogin] = useState(false);
 
 	//access 토큰 쿠키 저장
 	// var setAccessToken = function (accessToken, exp) {
@@ -25,7 +26,7 @@ export default function Login() {
 	// }
 
 	//토큰 로컬 스토리지 저장
-	var setToken = function(accessToken, refreshToken){
+	var setToken = function (accessToken, refreshToken) {
 		localStorage.setItem("accessToken", accessToken);
 		localStorage.setItem("refreshToken", refreshToken);
 	}
@@ -37,6 +38,45 @@ export default function Login() {
 	function onChangePassword(evevt) {
 		setUserPassword(evevt.target.value)
 	}
+
+	function isAutoLoginChecked(evevt) {
+		setAutoLogin(evevt.target.checked);
+	}
+
+	useEffect(() => {
+		localStorage.setItem('autoLogin', autoLogin)
+	},
+		[autoLogin]);
+	
+
+	useEffect(() => {
+		const autoLogin = localStorage.getItem('autoLogin');
+		const refreshToken = localStorage.getItem('refreshToken');
+
+		if (autoLogin && refreshToken) {
+			(async () => {
+				try {
+					const response = await axios.post(`${serverURL}/users/login`, {}, {
+						headers: { Authorization: `Bearer ${refreshToken}` }
+					});
+					if (response.data["status"] === 201) {
+						console.log(response.data);
+						alert('자동 로그인 성공!!');
+						localStorage.setItem("nickname", response.data["data"]["nickname"]);
+						localStorage.setItem("userEmail", response.data["data"]["email"]);
+						localStorage.setItem("phoneNumber", response.data["data"]["number"]);
+						setToken(response.data["data"]["access_token"], response.data["data"]["refresh_token"]);
+
+						document.location.href = '/';
+					} else {
+						console.log(response.data);
+					}
+				} catch (error) {
+					console.error(error);
+				}
+			})();
+		}
+	}, []);
 
 	async function postLogin() {
 		try {
@@ -56,7 +96,7 @@ export default function Login() {
 
 				document.location.href = '/';
 
-			} else{
+			} else {
 				console.log(response.data)
 			}
 		} catch (error) {
@@ -77,6 +117,10 @@ export default function Login() {
 					<div>비밀번호</div>
 					<styleD.InputDefault type='password' onChange={onChangePassword} />
 				</styleD.InputWarpper>
+				<div style={{ marginTop: '-10px', marginBottom: '10px' }}>
+					<input type='checkbox' onChange={isAutoLoginChecked} />
+					자동로그인
+				</div>
 				<button type='submit' onClick={postLogin}>로그인</button>
 			</styleD.Wrapper>
 			<styleD.OptionWrapper>
