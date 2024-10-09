@@ -39,13 +39,13 @@ export default function NewsView() {
 
       if (response.data["status"] === 201) {
         alert('댓글 작성 성공');
-        setComment(""); 
+        setComment("");
         await getNewsData();
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
         console.log('액세스 토큰 만료');
-        await handleTokenReissue();
+        await handleTokenReissuePostComment();
       } else {
         console.log(error);
         alert('댓글 작성 실패');
@@ -53,15 +53,15 @@ export default function NewsView() {
     }
   }
 
-  async function handleTokenReissue() {
+  async function handleTokenReissuePostComment() {
     try {
       const refresh_token = localStorage.getItem('refreshToken');
-      console.log(refresh_token);
+
       if (!refresh_token) {
-        throw new Error('리프레시 토큰 없음');
+        throw new Error('리프레쉬 토큰 없음');
       }
-      
-      const response = await axios.post(`${serverURL}/users/reissue`,{},{
+
+      const response = await axios.post(`${serverURL}/users/reissue`, {}, {
         headers: { Authorization: `Bearer ${refresh_token}` }
       });
       console.log(response);
@@ -73,6 +73,54 @@ export default function NewsView() {
     } catch (error) {
       console.log(error);
       alert('토큰 갱신 실패로 댓글 작성 실패');
+    }
+  }
+
+  //댓글 삭제
+  const deleteComment = async(commentId) => {
+    try {
+      const access_token = localStorage.getItem('accessToken');
+
+      const response = await axios.delete(`${serverURL}/news/deleteComment`, {
+        data: {comment_id: commentId}, 
+        headers: { Authorization: `Bearer ${access_token}` }
+      })
+
+      if (response.data['status'] === 200) {
+        alert('댓글 삭제 성공');
+        await getNewsData();
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.log('액세스 토큰 만료');
+        await handleTokenReissueDeleteComment();
+      } else {
+        console.log(error);
+        alert('댓글 삭제 실패');
+      }
+    }
+  }
+
+  async function handleTokenReissueDeleteComment(commentId){
+    try {
+      const refresh_token = localStorage.getItem('refreshToken');
+
+      if (!refresh_token) {
+        throw new Error('리프레쉬 토큰 없음');
+      }
+
+      const response = await axios.post(`${serverURL}/users/reissue`, {}, {
+        headers: { Authorization: `Bearer ${refresh_token}` }
+      });
+      console.log(response);
+      if (response['data']['status'] === 201) {
+        localStorage.setItem('accessToken', response.data['access_token']);
+        console.log('액세스 토큰 발급 성공');
+        await deleteComment(commentId);
+      }
+    } catch (error) {
+      console.log(error);
+      alert('토큰 갱신 실패로 댓글 삭제 실패');
     }
   }
 
@@ -100,30 +148,6 @@ export default function NewsView() {
     }
   }
 
-  async function deleteComment() {
-    try{
-      const access_token = localStorage.getItem('accessToken');
-
-      const response = await axios.delete(`${serverURL}/news/changeComment/`, {
-   
-      },{
-        headers: { Authorization: `Bearer ${access_token}` }
-      })
-
-      if(response.data['status'] === 200){
-        alert('댓글 삭제 성공');
-      }
-    }catch(error){
-      if (error.response && error.response.status === 401) {
-        console.log('액세스 토큰 만료');
-        await handleTokenReissue();
-      } else {
-        console.log(error);
-        alert('댓글 삭제 실패');
-      }
-    }
-  }
-
   return (
     <div>
       <Navbar />
@@ -143,19 +167,23 @@ export default function NewsView() {
 
 
       <div style={{ display: 'flex', marginLeft: '280px' }}>
-        <textarea onChange={onChangeComment} style={{ width: '1200px', height: '100px', marginRight: '20px' }}></textarea>
+        <textarea
+          onChange={onChangeComment}
+          value={comment}
+          style={{ width: '1200px', height: '100px', marginRight: '20px' }}/>
+
         <button onClick={postComment} style={{ width: '130px', height: '100px' }}>작성하기</button>
       </div>
 
       <h3 style={{ marginLeft: '280px' }}>댓글</h3>
-      <hr style={{width: '1350px'}}/>
+      <hr style={{ width: '1350px' }} />
 
       <div style={{ marginLeft: '280px', width: '1350px' }}>
         {newsComment.length > 0 ? (
           newsComment.map((comment, index) => (
             <div key={index}>
               <p>{comment.comment_content}<br />작성자 : {comment.user_nickname} | 작성일자 : {comment.comment_createat}</p>
-              <button>삭제</button>
+              <button onClick={() => {deleteComment(comment.comment_id)}}>삭제</button>
               <button>수정</button>
               <hr />
             </div>
