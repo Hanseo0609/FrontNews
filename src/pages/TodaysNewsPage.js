@@ -11,23 +11,31 @@ import axios from 'axios';
 export default function TodaysNewsPage() {
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
-  const [news, setNews] = useState([]);
 
   const { news_id } = useParams();
+
+  const [newsId, setNewsId] = useState(16);
+  const [newArray, setNewArray] = useState([]);
   const [newsData, setNewsData] = useState({
     article_title: '기사 제목',
     article_createat: '2024-05-01',
     article_content: '기사 본문',
-    article_id: 20,
+    article_id: 16,
     article_image: 'image.png'
   });
 
-  const todaysnewsPreviewLoad = async () => {
+  const todaysnewsPreviewLoad = async (id) => {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/21`);
+      const response = await axios.get(`${serverURL}/news/getNews/${id}`);
       if (response.data.status === 200) {
-        setNewsData(response.data.data["news"]);
-        console.log(response.data.data["news"]);
+        const newArticle = response.data.data["news"];
+        setNewsData(newArticle);
+        setNewArray((prevArray) => {
+          if (!prevArray.some(article => article.article_id === newArticle.article_id)) {
+            return [...prevArray, newArticle];
+          }
+          return prevArray;
+        });
       } else {
         alert("뉴스 데이터 로딩 실패");
       }
@@ -36,10 +44,22 @@ export default function TodaysNewsPage() {
       alert("서버 오류임");
     }
   };
+  
+
+  const loadArrayNews = async() => {
+    for(let i = 0; i < 10; i++) {
+      const newId = newsId + i;
+      await todaysnewsPreviewLoad(newId);
+    }
+  }
 
   useEffect(() => {
-    todaysnewsPreviewLoad();
-  }, [news_id]);
+    loadArrayNews();
+  }, []);
+
+  useEffect(() => {
+    console.log(newArray);
+  }, [newArray]);
 
   return (
     <div>
