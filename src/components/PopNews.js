@@ -32,7 +32,7 @@ const Popup = ({ isOpen, onClose }) => {
       const response = await axios.get(`${serverURL}/news/getNews/30`);
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
-        console.log(response.data.data["news"]);
+        // console.log(response.data.data["news"]);
       } else {
         alert("뉴스 데이터 로딩 실패");
       }
