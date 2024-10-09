@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 export default function NewsView() {
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
-  const { news_id } = useParams();
+  
   const [newsData, setNewsData] = useState({
     article_title: '기사 제목',
     article_createat: '2024-05-01',
@@ -20,11 +20,11 @@ export default function NewsView() {
 
   useEffect(() => {
     getNewsData();
-  }, [news_id]);
+  }, []);
 
-  async function getNewsData() {
+  async function getNewsData(props) {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/30`);
+      const response = await axios.get(`${serverURL}/news/getNews/${props}`);
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
         console.log(response.data.data["news"]);

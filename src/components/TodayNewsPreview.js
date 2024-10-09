@@ -9,11 +9,12 @@ import axios from 'axios';
 
 export default function TodayNewsPreview() {
   const serverURL = process.env.REACT_APP_SERVER_URL;
+  
+  const { news_id } = useParams();
 
   const [popup, setPopup] = useState([false, false, false]);
-  const [news, setNews] = useState([]);
-
-  const { news_id } = useParams();
+  const [newsId, setNewsId] = useState(16);
+  const [newArray, setNewArray] = useState([]);
   const [newsData, setNewsData] = useState({
     article_title: '기사 제목',
     article_createat: '2024-05-01',
@@ -27,9 +28,9 @@ export default function TodayNewsPreview() {
     setPopup(newPopup);
   };
 
-  const todaysnewsPreviewLoad = async () => {
+  const todaysnewsPreviewLoad = async (id) => {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/30`);
+      const response = await axios.get(`${serverURL}/news/getNews/${id}`);
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
         // console.log(response.data.data["news"]);
@@ -43,8 +44,8 @@ export default function TodayNewsPreview() {
   };
 
   useEffect(() => {
-    todaysnewsPreviewLoad();
-  }, [news_id]);
+    todaysnewsPreviewLoad(newsId);
+  }, [newsId]);
 
   return (
     <div>
