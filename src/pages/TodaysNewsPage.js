@@ -15,19 +15,19 @@ export default function TodaysNewsPage() {
 
   const { news_id } = useParams();
   const [newsData, setNewsData] = useState({
-    article_title: '기사 제목',
-    article_createat: '2024-05-01',
-    article_content: '기사 본문',
-    article_id: 20,
-    article_image: 'image.png'
+    article_title: '',
+    article_createat: '',
+    article_content: '',
+    article_id: NaN,
+    article_image: ''
   });
 
-  const todaysnewsPreviewLoad = async () => {
+  async function todaysnewsPreviewLoad  () {
     try {
       const response = await axios.get(`${serverURL}/news/getNews/21`);
       if (response.data.status === 200) {
-        setNewsData(response.data.data["news"]);
-        console.log(response.data.data["news"]);
+        setNewsData(response.data['data']['news']);
+        console.log(response.data['data']["news"]);
       } else {
         alert("뉴스 데이터 로딩 실패");
       }
@@ -39,7 +39,7 @@ export default function TodaysNewsPage() {
 
   useEffect(() => {
     todaysnewsPreviewLoad();
-  }, [news_id]);
+  }, []);
 
   return (
     <div>

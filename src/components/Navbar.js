@@ -41,6 +41,10 @@ export default function Navbar(props) {
   
   function YesLogin({ setStatus }) {
     const handleLogout = () => {
+      // localStorage.removeItem('accessToken');
+      // localStorage.removeItem('nickname');
+      // localStorage.removeItem('userEmail');
+      // localStorage.removeItem('phoneNumber');
       localStorage.clear();
       setStatus("400");
     };
