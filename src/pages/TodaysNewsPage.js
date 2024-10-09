@@ -12,7 +12,8 @@ export default function TodaysNewsPage() {
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
-  const { news_id } = useParams();
+  const [loading, setLoading] = useState(true); // 데이터 로딩 상태
+
 
   const [newsId, setNewsId] = useState(16);
   const [newArray, setNewArray] = useState([]);
@@ -44,58 +45,60 @@ export default function TodaysNewsPage() {
       alert("서버 오류임");
     }
   };
-  
 
-  const loadArrayNews = async() => {
-    for(let i = 0; i < 10; i++) {
+  const loadArrayNews = async () => {
+    for (let i = 0; i < 10; i++) {
       const newId = newsId + i;
       await todaysnewsPreviewLoad(newId);
     }
+    setLoading(false);
   }
 
   useEffect(() => {
     loadArrayNews();
   }, []);
 
-  useEffect(() => {
-    console.log(newArray);
-  }, [newArray]);
-
   return (
     <div>
       <Navbar />
-      <Line/>
+      <Line />
       <Header />
       <Line />
       <styleD.NewsContainer>
         <styleD.TodaysNewsContainer>
-            <p className='selected'>오늘의 뉴스</p>
+          <p className='selected'>오늘의 뉴스</p>
         </styleD.TodaysNewsContainer>
         <styleD.NewsCategoryContainer>
-            <p className='selected'>전체</p>
-            <p>정치</p>
-            <p>경제</p>
-						<p>사회</p>
-						<p>과학</p>
-						<p>연예</p>
-						<p>스포츠</p>
+          <p className='selected'>전체</p>
+          <p>정치</p>
+          <p>경제</p>
+          <p>사회</p>
+          <p>과학</p>
+          <p>연예</p>
+          <p>스포츠</p>
         </styleD.NewsCategoryContainer>
-        <Link to="/NewsView" style={{textDecoration: 'none', color: 'black'}}>
-        <styleD.NewsBoxContainer>
-            {
-                Array(10).fill(0).map((_, index) => (
-                    <styleD.NewsBox key={index}>
-											<styleD.NewsImg>
-                      	<img src={newsData.article_image} alt=''/>
-											</styleD.NewsImg>
-                      <div>
-                        <styleD.ArticleTitle ><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textDecoration:'none'}}>{newsData.article_title}</p></styleD.ArticleTitle>
-                        <styleD.ArticalContent><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow:'ellipsis', height:'200px'}}>{newsData.article_content}</p></styleD.ArticalContent>
-                      </div>
-                    </styleD.NewsBox>
+
+        <Link to="/NewsView" init={newArray} style={{ textDecoration: 'none', color: 'black' }}>
+
+          {loading ? (
+            <p>데이터를 불러오는 중입니다...</p>
+          ) : (
+            <styleD.NewsBoxContainer>
+              {
+                newArray.map((newsData, index) => (
+                  <styleD.NewsBox key={index}>
+                    <styleD.NewsImg>
+                      <img src={newsData.article_image} alt='' />
+                    </styleD.NewsImg>
+                    <div>
+                      <styleD.ArticleTitle ><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textDecoration: 'none' }}>{newsData.article_title}</p></styleD.ArticleTitle>
+                      <styleD.ArticalContent><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', height: '200px' }}>{newsData.article_content}</p></styleD.ArticalContent>
+                    </div>
+                  </styleD.NewsBox>
                 ))
-            }
-        </styleD.NewsBoxContainer>
+              }
+            </styleD.NewsBoxContainer>
+          )}
         </Link>
       </styleD.NewsContainer>
     </div>
