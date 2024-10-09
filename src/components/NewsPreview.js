@@ -16,6 +16,7 @@ export default function NewsPreview() {
     });
   };
 
+  const [newsId, setNewsId] = useState(22);
   const [newsData, setNewsData] = useState({
     article_title: '기사 제목',
     article_createat: '2024-05-01',
@@ -24,9 +25,9 @@ export default function NewsPreview() {
     article_image: 'image.png'
   });
 
-  const newsPreviewLoad = async () => {
+  const newsPreviewLoad = async (id) => {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/22`);
+      const response = await axios.get(`${serverURL}/news/getNews/${id}`);
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
         console.log(response.data.data["news"]);
@@ -40,16 +41,27 @@ export default function NewsPreview() {
   };
 
   const prevBtn = () => {
-
+    console.log("이전버튼");
+    if(newsId == 0) {
+      alert("가장 최신 뉴스입니다.");
+    }
+    if(newsId > 1) {
+      const newId = newsId - 1;
+      setNewsId(newId);
+      newsPreviewLoad(newId);
+    }
   }
 
   const nextBtn = () => {
-
+    console.log("다음버튼");
+    const newId = newsId + 1;
+    setNewsId(newId);
+    newsPreviewLoad(newId);
   }
 
   useEffect(() => {
-    newsPreviewLoad();
-  }, []);
+    newsPreviewLoad(newsId);
+  }, [newsId]);
 
 
   return (
@@ -76,7 +88,7 @@ export default function NewsPreview() {
 
         <div style={{ display: 'flex', marginTop: '30px', marginLeft:'120px'}}>
 
-          <button style={{border: 'none', fontSize: '40px', backgroundColor: '#eee', marginLeft: '-20px', color: '#656565'}}>◀️</button>
+          <button onClick={prevBtn} className='prevBtn'>◀️</button>
           <styleD.NewsImg src={newsData.article_image} style={{ width: '420px', height: '320px', borderRadius:'15px', marginRight:'20px', marginLeft: '40px'}} />
           {/* {news.map((item, index) => (
             <div key={index} style={{ marginLeft: '30px' }}>
@@ -92,7 +104,7 @@ export default function NewsPreview() {
             {newsData.article_content}
           </p>
           </div>
-          <button style={{border: 'none', fontSize: '40px', marginLeft: '50px', backgroundColor: '#eee', color: '#656565'}}>▶️</button>
+          <button onClick={nextBtn} className='nextBtn'>▶️</button>
         </div>
 
       </styleD.MainContentBox>

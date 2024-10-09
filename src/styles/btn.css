@@ -17,14 +17,24 @@
 }
 
 .prevBtn {
-  padding: 10px;
-  font-size: 60px;
+  font-size: 40px;
   border: none;
+  background-color: #eee;
+  margin-left: -20px;
+  color: #656565;
+  &:hover {
+    color: #a4a4a4;
+  }
 }
 
 
 .nextBtn {
-  padding: 10px;
-  font-size: 60px;
+  font-size: 40px;
   border: none;
+  margin-left: 50px;
+  background-color: #eee;
+  color: #656565;
+  &:hover {
+    color: #a4a4a4;
+  }
 }
