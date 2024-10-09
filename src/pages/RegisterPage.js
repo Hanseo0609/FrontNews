@@ -108,9 +108,15 @@ export default function Login() {
           user_nickname: userNickname,
           user_age: userAge,  // 숫자값
         });
-        alert("회원가입 성공!!")
+        if(response.data['status'] === 201){
+          alert("회원가입 성공!!")
         document.location.href = '/LoginPage'
-        console.log(response.data);  // response.data로 출력
+        }else if(response.data['status'] === 418){
+          alert('아이디 중복입니다.');
+        }else if(response.data['status'] === 419){
+          alert('닉네임 중복입니다.');
+        }
+        
       } catch (error) {
         console.error(error);  // 에러 메시지 출력
       }
