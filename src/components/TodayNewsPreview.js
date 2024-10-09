@@ -11,10 +11,10 @@ export default function TodayNewsPreview() {
   const serverURL = process.env.REACT_APP_SERVER_URL;
   
   const { news_id } = useParams();
-
-  const [popup, setPopup] = useState([false, false, false]);
   const [newsId, setNewsId] = useState(16);
   const [newArray, setNewArray] = useState([]);
+
+  const [popup, setPopup] = useState([false, false, false]);
   const [newsData, setNewsData] = useState({
     article_title: '기사 제목',
     article_createat: '2024-05-01',
@@ -32,8 +32,15 @@ export default function TodayNewsPreview() {
     try {
       const response = await axios.get(`${serverURL}/news/getNews/${id}`);
       if (response.data.status === 200) {
-        setNewsData(response.data.data["news"]);
-        // console.log(response.data.data["news"]);
+        const newArticle = response.data.data["news"];
+        setNewsData(newArticle);
+        setNewArray((prevArray) => {
+          if (!prevArray.some(article => article.article_id === newArticle.article_id)) {
+            return [...prevArray, newArticle];
+          }
+          return prevArray;
+        });
+        console.log(news_id);
       } else {
         alert("뉴스 데이터 로딩 실패");
       }
@@ -43,9 +50,16 @@ export default function TodayNewsPreview() {
     }
   };
 
+  const loadArrayNews = async () => {
+    for (let i = 0; i < 3; i++) {
+      const newId = newsId + i;
+      await todaysnewsPreviewLoad(newId);
+    }
+  }
+
   useEffect(() => {
-    todaysnewsPreviewLoad(newsId);
-  }, [newsId]);
+    loadArrayNews();
+  }, []);
 
   return (
     <div>
@@ -54,8 +68,7 @@ export default function TodayNewsPreview() {
       </Link>
       <styleD.MainContentBox style={{ height: '680px' }}>
         {
-          [0, 1, 2].map((_, index) => {
-            return (
+          newArray.map((newsData, index) => (
               <styleD.TodayNewsContainer style={{ marginTop: 50 + 200 * index + 'px' }} key={index + 2}>
                 <styleD.NewsImg src={newsData.article_image} />
 
@@ -72,7 +85,7 @@ export default function TodayNewsPreview() {
 
               </styleD.TodayNewsContainer>
             )
-          })
+          )
         }
 
         {/* <styleD.TodayNewsContainer style={{ marginTop: '50px' }}>

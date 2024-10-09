@@ -13,7 +13,7 @@ export default function TodaysNewsPage() {
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
   const [loading, setLoading] = useState(true); // 데이터 로딩 상태
-
+  const [currId, setCurrId] = useState(0);
 
   const [newsId, setNewsId] = useState(16);
   const [newArray, setNewArray] = useState([]);
@@ -56,6 +56,7 @@ export default function TodaysNewsPage() {
 
   useEffect(() => {
     loadArrayNews();
+    console.log(newsData.article_id);
   }, []);
 
   return (
@@ -78,14 +79,13 @@ export default function TodaysNewsPage() {
           <p>스포츠</p>
         </styleD.NewsCategoryContainer>
 
-        <Link to="/NewsView" init={newArray} style={{ textDecoration: 'none', color: 'black' }}>
-
-          {loading ? (
-            <p>데이터를 불러오는 중입니다...</p>
-          ) : (
-            <styleD.NewsBoxContainer>
-              {
-                newArray.map((newsData, index) => (
+        {loading ? (
+          <p>데이터를 불러오는 중입니다...</p>
+        ) : (
+          <styleD.NewsBoxContainer>
+            {
+              newArray.map((newsData, index) => (
+                <Link to={`/NewsView?id=${newsData.article_id}`} init={newArray} style={{ textDecoration: 'none', color: 'black' }}>
                   <styleD.NewsBox key={index}>
                     <styleD.NewsImg>
                       <img src={newsData.article_image} alt='' />
@@ -95,11 +95,12 @@ export default function TodaysNewsPage() {
                       <styleD.ArticalContent><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', height: '200px' }}>{newsData.article_content}</p></styleD.ArticalContent>
                     </div>
                   </styleD.NewsBox>
-                ))
-              }
-            </styleD.NewsBoxContainer>
-          )}
-        </Link>
+                </Link>
+              ))
+            }
+          </styleD.NewsBoxContainer>
+        )}
+
       </styleD.NewsContainer>
     </div>
   );

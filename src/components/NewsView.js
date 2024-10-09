@@ -3,12 +3,14 @@ import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function NewsView() {
-
-  const serverURL = process.env.REACT_APP_SERVER_URL;
+  const location = useLocation();
+  const { articleId } = location.state || {};
+  console.log("articleId:", articleId);
   
+  const serverURL = process.env.REACT_APP_SERVER_URL;
   const [newsData, setNewsData] = useState({
     article_title: '기사 제목',
     article_createat: '2024-05-01',
@@ -17,6 +19,7 @@ export default function NewsView() {
     article_image: 'image.png',
     article_url: 'http'
   });
+
   const [comment, setComment] = useState("");
 
   function onChangeComment(event) {
@@ -28,14 +31,14 @@ export default function NewsView() {
     try {
       const article_id = newsData['article_id'];
       const access_token = localStorage.getItem('accessToken');
-  
+
       const response = await axios.post(`${serverURL}/news/createComment`, {
         article_id: article_id,
         comment_content: comment, // comment는 함수 인자로 받아야 함
       }, {
         headers: { Authorization: `Bearer ${access_token}` }
       });
-  
+
       if (response.data["status"] === 201) {
         alert('댓글 작성 성공');
       }
@@ -49,7 +52,7 @@ export default function NewsView() {
       }
     }
   }
-  
+
   async function handleTokenReissue() {
     try {
       const refresh_token = localStorage.getItem('refreshToken');
@@ -57,7 +60,7 @@ export default function NewsView() {
       if (!refresh_token) {
         throw new Error('리프레시 토큰 없음');
       }
-  
+
       const response = await axios.post(`${serverURL}/users/reissue`, {
         refresh_token: refresh_token
       });
@@ -73,13 +76,9 @@ export default function NewsView() {
     }
   }
 
-  useEffect(() => {
-    getNewsData();
-  }, []);
-
-  async function getNewsData(props) {
+  const getNewsData = async (id) => {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/${props}`);
+      const response = await axios.get(`${serverURL}/news/getNews/${id}`);
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
         console.log(response.data);
@@ -90,7 +89,13 @@ export default function NewsView() {
       console.error(error);
       alert("서버 오류임");
     }
-  }
+  };
+
+  useEffect(() => {
+    if (articleId) {
+      getNewsData(articleId); // 전달받은 articleId로 뉴스 데이터를 가져옴
+    }
+  }, [articleId]);
 
   return (
     <div>
@@ -108,7 +113,6 @@ export default function NewsView() {
         <p>출처 : {newsData.article_url}</p>
         <styled.Content style={{ textAlign: 'left', lineHeight: '50px' }}>{newsData.article_content}</styled.Content>
       </div>
-
 
       <div style={{ display: 'flex', marginLeft: '280px' }}>
         <textarea onChange={onChangeComment} style={{ width: '1200px', height: '100px', marginRight: '20px' }}></textarea>
