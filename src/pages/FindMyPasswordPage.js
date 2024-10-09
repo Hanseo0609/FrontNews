@@ -38,6 +38,7 @@ export default function FindMyPassword() {
 
     async function postChangePassword() {
         if (passwordRegEx.test(password) && password == confirmPassword) {
+            console.log('asd')
             try {
                 const response = await axios.post(`${serverURL}/users/resetPassword`, {
                     user_email: id,
@@ -45,7 +46,12 @@ export default function FindMyPassword() {
                     user_number: phoneNumber,
                     new_password: password
                 })
-                if (response.data['status'] === 201) {
+                console.log(id);
+                console.log(name);
+                console.log(phoneNumber);
+                console.log(password);
+
+                if (response.data['status'] === 200) {
                     alert('비밀번호 변경 완료');
                     document.location.href('/LoginPage');
                 }

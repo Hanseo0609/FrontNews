@@ -78,28 +78,37 @@ export default function TodaysNewsPage() {
           <p>스포츠</p>
         </styleD.NewsCategoryContainer>
 
-        <Link to="/NewsView" init={newArray} style={{ textDecoration: 'none', color: 'black' }}>
+        {loading ? (
+          <p>데이터를 불러오는 중입니다...</p>
+        ) : (
+          <styleD.NewsBoxContainer>
+          {
+            newArray.map((newsData, index) => (
+              <Link to={`/NewsView?id=${newsData.article_id}`} key={index} style={{ textDecoration: 'none', color: 'black' }}>
+                <styleD.NewsBox>
+                  <styleD.NewsImg>
+                    <img src={newsData.article_image} alt='' />
+                  </styleD.NewsImg>
+                  <div>
+                    <styleD.ArticleTitle>
+                      <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textDecoration: 'none' }}>
+                        {newsData.article_title}
+                      </p>
+                    </styleD.ArticleTitle>
+                    <styleD.ArticalContent>
+                      <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', height: '200px' }}>
+                        {newsData.article_content}
+                      </p>
+                    </styleD.ArticalContent>
+                  </div>
+                </styleD.NewsBox>
+              </Link>
+            ))
+          }
+        </styleD.NewsBoxContainer>
+          
+        )}
 
-          {loading ? (
-            <p>데이터를 불러오는 중입니다...</p>
-          ) : (
-            <styleD.NewsBoxContainer>
-              {
-                newArray.map((newsData, index) => (
-                  <styleD.NewsBox key={index}>
-                    <styleD.NewsImg>
-                      <img src={newsData.article_image} alt='' />
-                    </styleD.NewsImg>
-                    <div>
-                      <styleD.ArticleTitle ><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textDecoration: 'none' }}>{newsData.article_title}</p></styleD.ArticleTitle>
-                      <styleD.ArticalContent><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', height: '200px' }}>{newsData.article_content}</p></styleD.ArticalContent>
-                    </div>
-                  </styleD.NewsBox>
-                ))
-              }
-            </styleD.NewsBoxContainer>
-          )}
-        </Link>
       </styleD.NewsContainer>
     </div>
   );
