@@ -128,7 +128,7 @@ export default function NewsView() {
     getNewsData();
   }, []);
 
-  async function getNewsData(props) {
+  async function getNewsData() {
     try {
       const url = new URL(window.location.href);
       const searchParams = new URLSearchParams(url.search);
