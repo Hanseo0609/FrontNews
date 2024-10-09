@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 export default function NewsView() {
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
-  
+
   const [newsData, setNewsData] = useState({
     article_title: '기사 제목',
     article_createat: '2024-05-01',
@@ -18,6 +18,7 @@ export default function NewsView() {
     article_url: 'http'
   });
   const [comment, setComment] = useState("");
+  const [newsComment, setNewsComment] = useState([]);
 
   function onChangeComment(event) {
     setComment(event.target.value);
@@ -28,16 +29,18 @@ export default function NewsView() {
     try {
       const article_id = newsData['article_id'];
       const access_token = localStorage.getItem('accessToken');
-  
+
       const response = await axios.post(`${serverURL}/news/createComment`, {
         article_id: article_id,
-        comment_content: comment, // comment는 함수 인자로 받아야 함
+        comment_content: comment,
       }, {
         headers: { Authorization: `Bearer ${access_token}` }
       });
-  
+
       if (response.data["status"] === 201) {
         alert('댓글 작성 성공');
+        setComment(""); 
+        await getNewsData();
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -49,7 +52,7 @@ export default function NewsView() {
       }
     }
   }
-  
+
   async function handleTokenReissue() {
     try {
       const refresh_token = localStorage.getItem('refreshToken');
@@ -57,12 +60,12 @@ export default function NewsView() {
       if (!refresh_token) {
         throw new Error('리프레시 토큰 없음');
       }
-  
-      const response = await axios.post(`${serverURL}/users/reissue`, {
-        refresh_token: refresh_token
+      
+      const response = await axios.post(`${serverURL}/users/reissue`,{},{
+        headers: { Authorization: `Bearer ${refresh_token}` }
       });
       console.log(response);
-      if (response['status'] === 201) {
+      if (response['data']['status'] === 201) {
         localStorage.setItem('accessToken', response.data['access_token']);
         console.log('액세스 토큰 발급 성공');
         await postComment(); // 토큰 갱신 후 댓글 다시 작성 시도
@@ -79,16 +82,45 @@ export default function NewsView() {
 
   async function getNewsData(props) {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/${props}`);
+      const url = new URL(window.location.href);
+      const searchParams = new URLSearchParams(url.search);
+      const newsId = searchParams.get('id')
+
+      const response = await axios.get(`${serverURL}/news/getNews/${newsId}`);
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
-        console.log(response.data);
+        setNewsComment(response.data.data['comments']);
+        console.log(response.data.data['comments']);
       } else {
         alert("뉴스 데이터 로딩 실패");
       }
     } catch (error) {
       console.error(error);
       alert("서버 오류임");
+    }
+  }
+
+  async function deleteComment() {
+    try{
+      const access_token = localStorage.getItem('accessToken');
+
+      const response = await axios.delete(`${serverURL}/news/changeComment/`, {
+   
+      },{
+        headers: { Authorization: `Bearer ${access_token}` }
+      })
+
+      if(response.data['status'] === 200){
+        alert('댓글 삭제 성공');
+      }
+    }catch(error){
+      if (error.response && error.response.status === 401) {
+        console.log('액세스 토큰 만료');
+        await handleTokenReissue();
+      } else {
+        console.log(error);
+        alert('댓글 삭제 실패');
+      }
     }
   }
 
@@ -116,11 +148,22 @@ export default function NewsView() {
       </div>
 
       <h3 style={{ marginLeft: '280px' }}>댓글</h3>
-      <div style={{ marginLeft: '280px' }}>
-        <p>zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
-      </div>
-      <hr style={{ width: '1350px' }} />
+      <hr style={{width: '1350px'}}/>
 
+      <div style={{ marginLeft: '280px', width: '1350px' }}>
+        {newsComment.length > 0 ? (
+          newsComment.map((comment, index) => (
+            <div key={index}>
+              <p>{comment.comment_content}<br />작성자 : {comment.user_nickname} | 작성일자 : {comment.comment_createat}</p>
+              <button>삭제</button>
+              <button>수정</button>
+              <hr />
+            </div>
+          ))
+        ) : (
+          <p>댓글이 없습니다.</p>
+        )}
+      </div>
     </div >
   );
 }
