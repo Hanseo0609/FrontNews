@@ -77,12 +77,12 @@ export default function NewsView() {
   }
 
   //댓글 삭제
-  const deleteComment = async(commentId) => {
+  const deleteComment = async (commentId) => {
     try {
       const access_token = localStorage.getItem('accessToken');
 
       const response = await axios.delete(`${serverURL}/news/deleteComment`, {
-        data: {comment_id: commentId}, 
+        data: { comment_id: commentId },
         headers: { Authorization: `Bearer ${access_token}` }
       })
 
@@ -101,7 +101,7 @@ export default function NewsView() {
     }
   }
 
-  async function handleTokenReissueDeleteComment(commentId){
+  async function handleTokenReissueDeleteComment(commentId) {
     try {
       const refresh_token = localStorage.getItem('refreshToken');
 
@@ -170,7 +170,7 @@ export default function NewsView() {
         <textarea
           onChange={onChangeComment}
           value={comment}
-          style={{ width: '1200px', height: '100px', marginRight: '20px' }}/>
+          style={{ width: '1200px', height: '100px', marginRight: '20px' }} />
 
         <button onClick={postComment} style={{ width: '130px', height: '100px' }}>작성하기</button>
       </div>
@@ -183,7 +183,7 @@ export default function NewsView() {
           newsComment.map((comment, index) => (
             <div key={index}>
               <p>{comment.comment_content}<br />작성자 : {comment.user_nickname} | 작성일자 : {comment.comment_createat}</p>
-              <button onClick={() => {deleteComment(comment.comment_id)}}>삭제</button>
+              <button onClick={() => { deleteComment(comment.comment_id) }}>삭제</button>
               <button>수정</button>
               <hr />
             </div>
