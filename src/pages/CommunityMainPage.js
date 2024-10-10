@@ -2,8 +2,15 @@ import * as styleD from '../styles/Community';
 import Navbar from '../components/Navbar';
 import Line from '../components/Line';
 import { Link } from "react-router-dom";
+import { useState } from 'react';
+import Pagination from './PaginationPage';
 
 export default function CommunityMain() {
+  const [datas, setDatas] = useState([]);
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
+
   return (
     <div>
       <Navbar />
@@ -31,7 +38,19 @@ export default function CommunityMain() {
             <styleD.CommunityCotentComentFont style={{ width: '100px' }}>조회수</styleD.CommunityCotentComentFont>
           </styleD.CommunityCotentComent>
           <hr style={{ color: 'black' }}></hr>
-          <Link to='/CommunityPostPage' style={{textDecoration: 'none', color: 'black'}}>
+
+          {/* <main>
+            {datas.slice(offset, offset + limit).map((data}) => ())}
+          </main> */}
+          <Pagination
+            total={datas.length}
+            limit={10}
+            page={page}
+            setPage={setPage}
+          />
+          
+
+          {/* <Link to='/CommunityPostPage' style={{textDecoration: 'none', color: 'black'}}>
             <div style={{ display: 'flex', border: '1px solid #b3b3b3', borderRadius: '5px' }}>
               <p style={{ width: '150px', marginLeft: '60px' }}>1</p>
               <p style={{ width: '920px', marginLeft: '300px' }}>와 음바페 미쳤는데???</p>
@@ -39,7 +58,10 @@ export default function CommunityMain() {
               <p style={{ width: '280px' }}>2024/09/25</p>
               <p style={{ width: '80px' }}>5</p>
             </div>
-          </Link>
+          </Link> */}
+
+
+
           <Link to='/CommunityWritePage'>
             <styleD.WriteBtn>글쓰기</styleD.WriteBtn>
           </Link>
