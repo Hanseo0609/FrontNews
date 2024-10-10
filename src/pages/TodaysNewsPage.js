@@ -15,7 +15,7 @@ export default function TodaysNewsPage() {
   const [loading, setLoading] = useState(true); // 데이터 로딩 상태
 
 
-  const [newsId, setNewsId] = useState(16);
+  const [newsId, setNewsId] = useState(53);
   const [newArray, setNewArray] = useState([]);
   const [newsData, setNewsData] = useState({
     article_title: '기사 제목',
