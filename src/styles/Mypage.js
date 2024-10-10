@@ -257,3 +257,19 @@ export const ProfileSetterTitle = styled.p`
     font-size: 25px;
     margin: 15px 50px 0px 20px;
 `;
+
+export const EditMyNickSubmit = styled.button`
+    border: none;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    margin-left: 10px;
+    border-radius: 5px;
+    width: 50px;
+`;
+
+export const EditMyInfoInput = styled.input`
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: 400px;
+`;

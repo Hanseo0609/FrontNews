@@ -2,15 +2,42 @@ import * as styleD from '../styles/Mypage';
 import Navbar from '../components/Navbar';
 import Line from '../components/Line';
 import { Link } from "react-router-dom";
+import { useState } from 'react';
 
 export default function MypageSInfo() {
 
-  //닉네임 가져오기
-  const nickname = localStorage.getItem("nickname");
-  //아이디 가져오기
+  const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
   const userEmail = localStorage.getItem("userEmail");
-  //전화번호 가져오기
-  const phoneNumber = localStorage.getItem("phoneNumber");
+  const [phoneNumber, setPhoneNumber] = useState(localStorage.getItem("phoneNumber"));
+  const [EditingNickname, setEditingNickname] = useState(false);
+  const [EditingPhoneNumber, setEditingPhoneNumber] = useState(false);
+
+  const handleNicknameEdit = () => {
+    setEditingNickname(true);
+  };
+
+  const handlePhoneNumberEdit = () => {
+    setEditingPhoneNumber(true);
+  };
+
+  const handleNicknameChange = (e) => {
+    setNickname(e.target.value);
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    setPhoneNumber(e.target.value);
+  };
+
+  const handleNicknameSave = () => {
+    localStorage.setItem("nickname", nickname);
+    setEditingNickname(false);
+  };
+
+  const handlePhoneNumberSave = () => {
+    localStorage.setItem("phoneNumber", phoneNumber);
+    setEditingPhoneNumber(false);
+  };
+
   return (
     <div>
       <Navbar />
@@ -43,21 +70,41 @@ export default function MypageSInfo() {
 
             <styleD.UserInfoContainer>
                 <p style={{color: '#666666', width: '100px'}}>닉네임</p>
-                <styleD.UserInfo>{nickname}</styleD.UserInfo>
-                <styleD.UserInfoUpdate>수정</styleD.UserInfoUpdate>
+                {EditingNickname ? (
+                  <>
+                    <styleD.EditMyInfoInput type="text" value={nickname} onChange={handleNicknameChange}  />
+                    <styleD.EditMyNickSubmit onClick={handleNicknameSave}>저장</styleD.EditMyNickSubmit>
+                  </>
+                ) : (
+                  <>
+                    <styleD.UserInfo>{nickname}</styleD.UserInfo>
+                    <styleD.UserInfoUpdate onClick={handleNicknameEdit}>수정</styleD.UserInfoUpdate>
+                  </>
+                )}
             </styleD.UserInfoContainer>
             <hr style={{ color: '#666666', marginTop: '5px' }} />
 
             <styleD.UserInfoContainer>
                 <p style={{color: '#666666', width: '100px'}}>전화번호</p>
-                <styleD.UserInfo>{phoneNumber}</styleD.UserInfo>
-                <styleD.UserInfoUpdate>수정</styleD.UserInfoUpdate>
+                {EditingPhoneNumber ? (
+                  <>
+                    <styleD.EditMyInfoInput type="text" value={phoneNumber} onChange={handlePhoneNumberChange} />
+                    <styleD.EditMyNickSubmit onClick={handlePhoneNumberSave}>저장</styleD.EditMyNickSubmit>
+                  </>
+                ) : (
+                  <>
+                    <styleD.UserInfo>{phoneNumber}</styleD.UserInfo>
+                    <styleD.UserInfoUpdate onClick={handlePhoneNumberEdit}>수정</styleD.UserInfoUpdate>
+                  </>
+                )}
             </styleD.UserInfoContainer>
             <hr style={{ color: '#666666', marginTop: '5px' }} />
-
+            
             <styleD.UserInfoContainer>
                 <p style={{color: '#666666', width: '100px'}}>비밀번호</p>
+                <Link to="/FindMyPasswordPage">
                 <styleD.PasswordUpdateBtn>변경하기</styleD.PasswordUpdateBtn>
+                </Link>
             </styleD.UserInfoContainer>
             <hr style={{ color: '#666666', marginTop: '5px' }} />
         </div>
