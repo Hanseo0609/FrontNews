@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
+import parse from 'html-react-parser'
 export default function NewsView() {
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
@@ -155,7 +155,7 @@ export default function NewsView() {
       <Header />
       <styled.liner />
       <div>
-        <styled.Title>{newsData.article_title}</styled.Title>
+        <styled.Title>{parse(newsData.article_title)}</styled.Title>
         <styled.Date>{newsData.article_createat}</styled.Date>
       </div>
       <styled.Headliner />
