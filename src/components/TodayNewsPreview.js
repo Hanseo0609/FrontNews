@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
-
+import parse from 'html-react-parser'
 
 export default function TodayNewsPreview() {
   const serverURL = process.env.REACT_APP_SERVER_URL;
@@ -74,7 +74,7 @@ export default function TodayNewsPreview() {
 
                 <div style={{ margin: '0px 0px 60px 30px', position: 'relative' }}>
                   <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '500px' }}>
-                    {newsData.article_title}
+                    {parse(newsData.article_title)}
                   </p>
                   <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '1000px' }}>
                     {newsData.article_content}
