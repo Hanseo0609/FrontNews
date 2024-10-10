@@ -7,10 +7,17 @@ export default function NewsPreview() {
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
-  let data = ['정치', '경제', '사회', '과학', '연예', '스포츠'];
-  let [btnActive, setBtnActive] = useState("");
+  const data = ['정치', '경제', '사회', '과학', '연예', '스포츠'];
+  const [btnActive, setBtnActive] = useState("");
+  const [clickData, setClickData] = useState("");
+
+  const onChangeClickData = (event) => {
+    setClickData(event.target.value);
+  }
 
   const toggleActive = (e) => {
+    setClickData(e.target.value);
+    console.log(data[clickData]);
     setBtnActive((prev) => {
       return e.target.value;
     });
@@ -25,9 +32,9 @@ export default function NewsPreview() {
     article_image: 'image.png'
   });
 
-  const newsPreviewLoad = async (id) => {
+  const newsPreviewLoad = async () => {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/${id}`);
+      const response = await axios.get(`${serverURL}/news/recommned/${data[clickData]}`);
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
         // console.log(response.data.data["news"]);
