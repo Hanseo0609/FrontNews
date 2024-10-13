@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
-
+import parse from 'html-react-parser'
 export default function TodaysNewsPage() {
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
@@ -92,7 +92,7 @@ export default function TodaysNewsPage() {
                   <div>
                     <styleD.ArticleTitle>
                       <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textDecoration: 'none' }}>
-                        {newsData.article_title}
+                        {parse(newsData.article_title)}
                       </p>
                     </styleD.ArticleTitle>
                     <styleD.ArticalContent>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import parse from 'html-react-parser'
 import * as styleD from '../styles/NewsPreview';
 import '../styles/btn.css';
 
@@ -34,7 +35,8 @@ export default function NewsPreview() {
 
   const newsPreviewLoad = async () => {
     try {
-      const response = await axios.get(`${serverURL}/news/recommned/${data[clickData]}`);
+      const response = await axios.get(`${serverURL}/news/recommned/${data[clickData]}`,{});
+      console.log(response)
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
         // console.log(response.data.data["news"]);
@@ -105,7 +107,7 @@ export default function NewsPreview() {
           ))} */}
           <div>
           <p style={{ overflow: 'hidden', textOverflow: 'ellipsis', width: '500px', fontWeight:'bold', fontSize:'30px', width:'800px' }}>
-            {newsData.article_title}
+            {parse(newsData.article_title)}
           </p>
           <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '800px' }}>
             {newsData.article_content}
