@@ -5,15 +5,12 @@ import { useParams } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
 
-
-const Popup = ({ isOpen, onClose }) => {
-
+const Popup = ({ isOpen, onClose, currData }) => {
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
   const [popup, setPopup] = useState([false, false, false]);
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState(currData.article_id); // 초기값으로 설정
 
-  const { news_id } = useParams();
   const [newsData, setNewsData] = useState({
     article_title: '기사 제목',
     article_createat: '2024-05-01',
@@ -29,10 +26,9 @@ const Popup = ({ isOpen, onClose }) => {
 
   const todaysnewsPreviewLoad = async () => {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/30`);
+      const response = await axios.get(`${serverURL}/news/getNews/${news}`);
       if (response.data.status === 200) {
         setNewsData(response.data.data["news"]);
-        // console.log(response.data.data["news"]);
       } else {
         alert("뉴스 데이터 로딩 실패");
       }
@@ -42,11 +38,15 @@ const Popup = ({ isOpen, onClose }) => {
     }
   };
 
+  // useEffect에서 news 상태를 설정
+  useEffect(() => {
+    setNews(currData.article_id); // currData가 변경될 때만 상태 업데이트
+  }, [currData]);
+
   useEffect(() => {
     todaysnewsPreviewLoad();
-  }, [news_id]);
+  }, [news]); // news가 변경될 때마다 데이터 로드
 
-  
   return (
     <>
       {isOpen && (
@@ -54,13 +54,29 @@ const Popup = ({ isOpen, onClose }) => {
           <styled.InnerBox>
             <styled.Img src={newsData.article_image} />
             <styled.TextBox>
-              <styled.Title><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '1000px' }}>
-                    {newsData.article_title}
-                  </p></styled.Title>
-              <styled.Content><p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '1000px' }}>
-                    {newsData.article_content}
-                  </p></styled.Content>
-              <Link to="/NewsView" style={{textDecoration:"none", marginLeft:"100px", fontSize:"25px", border:"1px solid black", borderRadius:"5px", backgroundColor:"skyblue"}}>원문 보기</Link>
+              <styled.Title>
+                <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '1000px' }}>
+                  {newsData.article_title}
+                </p>
+              </styled.Title>
+              <styled.Content>
+                <p style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '1000px' }}>
+                  {newsData.article_content}
+                </p>
+              </styled.Content>
+              <Link
+                to={`/NewsView?id=${newsData.article_id}`}
+                style={{
+                  textDecoration: 'none',
+                  marginLeft: '100px',
+                  fontSize: '25px',
+                  border: '1px solid black',
+                  borderRadius: '5px',
+                  backgroundColor: 'skyblue'
+                }}
+              >
+                원문 보기
+              </Link>
               <br />
               <styled.ExitBtn onClick={onClose}>닫기</styled.ExitBtn>
             </styled.TextBox>

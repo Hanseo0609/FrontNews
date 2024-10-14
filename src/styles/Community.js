@@ -63,7 +63,6 @@ export const WriteBtn = styled.button`
   background-color: white;
   position: relative;
   left: 98%;
-  top: 85%;
   &:active {
     background-color: #b3b3b3;
   }
