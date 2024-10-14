@@ -2,14 +2,36 @@ import * as styleD from '../styles/Community';
 import Navbar from '../components/Navbar';
 import Line from '../components/Line';
 import { Link } from "react-router-dom";
-import { useState } from 'react';
-import Pagination from './PaginationPage';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Pagination from './Pagination';
+import Posts from './Posts';
 
 export default function CommunityMain() {
-  const [datas, setDatas] = useState([]);
-  const [limit, setLimit] = useState(10);
-  const [page, setPage] = useState(1);
-  const offset = (page - 1) * limit;
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const response = await axios.get(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      setPosts(response.data);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+  const currentPosts = (posts) => {
+    let currentPosts = 0;
+    currentPosts = posts.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  };
 
   return (
     <div>
@@ -39,32 +61,22 @@ export default function CommunityMain() {
           </styleD.CommunityCotentComent>
           <hr style={{ color: 'black' }}></hr>
 
-          {/* <main>
-            {datas.slice(offset, offset + limit).map((data}) => ())}
-          </main> */}
+          <Posts posts={currentPosts(posts)} loading={loading}></Posts>
           <Pagination
-            total={datas.length}
-            limit={10}
-            page={page}
-            setPage={setPage}
-          />
-          
+            postsPerPage={postsPerPage}
+            totalPosts={posts.length}
+            paginate={setCurrentPage}
+            currentPage={currentPage}
+          >
 
-          {/* <Link to='/CommunityPostPage' style={{textDecoration: 'none', color: 'black'}}>
-            <div style={{ display: 'flex', border: '1px solid #b3b3b3', borderRadius: '5px' }}>
-              <p style={{ width: '150px', marginLeft: '60px' }}>1</p>
-              <p style={{ width: '920px', marginLeft: '300px' }}>와 음바페 미쳤는데???</p>
-              <p style={{ width: '380px' }}>메시메시</p>
-              <p style={{ width: '280px' }}>2024/09/25</p>
-              <p style={{ width: '80px' }}>5</p>
-            </div>
-          </Link> */}
-
-
-
+          </Pagination>
           <Link to='/CommunityWritePage'>
             <styleD.WriteBtn>글쓰기</styleD.WriteBtn>
           </Link>
+
+          {/* <Link to='/CommunityPostPage' style={{textDecoration: 'none', color: 'black'}}>
+          </Link> */}
+
         </styleD.CommunityContainer>
       </div>
     </div>
