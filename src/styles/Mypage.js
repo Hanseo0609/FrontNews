@@ -176,3 +176,100 @@ export const Newsletter = styled.p`
     margin-right: 10px;
     width: 150px;
 `;
+
+export const KeywordUpdateBtn = styled.button`
+    width: 100px;
+    height: 30px;
+`;
+
+export const DetailSideBar = styled.div`
+    border: 5px solid #D2AC10;
+    width: 255px;
+    height: 700px;
+    border-radius: 15px;
+    margin-right: 50px;
+`;
+
+export const DetailMenus = styled.div`
+    margin-top: 25px;
+    display: flex;
+`;
+
+export const SideBarOption = styled.div`
+    border-bottom: 5px solid #D2AC10;
+    height: 120px;
+`;
+
+export const SideBarOptionfinal = styled.div`
+    height: 120px;
+`;
+
+export const SideBarText = styled.p`
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    margin: 55px 0 0 0;
+    color: gray;
+`;
+
+export const DetailOption = styled.div`
+    border: 2px solid black;
+    width: 600px;
+    height: 700px;
+    border-radius: 15px;
+    margin-right: 50px;
+
+`;
+
+export const DetailOptionHeader = styled.div`
+    border-bottom: 2px solid black;
+    width: 600px;
+    height: 50px;
+`;
+
+export const DetailOptionHeaderText = styled.p`
+    font-weight: bold;
+    font-size: 30px;
+    margin: 10px 10px 10px 10px;
+`;
+
+export const DetailWrapper = styled.div`
+  display: flex;
+`;
+
+export const ProfileImageSetter = styled.div`
+    display: flex;
+`;
+
+export const ProfileImage = styled.div`
+    margin-right: 80px;
+`;
+
+export const DefaultProfile = styled.img`
+    width: 90px;
+    height: 90px;
+    margin-top: 15px;
+`;
+
+export const ProfileSetterTitle = styled.p`
+    font-weight: bold;
+    color: #D2AC10;
+    font-size: 25px;
+    margin: 15px 50px 0px 20px;
+`;
+
+export const EditMyNickSubmit = styled.button`
+    border: none;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    margin-left: 10px;
+    border-radius: 5px;
+    width: 50px;
+`;
+
+export const EditMyInfoInput = styled.input`
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: 400px;
+`;

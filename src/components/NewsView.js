@@ -1,8 +1,216 @@
 import * as styled from '../styles/NewsView';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
-
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import parse from 'html-react-parser'
 export default function NewsView() {
+
+  const serverURL = process.env.REACT_APP_SERVER_URL;
+
+  const [newsData, setNewsData] = useState({
+    article_title: '기사 제목',
+    article_createat: '2024-05-01',
+    article_content: '기사 본문',
+    article_id: 20,
+    article_image: 'image.png',
+    article_url: 'http'
+  });
+  const [comment, setComment] = useState("");
+  const [newsComment, setNewsComment] = useState([]);
+  const [editingComment, setEditingComment] = useState(false);
+  const [editComment, setEditComment] = useState("");
+  const handleOnChangeComment = (event) => {
+    setEditComment(event.target.value);
+  }
+
+  function onChangeComment(event) {
+    setComment(event.target.value);
+  }
+  function onClickEdit(index) {
+    if (!editingComment) {
+      setEditComment(newsComment[index].comment_content);
+    } else {
+      setEditComment("");
+    }
+    setEditingComment(!editingComment);
+  }
+ 
+  
+
+  //댓글 작성
+  async function postComment() {
+    try {
+      const article_id = newsData['article_id'];
+      const access_token = localStorage.getItem('accessToken');
+
+      const response = await axios.post(`${serverURL}/news/createComment`, {
+        article_id: article_id,
+        comment_content: comment,
+      }, {
+        headers: { Authorization: `Bearer ${access_token}` }
+      });
+
+      if (response.data["status"] === 201) {
+        alert('댓글 작성 성공');
+        setComment("");
+        await getNewsData();
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.log('액세스 토큰 만료');
+        await handleTokenReissuePostComment();
+      } else {
+        console.log(error);
+        alert('댓글 작성 실패');
+      }
+    }
+  }
+
+  async function handleTokenReissuePostComment() {
+    try {
+      const refresh_token = localStorage.getItem('refreshToken');
+
+      if (!refresh_token) {
+        throw new Error('리프레쉬 토큰 없음');
+      }
+
+      const response = await axios.post(`${serverURL}/users/reissue`, {}, {
+        headers: { Authorization: `Bearer ${refresh_token}` }
+      });
+      console.log(response);
+      if (response['data']['status'] === 201) {
+        localStorage.setItem('accessToken', response.data['access_token']);
+        console.log('액세스 토큰 발급 성공');
+        await postComment(); // 토큰 갱신 후 댓글 다시 작성 시도
+      }
+    } catch (error) {
+      console.log(error);
+      alert('토큰 갱신 실패로 댓글 작성 실패');
+    }
+  }
+  async function handleTokenReissueDeleteComment(commentId) {
+    try {
+      const refresh_token = localStorage.getItem('refreshToken');
+
+      if (!refresh_token) {
+        throw new Error('리프레쉬 토큰 없음');
+      }
+
+      const response = await axios.post(`${serverURL}/users/reissue`, {}, {
+        headers: { Authorization: `Bearer ${refresh_token}` }
+      });
+      console.log(response);
+      if (response['data']['status'] === 201) {
+        localStorage.setItem('accessToken', response.data['access_token']);
+        console.log('액세스 토큰 발급 성공');
+        await deleteComment(commentId);
+      }
+    } catch (error) {
+      console.log(error);
+      alert('토큰 갱신 실패로 댓글 삭제 실패');
+    }
+  }
+  //댓글 삭제
+  const deleteComment = async (commentId) => {
+    try {
+      const access_token = localStorage.getItem('accessToken');
+
+      const response = await axios.delete(`${serverURL}/news/deleteComment`, {
+        data: { comment_id: commentId },
+        headers: { Authorization: `Bearer ${access_token}` }
+      })
+
+      if (response.data['status'] === 200) {
+        alert('댓글 삭제 성공');
+        await getNewsData();
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.log('액세스 토큰 만료');
+        await handleTokenReissueDeleteComment(commentId);
+      } else {
+        console.log(error);
+        alert('댓글 삭제 실패');
+      }
+    }
+  }
+
+  const editedComment = async (commentId, comment) => {
+    try {
+      const access_token = localStorage.getItem('accessToken');
+
+      const response = await axios.post(`${serverURL}/news/changeComment`, { // 수정된 부분
+        comment_id: commentId, // 수정된 부분
+        comment_content: comment // 수정된 부분
+      }, {
+        headers: { Authorization: `Bearer ${access_token}` }
+      });
+
+      if (response.data['status'] === 201) {
+        alert('댓글 수정 성공');
+        await getNewsData();
+        setEditingComment(false);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.log('액세스 토큰 만료');
+        await handleTokenReissueEditComment(commentId, comment);
+      } else {
+        console.log(error);
+        alert('댓글 수정 실패');
+      }
+    }
+  }
+
+  async function handleTokenReissueEditComment(commentId, comment) {
+    try {
+      const refresh_token = localStorage.getItem('refreshToken');
+
+      if (!refresh_token) {
+        throw new Error('리프레쉬 토큰 없음');
+      }
+
+      const response = await axios.post(`${serverURL}/users/reissue`, {}, {
+        headers: { Authorization: `Bearer ${refresh_token}` }
+      });
+
+      if (response['data']['status'] === 201) {
+        localStorage.setItem('accessToken', response.data['access_token']);
+        console.log('액세스 토큰 발급 성공');
+        await editedComment(commentId, comment);
+      }
+    } catch (error) {
+      console.log(error);
+      alert('토큰 갱신 실패로 수정 실패');
+    }
+  }
+
+  useEffect(() => {
+    getNewsData();
+  }, []);
+
+  async function getNewsData() {
+    try {
+      const url = new URL(window.location.href);
+      const searchParams = new URLSearchParams(url.search);
+      const newsId = searchParams.get('id')
+
+      const response = await axios.get(`${serverURL}/news/getNews/${newsId}`);
+      if (response.data.status === 200) {
+        setNewsData(response.data.data["news"]);
+        setNewsComment(response.data.data['comments']);
+        console.log(response.data.data['comments']);
+      } else {
+        alert("뉴스 데이터 로딩 실패");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("서버 오류임");
+    }
+  }
+
   return (
     <div>
       <Navbar />
@@ -10,13 +218,56 @@ export default function NewsView() {
       <Header />
       <styled.liner />
       <div>
-        <styled.Title>기사 제목</styled.Title>
-        <styled.Date>2024-05-01</styled.Date>
+        <styled.Title>{parse(newsData.article_title)}</styled.Title>
+        <styled.Date>{newsData.article_createat}</styled.Date>
       </div>
       <styled.Headliner />
-      <div>
-        <styled.Content>기사 본문</styled.Content>
+      <div style={{ textAlign: 'center' }}>
+        <img src={newsData.article_image} style={{ width: '1350px', height: '800px' }} />
+        <p>출처 : {newsData.article_url}</p>
+        <styled.Content style={{ textAlign: 'left', lineHeight: '50px' }}>{newsData.article_content}</styled.Content>
       </div>
-    </div>
+
+
+      <div style={{ display: 'flex', marginLeft: '280px' }}>
+        <textarea
+          onChange={onChangeComment}
+          value={comment}
+          style={{ width: '1200px', height: '100px', marginRight: '20px' }} />
+
+        <button onClick={postComment} style={{ width: '130px', height: '100px' }}>작성하기</button>
+      </div>
+
+      <h3 style={{ marginLeft: '280px' }}>댓글</h3>
+      <hr style={{ width: '1350px' }} />
+
+      <div style={{ marginLeft: '280px', width: '1350px', paddingBottom:'30px'}}>
+        {newsComment.length > 0 ? (
+          newsComment.map((comment, index) => (
+            <>
+              {
+                editingComment ? (
+                  <>
+                    <input type='text' value={editComment} onChange={handleOnChangeComment} style={{width:'600px', height:'50px', fontSize:'20px'}} />
+                    <button onClick={onClickEdit}type='submit' style={{width:'70px', height:'50px', marginLeft:'10px'}}>취소</button>
+                    <button type='submit' style={{width:'70px', height:'50px', marginLeft:'10px'}} onClick={() => { editedComment(comment.comment_id, editComment) }}>완료</button>
+                  </>
+                ) : (
+                  <div key={index}>
+                    <p>{comment.comment_content}<br />작성자 : {comment.user_nickname} | 작성일자 : {comment.comment_createat}</p>
+                    <button onClick={() => { deleteComment(comment.comment_id) }} style={{marginRight:'10px'}}>삭제</button>
+                    <button onClick={() => { onClickEdit(index) }}>수정</button>
+                    <hr />
+                 </div>
+                )
+              }
+            </>
+            
+          ))
+        ) : (
+          <p>댓글이 없습니다.</p>
+        )}
+      </div>
+    </div >
   );
 }

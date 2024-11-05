@@ -1,0 +1,40 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 28px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 0;
+  margin-left: 5px;
+  background-color: transparent;
+
+  &.active {
+    background-color: #2C2C2C;
+    color: white;
+  }
+}
+
+.prevBtn {
+  font-size: 40px;
+  border: none;
+  background-color: #eee;
+  margin-left: -20px;
+  color: #656565;
+  &:hover {
+    color: #a4a4a4;
+  }
+}
+
+
+.nextBtn {
+  font-size: 40px;
+  border: none;
+  margin-left: 50px;
+  background-color: #eee;
+  color: #656565;
+  &:hover {
+    color: #a4a4a4;
+  }
+}
