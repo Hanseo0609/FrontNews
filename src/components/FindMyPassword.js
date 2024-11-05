@@ -2,20 +2,20 @@ import * as styleD from '../styles/FindMyId';
 import { Link } from "react-router-dom";
 import Navbar from './Navbar';
 
-export default function FindMyId() {
+export default function FindMyPassword() {
 	return (
 		<>
             <Navbar status="400"/>
             
 			<styleD.FindMyIdBorder>
-            <styleD.FindMyIdTitle>아이디 찾기</styleD.FindMyIdTitle>
+            <styleD.FindMyIdTitle>비밀번호 찾기</styleD.FindMyIdTitle>
             <styleD.FindMyIdHr />
             <styleD.FindMyIdContent>
             <div>
                    
                    <styleD.NameInput>
-                       <p>이름</p>
-                       <input type="text" placeholder="이름을 입력해주세요." />
+                       <p>아이디</p>
+                       <input type="text" placeholder="아이디를 입력해주세요." />
                    </styleD.NameInput>
                    <styleD.NumberInput>
                        <p>전화번호</p>

@@ -9,9 +9,11 @@ export const TodaysNewsContainer = styled.div`
   p {
     font-size: 1.5rem;
     margin: 30px 20px 10px 0;
+    cursor: pointer;
   }
   p.selected {
     font-weight: bold;
+    cursor: default;
   }
 `;
 

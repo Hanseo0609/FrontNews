@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Line from '../components/Line';
 import Navbar from '../components/Navbar';
@@ -5,6 +6,9 @@ import Header from '../components/Header';
 import * as styleD from '../styles/TodaysNewsPage';
 
 export default function TodaysNewsPage() {
+  const [selectedNews, setSelectedNews] = useState('오늘의 뉴스');
+  const [selectedCategory, setSelectedCategory] = useState('정치');
+
   return (
     <div>
       <Navbar />
@@ -13,17 +17,26 @@ export default function TodaysNewsPage() {
       <Line />
       <styleD.NewsContainer>
         <styleD.TodaysNewsContainer>
-            <p className='selected'>오늘의 뉴스</p>
-            <p>주간 뉴스</p>
-            <p>월간 뉴스</p>
+          {['오늘의 뉴스', '주간 뉴스', '월간 뉴스'].map((news) => (
+            <p
+              key={news}
+              className={selectedNews === news ? 'selected' : ''}
+              onClick={() => setSelectedNews(news)}
+            >
+              {news}
+            </p>
+          ))}
         </styleD.TodaysNewsContainer>
         <styleD.NewsCategoryContainer>
-            <p className='selected'>정치</p>
-            <p>경제</p>
-						<p>사회</p>
-						<p>과학</p>
-						<p>연예</p>
-						<p>스포츠</p>
+          {['정치', '경제', '사회', '과학', '연예', '스포츠'].map((category) => (
+            <p
+              key={category}
+              className={selectedCategory === category ? 'selected' : ''}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </p>
+          ))}
         </styleD.NewsCategoryContainer>
         <styleD.NewsBoxContainer>
             {

@@ -10,6 +10,8 @@ import CommunityPost from './pages/CommunityPost.js'
 import ScrollToTop from './components/ScrollToTop.js';
 import TodaysNewsPage from './pages/TodaysNewsPage.js';
 import FindMyId from './components/FindMyId.js';
+import FindMyPassword from './components/FindMyPassword.js';
+
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
         <Route path="/CommunityPost" element={<CommunityPost/>}></Route>
         <Route path="/TodaysNewsPage" element={<TodaysNewsPage/>}></Route>
         <Route path="/FindMyId" element={<FindMyId/>}></Route>
+        <Route path="/FindMyPassword" element={<FindMyPassword />}></Route>
       </Routes>
     </Router>
   );

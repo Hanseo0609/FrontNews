@@ -66,6 +66,7 @@ export const FindMyIdButton = styled.button`
     margin-left: 33%;
     margin-top: 5%;
     font-weight: bold;
+    cursor: pointer;
 `;
 
 export const FindMyIdHr = styled.hr`
