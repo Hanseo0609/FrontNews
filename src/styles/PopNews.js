@@ -4,7 +4,7 @@ export const PopBox = styled.div`
   width: 1600px;
   height: 600px;
   background-color: #989898;
-  margin-left: 15%;
+  margin-left: 0.7%;
   border: 1.5px solid #000000;
   border-radius: 10px;
 `;
