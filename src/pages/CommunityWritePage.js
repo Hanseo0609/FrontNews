@@ -28,7 +28,7 @@ export default function CommunityWrite() {
   async function writePost() {
     try {
       const access_token = localStorage.getItem('accessToken');
-      const response = await axios.post(`${serverURL}/news/createComment`, {
+      const response = await axios.post(`${serverURL}/board/CommunityPostWrite`, {
         title: title,
         content: content,
       }, {
