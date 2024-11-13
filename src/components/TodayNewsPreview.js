@@ -28,19 +28,46 @@ export default function TodayNewsPreview() {
     setPopup(newPopup);
   };
 
-  const todaysnewsPreviewLoad = async (id) => {
+  // const todaysnewsPreviewLoad = async (id) => {
+  //   try {
+  //     const response = await axios.get(`${serverURL}/news/getNews/${id}`);
+  //     if (response.data.status === 200) {
+  //       const newArticle = response.data.data["news"];
+  //       setNewsData(newArticle);
+  //       setNewArray((prevArray) => {
+  //         if (!prevArray.some(article => article.article_id === newArticle.article_id)) {
+  //           return [...prevArray, newArticle];
+  //         }
+  //         return prevArray;
+  //       });
+  //       console.log(news_id);
+  //     } else {
+  //       alert("뉴스 데이터 로딩 실패");
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("서버 오류임");
+  //   }
+  // };
+
+  const todaysnewsPreviewLoad = async () => {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/${id}`);
-      if (response.data.status === 200) {
-        const newArticle = response.data.data["news"];
-        setNewsData(newArticle);
+      const res1 = await axios.get(`${serverURL}/news/getNewsList/normal/1/3`);
+      if (res1.data.status === 200) {
+        console.log(res1.data.data.news);
+        const newArticles = res1.data.data.news;
+  
+        // 배열 전체를 상태에 추가
         setNewArray((prevArray) => {
-          if (!prevArray.some(article => article.article_id === newArticle.article_id)) {
-            return [...prevArray, newArticle];
-          }
-          return prevArray;
+          const uniqueArticles = newArticles.filter(newArticle =>
+            !prevArray.some(article => article.article_id === newArticle.article_id)
+          );
+          return [...prevArray, ...uniqueArticles];
         });
-        console.log(news_id);
+        
+        // 첫 번째 뉴스 데이터 설정
+        setNewsData(newArticles[0] || newsData);  // 첫 번째 기사나 기본 데이터를 설정
+        
       } else {
         alert("뉴스 데이터 로딩 실패");
       }
@@ -50,11 +77,15 @@ export default function TodayNewsPreview() {
     }
   };
 
+  // const loadArrayNews = async () => {
+  //   for (let i = 0; i < 3; i++) {
+  //     const newId = newsId + i;
+  //     await todaysnewsPreviewLoad(newId);
+  //   }
+  // }
+
   const loadArrayNews = async () => {
-    for (let i = 0; i < 3; i++) {
-      const newId = newsId + i;
-      await todaysnewsPreviewLoad(newId);
-    }
+    await todaysnewsPreviewLoad();
   }
 
   useEffect(() => {
