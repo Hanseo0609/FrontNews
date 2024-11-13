@@ -50,7 +50,7 @@ const Popup = ({ isOpen, onClose, currData }) => {
   return (
     <>
       {isOpen && (
-        <styled.PopBox style={{ position: 'absolute', top: '-10px', left: '-280px', zIndex: '1000' }}>
+        <styled.PopBox onClick={onClose} style={{ position: 'absolute', top: '-10px', left: '-280px', zIndex: '1000' }}>
           <styled.InnerBox>
             <styled.Img src={newsData.article_image} />
             <styled.TextBox>

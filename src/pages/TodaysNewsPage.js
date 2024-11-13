@@ -25,18 +25,24 @@ export default function TodaysNewsPage() {
     article_image: 'image.png'
   });
 
-  const todaysnewsPreviewLoad = async (id) => {
+  const todaysnewsPreviewLoad = async () => {
     try {
-      const response = await axios.get(`${serverURL}/news/getNews/${id}`);
-      if (response.data.status === 200) {
-        const newArticle = response.data.data["news"];
-        setNewsData(newArticle);
+      const res1 = await axios.get(`${serverURL}/news/getNewsList/normal/1/10`);
+      if (res1.data.status === 200) {
+        console.log(res1.data.data.news);
+        const newArticles = res1.data.data.news;
+  
+        // 배열 전체를 상태에 추가
         setNewArray((prevArray) => {
-          if (!prevArray.some(article => article.article_id === newArticle.article_id)) {
-            return [...prevArray, newArticle];
-          }
-          return prevArray;
+          const uniqueArticles = newArticles.filter(newArticle =>
+            !prevArray.some(article => article.article_id === newArticle.article_id)
+          );
+          return [...prevArray, ...uniqueArticles];
         });
+        
+        // 첫 번째 뉴스 데이터 설정
+        setNewsData(newArticles[0] || newsData);  // 첫 번째 기사나 기본 데이터를 설정
+        
       } else {
         alert("뉴스 데이터 로딩 실패");
       }
@@ -46,11 +52,16 @@ export default function TodaysNewsPage() {
     }
   };
 
+  // const loadArrayNews = async () => {
+  //   for (let i = 0; i < 10; i++) {
+  //     const newId = newsId + i;
+  //     await todaysnewsPreviewLoad(newId);
+  //   }
+  //   setLoading(false);
+  // }
+
   const loadArrayNews = async () => {
-    for (let i = 0; i < 10; i++) {
-      const newId = newsId + i;
-      await todaysnewsPreviewLoad(newId);
-    }
+    await todaysnewsPreviewLoad();
     setLoading(false);
   }
 

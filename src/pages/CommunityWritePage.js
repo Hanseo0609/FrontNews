@@ -11,8 +11,8 @@ import React, { useRef } from "react";
 
 export default function CommunityWrite() {
   const serverURL = process.env.REACT_APP_SERVER_URL;
-  const [title, setTitle] = useState("");
   const editorRef = useRef();
+  const [title, setTitle] = useState("");
 
   const saveTitle = (e) => {
     setTitle(e.target.value);
