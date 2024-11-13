@@ -80,7 +80,7 @@ export default function TodayNewsPreview() {
                     {newsData.article_content}
                   </p>
                   <styleD.SeeMoreBtn onClick={() => togglePopup(index)}>자세히</styleD.SeeMoreBtn>
-                  <Popup isOpen={popup[index]} onClose={() => togglePopup(index)} />
+                  <Popup currData={newsData} isOpen={popup[index]} onClose={() => togglePopup(index)} />
                 </div>
 
               </styleD.TodayNewsContainer>

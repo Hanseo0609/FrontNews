@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser'
+
 export default function NewsView() {
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
@@ -38,7 +39,6 @@ export default function NewsView() {
   }
  
   
-
   //댓글 작성
   async function postComment() {
     try {
@@ -195,7 +195,7 @@ export default function NewsView() {
     try {
       const url = new URL(window.location.href);
       const searchParams = new URLSearchParams(url.search);
-      const newsId = searchParams.get('id')
+      const newsId = searchParams.get('id');
 
       const response = await axios.get(`${serverURL}/news/getNews/${newsId}`);
       if (response.data.status === 200) {
@@ -208,6 +208,108 @@ export default function NewsView() {
     } catch (error) {
       console.error(error);
       alert("서버 오류임");
+    }
+  }
+
+  //뉴스 좋아요
+  async function postNewsLike() {
+    try {
+      const access_token = localStorage.getItem('accessToken');
+
+      const url = new URL(window.location.href);
+      const searchParams = new URLSearchParams(url.search);
+      const newsId = searchParams.get('id');
+
+      const reponse = await axios.post(`${serverURL}/news/like`,{
+        article_id: newsId,
+      }, {
+        headers: { Authorization: `Bearer ${access_token}` }
+      });
+      if(reponse.data['status'] === 201){
+        alert(`${reponse.data['message']}`);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.log('액세스 토큰 만료');
+        await handleTokenReissuePostNewsLike();
+      } else {
+        console.log(error);
+        alert('좋아요 실패');
+      }
+    }
+  }
+
+  async function handleTokenReissuePostNewsLike() {
+    try {
+      const refresh_token = localStorage.getItem('refreshToken');
+
+      if (!refresh_token) {
+        throw new Error('리프레쉬 토큰 없음');
+      }
+
+      const response = await axios.post(`${serverURL}/users/reissue`, {}, {
+        headers: { Authorization: `Bearer ${refresh_token}` }
+      });
+      console.log(response);
+      if (response['data']['status'] === 201) {
+        localStorage.setItem('accessToken', response.data['access_token']);
+        console.log('액세스 토큰 발급 성공');
+        await postNewsLike(); // 토큰 갱신 후 댓글 다시 작성 시도
+      }
+    } catch (error) {
+      console.log(error);
+      alert('토큰 갱신 실패로 좋아요 실패');
+    }
+  }
+
+  //뉴스 스크랩
+  async function postNewsScrap() {
+    try {
+      const access_token = localStorage.getItem('accessToken');
+
+      const url = new URL(window.location.href);
+      const searchParams = new URLSearchParams(url.search);
+      const newsId = searchParams.get('id');
+
+      const reponse = await axios.post(`${serverURL}/news/scrap`,{
+        article_id: newsId,
+      }, {
+        headers: { Authorization: `Bearer ${access_token}` }
+      });
+      if(reponse.data['status'] === 201){
+        alert(`${reponse.data['message']}`);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.log('액세스 토큰 만료');
+        await handleTokenReissuePostNewsScrap();
+      } else {
+        console.log(error);
+        alert('스크랩 실패');
+      }
+    }
+  }
+
+  async function handleTokenReissuePostNewsScrap() {
+    try {
+      const refresh_token = localStorage.getItem('refreshToken');
+
+      if (!refresh_token) {
+        throw new Error('리프레쉬 토큰 없음');
+      }
+
+      const response = await axios.post(`${serverURL}/users/reissue`, {}, {
+        headers: { Authorization: `Bearer ${refresh_token}` }
+      });
+      console.log(response);
+      if (response['data']['status'] === 201) {
+        localStorage.setItem('accessToken', response.data['access_token']);
+        console.log('액세스 토큰 발급 성공');
+        await postNewsScrap(); // 토큰 갱신 후 댓글 다시 작성 시도
+      }
+    } catch (error) {
+      console.log(error);
+      alert('토큰 갱신 실패로 스크랩 실패');
     }
   }
 
@@ -233,12 +335,16 @@ export default function NewsView() {
         <textarea
           onChange={onChangeComment}
           value={comment}
-          style={{ width: '1200px', height: '100px', marginRight: '20px' }} />
+          style={{ width: '1200px', height: '100px', marginRight: '20px', resize: 'none' }} />
 
         <button onClick={postComment} style={{ width: '130px', height: '100px' }}>작성하기</button>
       </div>
+      <div style={{display: 'flex'}}>
+        <h3 style={{ marginLeft: '280px' }}>댓글</h3>
+        <button onClick={postNewsLike} style={{border: 'none', background: 'none', fontSize: '25px', marginLeft: '50px'}}>❤️좋아요</button>
+        <button onClick={postNewsScrap} style={{border: 'none', background: 'none', fontSize: '25px'}}>📄스크랩</button>
+      </div>
 
-      <h3 style={{ marginLeft: '280px' }}>댓글</h3>
       <hr style={{ width: '1350px' }} />
 
       <div style={{ marginLeft: '280px', width: '1350px', paddingBottom:'30px'}}>

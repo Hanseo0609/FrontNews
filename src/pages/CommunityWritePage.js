@@ -5,9 +5,41 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { useState } from 'react';
 
 
 export default function CommunityWrite() {
+  const serverURL = process.env.REACT_APP_SERVER_URL;
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
+  const saveTitle = (e) => {
+    setTitle(e.target.value);
+    console.log(title);
+  };
+
+  const saveContent = (e) => {
+    setContent(e.target.value);
+    console.log(content);
+  };
+
+  async function writePost() {
+    try {
+      const access_token = localStorage.getItem('accessToken');
+      const response = await axios.post(`${serverURL}/news/createComment`, {
+        title: title,
+        content: content,
+      }, {
+        headers: { Authorization: `Bearer ${access_token}` }
+      });
+      if (response.data["status"] === 201) {
+        console.log("글쓰기 성공")
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       <Navbar />
@@ -42,7 +74,7 @@ export default function CommunityWrite() {
             </styleD.WriteHeader>
             <styleD.WriteHeader>
               <h3>제목</h3>
-              <styleD.WriteTitle />
+              <styleD.WriteTitle onChange={saveTitle} />
             </styleD.WriteHeader>
 
             <styleD.WriteContent>
@@ -52,10 +84,11 @@ export default function CommunityWrite() {
                 height="600px"
                 initialEditType="wysiwyg"
                 useCommandShortcut={false}
+                onChange={saveContent}
               />
             </styleD.WriteContent>
             <div style={{ textAlign: 'right' }}>
-              <styleD.WriteSubmitBtn>작성하기</styleD.WriteSubmitBtn>
+              <styleD.WriteSubmitBtn onClick={writePost}>작성하기</styleD.WriteSubmitBtn>
             </div>
 
           </div>
