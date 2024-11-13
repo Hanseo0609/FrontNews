@@ -4,16 +4,11 @@ import Line from '../components/Line';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import * as styleD from '../styles/TodaysNewsPage';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import React from 'react';
 import axios from 'axios';
 import parse from 'html-react-parser'
 export default function TodaysNewsPage() {
-<<<<<<< HEAD
-  const [selectedNews, setSelectedNews] = useState('오늘의 뉴스');
-  const [selectedCategory, setSelectedCategory] = useState('정치');
-=======
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
@@ -62,7 +57,6 @@ export default function TodaysNewsPage() {
   useEffect(() => {
     loadArrayNews();
   }, []);
->>>>>>> 89236e53306fdfc452304bef2d4bbcf562bc1468
 
   return (
     <div>
@@ -72,28 +66,6 @@ export default function TodaysNewsPage() {
       <Line />
       <styleD.NewsContainer>
         <styleD.TodaysNewsContainer>
-<<<<<<< HEAD
-          {['오늘의 뉴스', '주간 뉴스', '월간 뉴스'].map((news) => (
-            <p
-              key={news}
-              className={selectedNews === news ? 'selected' : ''}
-              onClick={() => setSelectedNews(news)}
-            >
-              {news}
-            </p>
-          ))}
-        </styleD.TodaysNewsContainer>
-        <styleD.NewsCategoryContainer>
-          {['정치', '경제', '사회', '과학', '연예', '스포츠'].map((category) => (
-            <p
-              key={category}
-              className={selectedCategory === category ? 'selected' : ''}
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </p>
-          ))}
-=======
           <p className='selected'>오늘의 뉴스</p>
         </styleD.TodaysNewsContainer>
         <styleD.NewsCategoryContainer>
@@ -104,7 +76,6 @@ export default function TodaysNewsPage() {
           <p>과학</p>
           <p>연예</p>
           <p>스포츠</p>
->>>>>>> 89236e53306fdfc452304bef2d4bbcf562bc1468
         </styleD.NewsCategoryContainer>
 
         {loading ? (

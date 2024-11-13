@@ -9,16 +9,10 @@ import CommunityWritePage from './pages/CommunityWritePage.js'
 import CommunityPostPage from './pages/CommunityPostPage.js'
 import ScrollToTop from './components/ScrollToTop.js';
 import TodaysNewsPage from './pages/TodaysNewsPage.js';
-<<<<<<< HEAD
-import FindMyId from './components/FindMyId.js';
-import FindMyPassword from './components/FindMyPassword.js';
-
-=======
 import FindMyIdPage from './pages/FindMyIdPage.js';
 import FindMyPasswordPage from './pages/FindMyPasswordPage.js';
 import NewsView from './components/NewsView.js';
 import MypageDetailPage from './pages/MypageDetailPage.js'
->>>>>>> 89236e53306fdfc452304bef2d4bbcf562bc1468
 
 function App() {
   return (
@@ -34,15 +28,10 @@ function App() {
         <Route path="/CommunityWritePage" element={<CommunityWritePage/>}></Route>
         <Route path="/CommunityPostPage" element={<CommunityPostPage/>}></Route>
         <Route path="/TodaysNewsPage" element={<TodaysNewsPage/>}></Route>
-<<<<<<< HEAD
-        <Route path="/FindMyId" element={<FindMyId/>}></Route>
-        <Route path="/FindMyPassword" element={<FindMyPassword />}></Route>
-=======
         <Route path="/FindMyIdPage" element={<FindMyIdPage/>}></Route>
         <Route path="/FindMyPasswordPage" element={<FindMyPasswordPage/>}></Route>
         <Route path="/NewsView" element={<NewsView/>}></Route>
         <Route path="/MypageDetailPage" element={<MypageDetailPage/>}></Route>
->>>>>>> 89236e53306fdfc452304bef2d4bbcf562bc1468
       </Routes>
     </Router>
   );
