@@ -39,7 +39,7 @@ export const RecommendContainer = styled.div`
 
 export const RecommendFirstBox = styled.div`
     width: 900px;
-    height: 150px;
+    height: 200px;
     border: 1px solid black;
     border-right: none;
     margin-top: 20px;
@@ -49,7 +49,7 @@ export const RecommendFirstBox = styled.div`
 
 export const RecommendSecondBox = styled.div`
     width: 700px;
-    height: 150px;
+    height: 200px;
     border: 1px solid black;
     margin-top: 20px;
 `;
@@ -239,6 +239,7 @@ export const DetailWrapper = styled.div`
 
 export const ProfileImageSetter = styled.div`
     display: flex;
+    margin-left: 30px;
 `;
 
 export const ProfileImage = styled.div`
@@ -254,7 +255,7 @@ export const DefaultProfile = styled.img`
 export const ProfileSetterTitle = styled.p`
     font-weight: bold;
     color: #D2AC10;
-    font-size: 25px;
+    font-size: 21px;
     margin: 15px 50px 0px 20px;
 `;
 
