@@ -5,11 +5,12 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 
 export default function CommunityWrite() {
   const serverURL = process.env.REACT_APP_SERVER_URL;
+  const editorRef = useRef();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -19,14 +20,15 @@ export default function CommunityWrite() {
   };
 
   const saveContent = (e) => {
-    setContent(e.target.value);
+    const editorInstance = editorRef.current.getInstance();
+    setContent(editorInstance.getMarkdown());
     console.log(content);
   };
 
   async function writePost() {
     try {
       const access_token = localStorage.getItem('accessToken');
-      const response = await axios.post(`${serverURL}/news/createComment`, {
+      const response = await axios.post(`${serverURL}/board/CommunityPostWrite`, {
         title: title,
         content: content,
       }, {
@@ -79,6 +81,7 @@ export default function CommunityWrite() {
 
             <styleD.WriteContent>
               <Editor
+                ref={editorRef}
                 initialValue="글을 입력하세요"
                 previewStyle="vertical"
                 height="600px"

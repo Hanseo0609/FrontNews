@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser'
-
 export default function NewsView() {
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
@@ -39,6 +38,7 @@ export default function NewsView() {
   }
  
   
+
   //댓글 작성
   async function postComment() {
     try {
