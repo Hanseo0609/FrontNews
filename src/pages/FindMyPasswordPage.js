@@ -46,12 +46,9 @@ export default function FindMyPassword() {
                     user_number: phoneNumber,
                     new_password: password
                 })
-                console.log(id);
-                console.log(name);
-                console.log(phoneNumber);
-                console.log(password);
 
                 if (response.data['status'] === 200) {
+                    console.log(response);
                     alert('비밀번호 변경 완료');
                     document.location.href('/LoginPage');
                 }
