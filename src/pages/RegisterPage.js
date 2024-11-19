@@ -125,51 +125,65 @@ export default function Login() {
     }
   }
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  function sendEmailCode() {
+    console.log('클릭됨');
+    setIsVisible(true);
+  }
+
   return (
     <div>
       <Link to='/'><styleD.LogoImg src='./source/Logo.png' /></Link>
       <styleD.Wrapper>
         <styleD.InputWarpper>
           <div>아이디(메일)</div>
-          <styleD.InputDefault type='mail' onChange={onChangeEmail} />
-          {idCheck()}
+          <div>
+            <styleD.InputDefault type='mail' onChange={onChangeEmail} />
+            <styleD.EmailConfirmBtn onClick={sendEmailCode}>인증하기</styleD.EmailConfirmBtn>
+            {idCheck()}
+            <styleD.InputDefault visible={isVisible}/>
+            <styleD.EmailConfirmBtn onClick={sendEmailCode}>확인하기</styleD.EmailConfirmBtn>
+          </div>
+          
+          <styleD.InputConfirmCode placeholder=' 이메일로 발송된 인증코드를 입력하세요.' name='add' type='text'/>
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>비밀번호</div>
-          <styleD.InputDefault type='password' onChange={onChangePassword} />
+          <styleD.InputDefault2 type='password' onChange={onChangePassword} />
           {passwordCheck()}
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>비밀번호 확인</div>
-          <styleD.InputDefault type='password' onChange={onChangePasswordConfirm} />
+          <styleD.InputDefault2 type='password' onChange={onChangePasswordConfirm} />
           {passwordDoubleCheck()}
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>닉네임</div>
-          <styleD.InputDefault type='text' onChange={onChangeNickname} />
+          <styleD.InputDefault2 type='text' onChange={onChangeNickname} />
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>이름</div>
-          <styleD.InputDefault type='text' onChange={onChangeName} />
+          <styleD.InputDefault2 type='text' onChange={onChangeName} />
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>나이</div>
-          <styleD.InputDefault type='number' onChange={onChangeAge} />
+          <styleD.InputDefault2 type='number' onChange={onChangeAge} />
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>전화번호</div>
-          <styleD.InputDefault type='number' onChange={onChangeNumber} />
+          <styleD.InputDefault2 type='number' onChange={onChangeNumber} />
         </styleD.InputWarpper>
 
-        <button type='submit' onClick={postResiter}>
+        <styleD.SummitBtn type='submit' onClick={postResiter}>
           제출하기
-        </button>
+        </styleD.SummitBtn>
       </styleD.Wrapper>
     </div>
   )
