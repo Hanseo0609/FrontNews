@@ -77,14 +77,14 @@ export default function CommunityWrite() {
       <Navbar />
       <Line />
       <styleD.CommunityHeaderContainer>
-        <styleD.CommunitySelectBox>
+        {/* <styleD.CommunitySelectBox>
           <option>제목</option>
           <option>내용</option>
           <option>작성자</option>
-        </styleD.CommunitySelectBox>
+        </styleD.CommunitySelectBox> */}
 
-        <styleD.CommunitySearch className='search-input' placeholder='키워드를 입력해 주세요' />
-        <styleD.HeaderSearchBtn><img className='search-btn' src='./source/Icon.png' /></styleD.HeaderSearchBtn>
+        {/* <styleD.CommunitySearch className='search-input' placeholder='키워드를 입력해 주세요' />
+        <styleD.HeaderSearchBtn><img className='search-btn' src='./source/Icon.png' /></styleD.HeaderSearchBtn> */}
       </styleD.CommunityHeaderContainer>
 
       <Line />
@@ -94,7 +94,7 @@ export default function CommunityWrite() {
           <div style={{ textAlign: 'center', fontSize: '25px', paddingTop: '40px', fontWeight: 'bold' }}>글쓰기</div>
           <div style={{ paddingLeft: '50px', paddingRight: '50px' }}>
             <styleD.WriteHeader style={{ marginTop: '50px' }}>
-              <h3>카테고리</h3>
+              {/* <h3>카테고리</h3>
               <styleD.SelectCategoryBox>
                 <option>정치</option>
                 <option>경제</option>
@@ -102,7 +102,7 @@ export default function CommunityWrite() {
                 <option>기술</option>
                 <option>연예</option>
                 <option>스포츠</option>
-              </styleD.SelectCategoryBox>
+              </styleD.SelectCategoryBox> */}
             </styleD.WriteHeader>
             <styleD.WriteHeader>
               <h3>제목</h3>
