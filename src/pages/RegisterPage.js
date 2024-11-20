@@ -5,10 +5,8 @@ import axios from 'axios';
 
 export default function Login() {
 
-  //백엔드 서버
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
-  //아이디 & 비밀번호 입력 제한
   const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
   const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 
@@ -19,6 +17,9 @@ export default function Login() {
   const [userNumber, setUserNumber] = useState("");
   const [userNickname, setUserNickname] = useState("");
   const [userAge, setUserAge] = useState(NaN);
+  const [confirmCodeValue, setConfirmCodeValue] = useState("");
+  const [isCodeConfirmed, setIsCodeConfirmed] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   function onChangeEmail(evevt) {
     setUserEmail(evevt.target.value)
@@ -98,7 +99,7 @@ export default function Login() {
   }
 
   async function postResiter() {
-    if (emailRegEx.test(userEmail) && passwordRegEx.test(userPassword) && userPassword == userPasswordConfirm) {
+    if (emailRegEx.test(userEmail) && passwordRegEx.test(userPassword) && userPassword == userPasswordConfirm && isCodeConfirmed) {
       try {
         const response = await axios.post(`${serverURL}/users/register`, {
           user_email: userEmail,  // 이메일 형식 권장
@@ -118,18 +119,22 @@ export default function Login() {
         }
         
       } catch (error) {
-        console.error(error);  // 에러 메시지 출력
+        console.error(error);  // 에러 메��지 출력
       }
     } else {
       alert("올바른 형식이 아닙니다.")
     }
   }
 
-  const [isVisible, setIsVisible] = useState(false);
-
   function sendEmailCode() {
     console.log('클릭됨');
-    setIsVisible(true);
+    setIsVisible(true); // 이메일 인증 입력란을 표시
+  }
+
+  function confirmCode() {
+    if (confirmCodeValue === '1234') {
+      setIsCodeConfirmed(true);
+    }
   }
 
   return (
@@ -140,13 +145,12 @@ export default function Login() {
           <div>아이디(메일)</div>
           <div>
             <styleD.InputDefault type='mail' onChange={onChangeEmail} />
-            <styleD.EmailConfirmBtn onClick={sendEmailCode}>인증하기</styleD.EmailConfirmBtn>
+            <styleD.EmailConfirmBtn type='text' onClick={sendEmailCode}>인증하기</styleD.EmailConfirmBtn>
             {idCheck()}
-            <styleD.InputDefault visible={isVisible}/>
-            <styleD.EmailConfirmBtn onClick={sendEmailCode}>확인하기</styleD.EmailConfirmBtn>
+            {isVisible && <styleD.InputDefault visible={isVisible}/> /* 이메일 인증 입력란 */}
+            {isVisible && <styleD.EmailConfirmBtn onClick={sendEmailCode}>확인하기</styleD.EmailConfirmBtn>}
           </div>
           
-          <styleD.InputConfirmCode placeholder=' 이메일로 발송된 인증코드를 입력하세요.' name='add' type='text'/>
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
