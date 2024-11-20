@@ -15,7 +15,10 @@ export default function NewsView() {
     article_content: '기사 본문',
     article_id: 20,
     article_image: 'image.png',
-    article_url: 'http'
+    article_url: 'http',
+    article_views: 0,
+    article_like: 0,
+    article_scrap: 0
   });
   const [comment, setComment] = useState("");
   const [newsComment, setNewsComment] = useState([]);
@@ -36,8 +39,8 @@ export default function NewsView() {
     }
     setEditingComment(!editingComment);
   }
- 
-  
+
+
 
   //댓글 작성
   async function postComment() {
@@ -202,6 +205,7 @@ export default function NewsView() {
         setNewsData(response.data.data["news"]);
         setNewsComment(response.data.data['comments']);
         console.log(response.data.data['comments']);
+        console.log(response);
       } else {
         alert("뉴스 데이터 로딩 실패");
       }
@@ -220,13 +224,14 @@ export default function NewsView() {
       const searchParams = new URLSearchParams(url.search);
       const newsId = searchParams.get('id');
 
-      const reponse = await axios.post(`${serverURL}/news/like`,{
+      const reponse = await axios.post(`${serverURL}/news/like`, {
         article_id: newsId,
       }, {
         headers: { Authorization: `Bearer ${access_token}` }
       });
-      if(reponse.data['status'] === 201){
+      if (reponse.data['status'] === 201) {
         alert(`${reponse.data['message']}`);
+        console.log(reponse);
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -271,12 +276,12 @@ export default function NewsView() {
       const searchParams = new URLSearchParams(url.search);
       const newsId = searchParams.get('id');
 
-      const reponse = await axios.post(`${serverURL}/news/scrap`,{
+      const reponse = await axios.post(`${serverURL}/news/scrap`, {
         article_id: newsId,
       }, {
         headers: { Authorization: `Bearer ${access_token}` }
       });
-      if(reponse.data['status'] === 201){
+      if (reponse.data['status'] === 201) {
         alert(`${reponse.data['message']}`);
       }
     } catch (error) {
@@ -321,7 +326,11 @@ export default function NewsView() {
       <styled.liner />
       <div>
         <styled.Title>{parse(newsData.article_title)}</styled.Title>
-        <styled.Date>{newsData.article_createat}</styled.Date>
+        <div style={{ display: 'flex' }}>
+          <styled.Date>{newsData.article_createat}</styled.Date>
+          <styled.Date style={{marginLeft: '1040px'}}>조회수 : {newsData.article_views}</styled.Date>
+        </div>
+
       </div>
       <styled.Headliner />
       <div style={{ textAlign: 'center' }}>
@@ -339,36 +348,38 @@ export default function NewsView() {
 
         <button onClick={postComment} style={{ width: '130px', height: '100px' }}>작성하기</button>
       </div>
-      <div style={{display: 'flex'}}>
+      <div style={{ display: 'flex' }}>
         <h3 style={{ marginLeft: '280px' }}>댓글</h3>
-        <button onClick={postNewsLike} style={{border: 'none', background: 'none', fontSize: '25px', marginLeft: '50px'}}>❤️좋아요</button>
-        <button onClick={postNewsScrap} style={{border: 'none', background: 'none', fontSize: '25px'}}>📄스크랩</button>
+        <button onClick={postNewsLike} style={{ border: 'none', background: 'none', fontSize: '25px', marginLeft: '50px' }}>❤️좋아요</button>
+        <p style={{marginTop: '20px'}}>({newsData.article_like})</p>
+        <button onClick={postNewsScrap} style={{ border: 'none', background: 'none', fontSize: '25px', marginLeft: '20px' }}>📄스크랩</button>
+        <p style={{marginTop: '20px'}}>({newsData.article_scrap})</p>
       </div>
 
       <hr style={{ width: '1350px' }} />
 
-      <div style={{ marginLeft: '280px', width: '1350px', paddingBottom:'30px'}}>
+      <div style={{ marginLeft: '280px', width: '1350px', paddingBottom: '30px' }}>
         {newsComment.length > 0 ? (
           newsComment.map((comment, index) => (
             <>
               {
                 editingComment ? (
                   <>
-                    <input type='text' value={editComment} onChange={handleOnChangeComment} style={{width:'600px', height:'50px', fontSize:'20px'}} />
-                    <button onClick={onClickEdit}type='submit' style={{width:'70px', height:'50px', marginLeft:'10px'}}>취소</button>
-                    <button type='submit' style={{width:'70px', height:'50px', marginLeft:'10px'}} onClick={() => { editedComment(comment.comment_id, editComment) }}>완료</button>
+                    <input type='text' value={editComment} onChange={handleOnChangeComment} style={{ width: '600px', height: '50px', fontSize: '20px' }} />
+                    <button onClick={onClickEdit} type='submit' style={{ width: '70px', height: '50px', marginLeft: '10px' }}>취소</button>
+                    <button type='submit' style={{ width: '70px', height: '50px', marginLeft: '10px' }} onClick={() => { editedComment(comment.comment_id, editComment) }}>완료</button>
                   </>
                 ) : (
                   <div key={index}>
                     <p>{comment.comment_content}<br />작성자 : {comment.user_nickname} | 작성일자 : {comment.comment_createat}</p>
-                    <button onClick={() => { deleteComment(comment.comment_id) }} style={{marginRight:'10px'}}>삭제</button>
+                    <button onClick={() => { deleteComment(comment.comment_id) }} style={{ marginRight: '10px' }}>삭제</button>
                     <button onClick={() => { onClickEdit(index) }}>수정</button>
                     <hr />
-                 </div>
+                  </div>
                 )
               }
             </>
-            
+
           ))
         ) : (
           <p>댓글이 없습니다.</p>

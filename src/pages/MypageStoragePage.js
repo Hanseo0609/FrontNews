@@ -2,231 +2,150 @@ import * as styleD from '../styles/Mypage';
 import Navbar from '../components/Navbar';
 import Line from '../components/Line';
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import parse from 'html-react-parser'
 
 export default function MypageStorage() {
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
+  const [articleLikeTitles, setArticleLikeTitles] = useState([]);
+  const [articleScrapNum, setArticleScraapNum] = useState(0);
 
-  //닉네임 가져오기
+  // 닉네임 가져오기
   const nickname = localStorage.getItem("nickname");
+  const thumbnailInput = useRef();
 
-  // const [politicsKeyword, setPoliticsKeyword] = useState(false);
-  // const [economyKeyword, setEconomyKeyword] = useState(false);
-  // const [societyKeyword, setSocietyKeyword] = useState(false);
-  // const [scienceKeyword, setScienceKeyword] = useState(false);
-  // const [loveKeyword, setLoveKeyword] = useState(false);
-  // const [sportKeyword, setSportKeyword] = useState(false);
+  const handleClick = () => {
+    thumbnailInput.current.click();
+  };
 
-  // async function postKeyword() {
-  //   if (politicsKeyword) {
-  //     console.log(localStorage.getItem('accessToken'));
-  //     try {
-  //       const response = await axios.post(`${serverURL}/users/keywordAdd`,
-  //         {
-  //           keyword: "정치",
-  //         },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
+  const saveFileImage = async e => {
+    try {
+      const access_token = localStorage.getItem('accessToken');
+      const formData = new FormData();
+      formData.append('image', e.target.files[0]);
 
-  //       console.log(response.data);
+      const response = await axios.post(`${serverURL}/users/profileImageChange`, formData, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+          'Content-Type': 'multipart/form-data',
+        }
+      });
 
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }else{
-  //     try {
-  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-  //         {
-  //           keyword: "정치",
-  //         },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
+      console.log(response);
 
-  //       console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }
+  // 좋아요한 기사
+  async function articleLove() {
+    try {
+      const access_token = localStorage.getItem('accessToken');
 
-  //   if (economyKeyword) {
-  //     try {
-  //       const response = await axios.post(`${serverURL}/users/keywordAdd`, {
-  //         keyword: "경제",
-  //       },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
+      const response = await axios.get(`${serverURL}/news/likeNewsLists`, {
+        headers: { Authorization: `Bearer ${access_token}` }
+      });
 
-  //       console.log(response.data);
+      if (response.data["status"] === 200) {
+        console.log(response);
+        // 제목만 추출해서 최대 3개 저장
+        const titles = response.data.data['news']
+          .slice(0, 3) // 최대 3개만
+          .map(article => article.article_title);
+        setArticleLikeTitles(titles);
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 401) {
+        console.log('액세스 토큰 만료');
+        await handleTokenReissueArticleLove();
+      } else {
+        console.log(error);
+      }
+    }
+  }
 
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }else{
-  //     try {
-  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-  //         {
-  //           keyword: "경제",
-  //         },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
+  // 좋아요한 기사 토큰 재발급
+  async function handleTokenReissueArticleLove() {
+    try {
+      const refresh_token = localStorage.getItem('refreshToken');
 
-  //       console.log(response.data);
+      if (!refresh_token) {
+        throw new Error('리프레쉬 토큰 없음');
+      }
 
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }
+      const response = await axios.post(`${serverURL}/users/reissue`, {}, {
+        headers: { Authorization: `Bearer ${refresh_token}` }
+      });
 
-  //   if (societyKeyword) {
-  //     try {
-  //       const response = await axios.post(`${serverURL}/users/keywordAdd`, {
-  //         keyword: "사회",
-  //       },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
+      if (response['data']['status'] === 201) {
+        localStorage.setItem('accessToken', response.data['access_token']);
+        console.log('액세스 토큰 발급 성공');
+        await articleLove();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  //       console.log(response.data);
+  // 스크랩한 기사
+  async function articleScrap() {
+    try {
+      const access_token = localStorage.getItem('accessToken');
 
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }else{
-  //     try {
-  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-  //         {
-  //           keyword: "사회",
-  //         },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
+      const response = await axios.get(`${serverURL}/news/scrapNewsLists`, {
+        headers: { Authorization: `Bearer ${access_token}` }
+      });
 
-  //       console.log(response.data);
+      if (response.data["status"] === 200) {
+        console.log("scrap")
+        console.log(response.data.data['news'].length)
+        console.log(response);
 
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }
+        setArticleScraapNum(response.data.data['news'].length);
+         
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 401) {
+        console.log('액세스 토큰 만료');
+        await handleTokenReissueArticleScrap();
+      } else {
+        console.log(error);
+      }
+    }
+  }
 
-  //   if (scienceKeyword) {
-  //     try {
-  //       const response = await axios.post(`${serverURL}/users/keywordAdd`, {
-  //         keyword: "과학",
-  //       },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
+  // 스크랩한 기사 토큰 재발급
+  async function handleTokenReissueArticleScrap() {
+    try {
+      const refresh_token = localStorage.getItem('refreshToken');
 
-  //       console.log(response.data);
+      if (!refresh_token) {
+        throw new Error('리프레쉬 토큰 없음');
+      }
 
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }else{
-  //     try {
-  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-  //         {
-  //           keyword: "과학",
-  //         },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
+      const response = await axios.post(`${serverURL}/users/reissue`, {}, {
+        headers: { Authorization: `Bearer ${refresh_token}` }
+      });
 
-  //       console.log(response.data);
+      if (response['data']['status'] === 201) {
+        localStorage.setItem('accessToken', response.data['access_token']);
+        console.log('액세스 토큰 발급 성공');
+        await articleScrap();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }
-
-  //   if (loveKeyword) {
-  //     try {
-  //       const response = await axios.post(`${serverURL}/users/keywordAdd`, {
-  //         keyword: "연예",
-  //       },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
-
-  //       console.log(response.data);
-
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }else{
-  //     try {
-  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-  //         {
-  //           keyword: "연예",
-  //         },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
-
-  //       console.log(response.data);
-
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }
-
-  //   if (sportKeyword) {
-  //     try {
-  //       const response = await axios.post(`${serverURL}/users/keywordAdd`, {
-  //         keyword: "스포츠",
-  //       },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
-
-  //       console.log(response.data);
-
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }else{
-  //     try {
-  //       const response = await axios.delete(`${serverURL}/users/keywordDelete`,
-  //         {
-  //           keyword: "스포츠",
-  //         },
-  //         {
-  //           headers: { Authorization: "Bearer " + localStorage.getItem('accessToken') },
-  //         });
-
-  //       console.log(response.data);
-
-  //     } catch (error) {
-  //       console.error(error);  // 에러 메시지 출력
-  //     }
-  //   }
-  // }
-
-  // async function getKeyword() {
-  //   try {
-  //     const response = await axios.get(`${serverURL}/users/keyword`, {
-  //       headers: { 
-  //         Authorization: "Bearer " + localStorage.getItem('accessToken') 
-  //       },
-  //     });
-
-  //     console.log(response.data)
-
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getKeyword();
-  // }, []);
+  useEffect(() => {
+    articleLove();
+    articleScrap();
+  }, []);
 
   return (
     <div>
@@ -272,9 +191,9 @@ export default function MypageStorage() {
                 <p style={{ marginLeft: '23px', marginTop: '10px' }}>나의 이미지</p>
               </styleD.ProfileImage>
 
-              <button style={{height:'50px', marginTop:'50px'}}>
+              <button onClick={handleClick} style={{ height: '50px', marginTop: '50px' }}>
                 이미지 업로드
-                <input type='file' accept='image/jpg, image/jpeg, image/png' style={{ display: 'none' }} />
+                <input type='file' accept='image/jpg, image/jpeg, image/png' multiple ref={thumbnailInput} onChange={saveFileImage} style={{ display: 'none' }} />
               </button>
             </styleD.ProfileImageSetter>
           </styleD.RecommendSecondBox>
@@ -308,7 +227,7 @@ export default function MypageStorage() {
 
               <styleD.MypageActStorageDetails style={{ marginLeft: '45px' }}>
                 <p style={{ width: '120px' }}>스크랩한 기사</p>
-                <styleD.MypageActDetailsBtn>0</styleD.MypageActDetailsBtn>
+                <styleD.MypageActDetailsBtn>{articleScrapNum}</styleD.MypageActDetailsBtn>
               </styleD.MypageActStorageDetails>
             </styleD.MypageActStorageDetail>
 
@@ -317,29 +236,25 @@ export default function MypageStorage() {
 
           <styleD.MypageActComment>
             <hr style={{ marginTop: '50px', height: '5px', backgroundColor: '#D2AC10' }} />
-            <styleD.ActStorageText>최근 단 댓글</styleD.ActStorageText>
+            <styleD.ActStorageText>좋아요한 기사</styleD.ActStorageText>
+            <hr style={{ color: '#666666', marginTop: '15px' }} />
+            {articleLikeTitles.length > 0 ? (
+              articleLikeTitles.map((title, index) => (
+                <div key={index}>
+                  <p style={{ marginBottom: '10px' }}>
+                    {parse(title)}
+                  </p>
+                  {index < articleLikeTitles.length - 1 && (
+                    <hr style={{ color: '#666666', marginTop: '15px' }} />
+                  )}
+                </div>
+              ))
+            ) : (
+              <p>좋아요한 기사가 없습니다.</p>
+            )}
           </styleD.MypageActComment>
         </styleD.MypageActivityContainer>
-
-        {/* <hr style={{ height: '5px', backgroundColor: '#D2AC10' }} />
-
-        <div>
-          <styleD.ActStorageText>키워드 관리</styleD.ActStorageText>
-
-          <styleD.MypageKeywordContainer>
-            정치 <styleD.MypageKeywordCheckbox type="checkbox" />
-            경제 <styleD.MypageKeywordCheckbox type="checkbox" />
-            사회 <styleD.MypageKeywordCheckbox type="checkbox" />
-            과학 <styleD.MypageKeywordCheckbox type="checkbox" />
-            연예 <styleD.MypageKeywordCheckbox type="checkbox" />
-            스포츠 <styleD.MypageKeywordCheckbox type="checkbox" />
-
-            <styleD.KeywordUpdateBtn>키워드 저장</styleD.KeywordUpdateBtn>
-          </styleD.MypageKeywordContainer>
-
-        </div> */}
       </styleD.MypageContainer>
     </div>
   );
 }
-

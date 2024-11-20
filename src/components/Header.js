@@ -37,7 +37,7 @@ export default function Header() {
         setHotArticle(articles.map(article => {
           let title = article['article_title'];
           if (title.length >= 16) {
-            title = title.slice(0, 16) + "..."; // 20자까지 잘라서 저장
+            title = title.slice(0, 16) + "...";
           }
           return title;
         }));
@@ -75,7 +75,12 @@ export default function Header() {
         <styleD.HeaderSearchBtn onClick={searchNews}><img className='search-btn' src='/source/Icon.png' /></styleD.HeaderSearchBtn>
       </styleD.HeaderSearchWrapper>
       <styleD.HeaderRealTimeSearch>
-        <p>{currentIndex + 1}. {hotArticle[currentIndex]}</p>
+        <p>
+          {currentIndex + 1}.
+          {hotArticle.length > 0 && hotArticle[currentIndex]
+            ? parse(hotArticle[currentIndex])
+            : 'Loading...'}
+        </p>
       </styleD.HeaderRealTimeSearch>
     </styleD.Header>
   )
