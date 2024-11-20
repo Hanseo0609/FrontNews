@@ -14,17 +14,32 @@ export default function Header() {
 
   const [hotArticle, setHotArticle] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const [inputValue, setInputValue] = useState("");
 
   const searchNews = async () => {
     try {
-      const response = await axios.get(`${serverURL}/news/search`, {
-        params: { query: searchQuery }, // Redux의 검색어를 서버로 전송
-      });
-      console.log('검색 결과:', response.data);
+      if (!inputValue.trim()) {
+        alert("검색어를 입력하세요.");
+        return;
+      }
+  
+      console.log("검색어:", inputValue); // 디버깅용
+  
+      // URL에서 한글 그대로 사용
+      const response = await axios.get(`${serverURL}/search/${inputValue}`);
+      console.log("검색 결과:", response.data);
+      if (response.data.status === 200) {
+        console.log("통신 완료!");
+      } else {
+        console.warn("결과 없음:", response.data);
+      }
     } catch (error) {
-      console.error('검색 실패:', error);
+      console.error("검색 실패:", error.response || error.message);
     }
+  };
+  
+  const handleChange = (event) => {
+    setInputValue(event.target.value); // value 업데이트
   };
 
   async function currentArticle() {
@@ -46,7 +61,6 @@ export default function Header() {
     } catch (error) {
       console.log(error)
     }
-
   }
 
   useEffect(() => {
@@ -71,7 +85,7 @@ export default function Header() {
         <Link to='/CommunityMainPage' style={{ textDecoration: 'none', color: 'black' }}>게시판</Link>
       </styleD.HeaderCommunity>
       <styleD.HeaderSearchWrapper>
-        <styleD.HeaderSearch type='text' onChange={(e) => dispatch(setSearchQuery(e.target.value))} className='search-input' placeholder='키워드를 입력해 주세요' />
+        <styleD.HeaderSearch type='text' onChange={handleChange} className='search-input' placeholder='키워드를 입력해 주세요' />
         <styleD.HeaderSearchBtn onClick={searchNews}><img className='search-btn' src='/source/Icon.png' /></styleD.HeaderSearchBtn>
       </styleD.HeaderSearchWrapper>
       <styleD.HeaderRealTimeSearch>
