@@ -18,7 +18,7 @@ export default function TodaysNewsPage() {
 
   const todaysnewsPreviewLoad = async () => {
     try {
-      const res1 = await axios.get(`${serverURL}/news/getNewsList/normal/1/30`);
+      const res1 = await axios.get(`${serverURL}/news/getNewsList/normal/1/5000`);
       if (res1.data.status === 200) {
         const newArticles = res1.data.data.news;
         console.log(res1.data.data.total);
@@ -54,6 +54,16 @@ export default function TodaysNewsPage() {
 
   // 총 페이지 수 계산
   const totalPages = Math.ceil(newArray.length / newsPerPage);
+
+  // 페이지네이션 범위를 계산
+  const getPaginationRange = () => {
+    const rangeSize = 10; // 한 번에 표시할 페이지네이션 버튼 수
+    const startPage = Math.floor((currentPage - 1) / rangeSize) * rangeSize + 1;
+    const endPage = Math.min(startPage + rangeSize - 1, totalPages);
+    return { startPage, endPage };
+  };
+
+  const { startPage, endPage } = getPaginationRange();
 
   // 페이지 변경 함수
   const handlePageChange = (pageNumber) => {
@@ -111,15 +121,24 @@ export default function TodaysNewsPage() {
 
             {/* 페이지네이션 */}
             <styleD.Pagination>
-              {[...Array(totalPages)].map((_, index) => (
-                <button
-                  key={index}
-                  className={index + 1 === currentPage ? 'active' : ''}
-                  onClick={() => handlePageChange(index + 1)}
-                >
-                  {index + 1}
-                </button>
-              ))}
+              {startPage > 1 && (
+                <button onClick={() => handlePageChange(startPage - 1)}>이전</button>
+              )}
+              {[...Array(endPage - startPage + 1)].map((_, index) => {
+                const pageNumber = startPage + index;
+                return (
+                  <button
+                    key={pageNumber}
+                    className={pageNumber === currentPage ? 'active' : ''}
+                    onClick={() => handlePageChange(pageNumber)}
+                  >
+                    {pageNumber}
+                  </button>
+                );
+              })}
+              {endPage < totalPages && (
+                <button onClick={() => handlePageChange(endPage + 1)}>다음</button>
+              )}
             </styleD.Pagination>
           </>
         )}
