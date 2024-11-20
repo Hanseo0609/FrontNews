@@ -5,8 +5,10 @@ import axios from 'axios';
 
 export default function Login() {
 
+  //백엔드 서버
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
+  //아이디 & 비밀번호 입력 제한
   const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
   const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
 
@@ -17,9 +19,6 @@ export default function Login() {
   const [userNumber, setUserNumber] = useState("");
   const [userNickname, setUserNickname] = useState("");
   const [userAge, setUserAge] = useState(NaN);
-  const [confirmCodeValue, setConfirmCodeValue] = useState("");
-  const [isCodeConfirmed, setIsCodeConfirmed] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
   function onChangeEmail(evevt) {
     setUserEmail(evevt.target.value)
@@ -99,7 +98,7 @@ export default function Login() {
   }
 
   async function postResiter() {
-    if (emailRegEx.test(userEmail) && passwordRegEx.test(userPassword) && userPassword == userPasswordConfirm && isCodeConfirmed) {
+    if (emailRegEx.test(userEmail) && passwordRegEx.test(userPassword) && userPassword == userPasswordConfirm) {
       try {
         const response = await axios.post(`${serverURL}/users/register`, {
           user_email: userEmail,  // 이메일 형식 권장
@@ -119,21 +118,10 @@ export default function Login() {
         }
         
       } catch (error) {
-        console.error(error);  // 에러 메��지 출력
+        console.error(error);  // 에러 메시지 출력
       }
     } else {
       alert("올바른 형식이 아닙니다.")
-    }
-  }
-
-  function sendEmailCode() {
-    console.log('클릭됨');
-    setIsVisible(true); // 이메일 인증 입력란을 표시
-  }
-
-  function confirmCode() {
-    if (confirmCodeValue === '1234') {
-      setIsCodeConfirmed(true);
     }
   }
 
@@ -143,51 +131,45 @@ export default function Login() {
       <styleD.Wrapper>
         <styleD.InputWarpper>
           <div>아이디(메일)</div>
-          <div>
-            <styleD.InputDefault type='mail' onChange={onChangeEmail} />
-            <styleD.EmailConfirmBtn type='text' onClick={sendEmailCode}>인증하기</styleD.EmailConfirmBtn>
-            {idCheck()}
-            {isVisible && <styleD.InputDefault visible={isVisible}/> /* 이메일 인증 입력란 */}
-            {isVisible && <styleD.EmailConfirmBtn onClick={sendEmailCode}>확인하기</styleD.EmailConfirmBtn>}
-          </div>
-          
+          <styleD.InputDefault type='mail' onChange={onChangeEmail} />
+          {idCheck()}
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>비밀번호</div>
-          <styleD.InputDefault2 type='password' onChange={onChangePassword} />
+          <styleD.InputDefault type='password' onChange={onChangePassword} />
           {passwordCheck()}
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>비밀번호 확인</div>
-          <styleD.InputDefault2 type='password' onChange={onChangePasswordConfirm} />
+          <styleD.InputDefault type='password' onChange={onChangePasswordConfirm} />
           {passwordDoubleCheck()}
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>닉네임</div>
-          <styleD.InputDefault2 type='text' onChange={onChangeNickname} />
+          <styleD.InputDefault type='text' onChange={onChangeNickname} />
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>이름</div>
-          <styleD.InputDefault2 type='text' onChange={onChangeName} />
+          <styleD.InputDefault type='text' onChange={onChangeName} />
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>나이</div>
-          <styleD.InputDefault2 type='number' onChange={onChangeAge} />
+          <styleD.InputDefault type='number' onChange={onChangeAge} />
         </styleD.InputWarpper>
 
         <styleD.InputWarpper>
           <div>전화번호</div>
-          <styleD.InputDefault2 type='number' onChange={onChangeNumber} />
+          <styleD.InputDefault type='number' onChange={onChangeNumber} />
         </styleD.InputWarpper>
 
-        <styleD.SummitBtn type='submit' onClick={postResiter}>
+        <button type='submit' onClick={postResiter}>
           제출하기
-        </styleD.SummitBtn>
+        </button>
       </styleD.Wrapper>
     </div>
   )

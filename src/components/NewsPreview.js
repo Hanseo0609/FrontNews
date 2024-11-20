@@ -45,7 +45,6 @@ export default function NewsPreview() {
       }
     } catch (error) {
       console.error(error);
-      alert("서버 오류임");
     }
   };
 
