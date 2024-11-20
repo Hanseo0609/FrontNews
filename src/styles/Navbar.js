@@ -34,4 +34,5 @@ export const LogoutImg = styled.img`
   height: 30px;
   margin-top: 10px;
   margin-left: 10px;
+  cursor: pointer;
 `;

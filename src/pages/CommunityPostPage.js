@@ -9,8 +9,10 @@ export default function CommunityPost() {
   const markdownText = `
   # 안녕하세요!
   저는 현재 리액트에서 \`react-markdown\`를 이용하여 **마크다운**을 랜더링하고 있습니다.
-  asdasdasdasdaskldjasjlkdjklasdjklajs#aslkdjaklsjdklasjd # asd
-  # asd # asd
+  
+  ## 프론트 황제 김한서에 대해
+  김한서님은 프론트엔드의 황제라고 불리우는 분입니다. 발로란트 레디언트.
+  
   `;
 
   return (
