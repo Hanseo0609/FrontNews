@@ -52,7 +52,7 @@ export default function MypageStorage() {
       if (response.data["status"] === 200) {
         console.log(response);
         // 제목만 추출해서 최대 3개 저장
-        const titles = response.data.data['news']
+        const titles = response.data.data['news'].reverse()
           .slice(0, 3) // 최대 3개만
           .map(article => article.article_title);
         setArticleLikeTitles(titles);

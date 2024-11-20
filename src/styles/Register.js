@@ -66,7 +66,7 @@ export const InputDefault = styled.input`
 export const EmailConfirmBtn = styled.button`
 	width: 85px;
 	height: 45px;
-	margin-left: 10px;
+	margin-left: 5px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
