@@ -5,41 +5,49 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pagination from './Pagination';
-import Posts from './Posts';
 
 export default function CommunityMain() {
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const [totalPosts, setTotalPosts] = useState(0); // 전체 게시물 수 상태 추가
+  const postsPerPage = 10; // 한 페이지당 표시할 게시물 수
 
   useEffect(() => {
-    loadPost();
-  }, []);
+    loadPost(currentPage); // 페이지 번호에 따라 데이터 로드
+  }, [currentPage]);
 
-  const indexOfLast = currentPage * postsPerPage;
-  const indexOfFirst = indexOfLast - postsPerPage;
-  const currentPosts = (posts) => posts.slice(indexOfFirst, indexOfLast);
+  async function loadPost(pageNumber) {
 
-  async function loadPost() {
     setLoading(true);
     try {
       const response = await axios.post(`${serverURL}/board/CommunitypostUpload`, {
-        page: 1,
-        itemCount: 10,
+        page: pageNumber,
+        itemCount: postsPerPage,
       });
+
       if (response.status === 200) {
+        console.log(response);
         const communityPosts = response.data.data;
-        setPosts(communityPosts.map(post => ({
-          communityId: post.community_id,
-          communityTitle: post.community_title,
-          communityCreateat: post.community_createat
-        })));
+        const totalDataCount = response.data.data.length; // 서버에서 총 데이터 수를 받아온다고 가정
+        console.log(totalDataCount);
+        setTotalPosts(totalDataCount); // 총 게시물 수 상태 업데이트
+
+        // 최신순 정렬
+        const sortedPosts = communityPosts.sort((a, b) => b.community_id - a.community_id);
+
+        setPosts(
+          sortedPosts.map(post => ({
+            communityId: post.community_id,
+            communityTitle: post.community_title,
+            communityCreateat: post.community_createat,
+          }))
+        );
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
     setLoading(false);
   }
@@ -69,23 +77,23 @@ export default function CommunityMain() {
             <styleD.CommunityCotentComentFont style={{ width: '250px' }}>날짜</styleD.CommunityCotentComentFont>
             <styleD.CommunityCotentComentFont style={{ width: '100px' }}>조회수</styleD.CommunityCotentComentFont>
           </styleD.CommunityCotentComent>
-          <hr style={{ color: 'black' }}/>
-
+          <hr style={{ color: 'black' }} />
 
           {posts.map((post, index) => (
-            <styleD.CommunityCotentComent key={post.communityId || index}>
-              <styleD.CommunityCotentComentFont style={{ width: '150px' }}>{post.communityId}</styleD.CommunityCotentComentFont>
-              <styleD.CommunityCotentComentFont style={{ width: '950px' }}>{post.communityTitle}</styleD.CommunityCotentComentFont>
-              <styleD.CommunityCotentComentFont style={{ width: '300px' }}>작성자</styleD.CommunityCotentComentFont>
-              <styleD.CommunityCotentComentFont style={{ width: '250px' }}>{post.communityCreateat}</styleD.CommunityCotentComentFont>
-              <styleD.CommunityCotentComentFont style={{ width: '100px' }}>0</styleD.CommunityCotentComentFont>
-            </styleD.CommunityCotentComent>
+            <Link to={`/CommunityPage/${post.communityId}`} style={{textDecorationLine: 'none'}}>
+              <styleD.CommunityCotentComent key={post.communityId || index}>
+                <styleD.CommunityCotentComentFont style={{ width: '150px' }}>{post.communityId}</styleD.CommunityCotentComentFont>
+                <styleD.CommunityCotentComentFont style={{ width: '950px' }}>{post.communityTitle}</styleD.CommunityCotentComentFont>
+                <styleD.CommunityCotentComentFont style={{ width: '300px' }}>작성자</styleD.CommunityCotentComentFont>
+                <styleD.CommunityCotentComentFont style={{ width: '250px' }}>{post.communityCreateat}</styleD.CommunityCotentComentFont>
+                <styleD.CommunityCotentComentFont style={{ width: '100px' }}>0</styleD.CommunityCotentComentFont>
+              </styleD.CommunityCotentComent>
+            </Link>
           ))}
-
 
           <Pagination
             postsPerPage={postsPerPage}
-            totalPosts={posts.length}
+            totalPosts={totalPosts} // 서버에서 받아온 총 게시물 수 전달
             paginate={setCurrentPage}
             currentPage={currentPage}
           />
@@ -98,3 +106,4 @@ export default function CommunityMain() {
     </div>
   );
 }
+

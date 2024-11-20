@@ -13,6 +13,7 @@ import FindMyIdPage from './pages/FindMyIdPage.js';
 import FindMyPasswordPage from './pages/FindMyPasswordPage.js';
 import NewsView from './components/NewsView.js';
 import MypageDetailPage from './pages/MypageDetailPage.js'
+import CommunityPage from './components/CommunityPage.js';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/CommunityMainPage" element={<CommunityMainPage/>}></Route>
         <Route path="/CommunityWritePage" element={<CommunityWritePage/>}></Route>
         <Route path="/CommunityPostPage" element={<CommunityPostPage/>}></Route>
+        <Route path="/CommunityPage/:id" element={<CommunityPage/>}></Route>
         <Route path="/TodaysNewsPage" element={<TodaysNewsPage/>}></Route>
         <Route path="/FindMyIdPage" element={<FindMyIdPage/>}></Route>
         <Route path="/FindMyPasswordPage" element={<FindMyPasswordPage/>}></Route>

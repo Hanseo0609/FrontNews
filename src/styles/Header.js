@@ -33,10 +33,10 @@ export const HeaderSearch = styled.input`
   display: flex;
   box-sizing: border-box;
   
-  &:focus {
+  /* &:focus {
     width: 600px;
     border-radius: 5px 0px 0px 5px;
-  }
+  } */
 `;
 
 export const HeaderSearchBtn = styled.button`
@@ -52,6 +52,10 @@ export const HeaderSearchBtn = styled.button`
   border-radius: 0px 5px 5px 0px; /* 오른쪽을 둥글게 설정 */
   z-index: 100;
   box-sizing: border-box;
+  
+  &:hover {
+    cursor: pointer;
+  } 
 `;
 
 export const HeaderSearchWrapper = styled.div`

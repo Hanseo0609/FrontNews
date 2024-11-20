@@ -50,12 +50,12 @@ export default function Navbar(props) {
     };
     return (
       <styleD.Profile>
-        <Link style={{ width: '45px', marginRight: '1450px' }} to="/MypageStoragePage"><styleD.ProfileImg src='./source/Shape.png' /></Link>
+        <Link style={{ width: '45px', marginRight: '1450px' }} to="/MypageStoragePage"><styleD.ProfileImg src='/source/Shape.png' /></Link>
         <div style={{ marginLeft: '15px' }}>
           <p>{nickname}님</p>
           <p>{userEmail}</p>
         </div>
-        <styleD.LogoutImg src='./source/Logout.png' onClick={handleLogout} />
+        <styleD.LogoutImg src='/source/Logout.png' onClick={handleLogout} />
       </styleD.Profile>
     )
   }
@@ -63,7 +63,7 @@ export default function Navbar(props) {
   return (
     <styleD.Navbar>
       <Link to="/">
-        <styleD.LogoImg src='./source/Logo.png' />
+        <styleD.LogoImg src='/source/Logo.png' />
       </Link>
       <IsLogin status={status} setStatus={setStatus} />
     </styleD.Navbar>
