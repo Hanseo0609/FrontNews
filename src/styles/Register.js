@@ -14,19 +14,19 @@ export const Wrapper = styled.div`
 	flex-direction: column;
 	margin: 0 auto;
 	width: 500px;
-	height: 850px;
+	height: 900px;
 	border-radius: 15px;
 	box-sizing: border-box;
+`;
 
-	button {
-		background-color: #FDCB02;
-		width: 452px;
-		height: 40px;
-		border: none;
-		border-radius: 5px;
-		font-weight: bold;
-		cursor: pointer;
-	}
+export const SummitBtn = styled.button`
+	background-color: #FDCB02;
+	width: 452px;
+	height: 40px;
+	border: none;
+	border-radius: 5px;
+	font-weight: bold;
+	cursor: pointer;
 `;
 
 export const InputWarpper = styled.div`
@@ -55,6 +55,35 @@ export const OptionWrapper = styled.div`
 `;
 
 export const InputDefault = styled.input`
+	margin-top: 8px;
+	margin-bottom: 24px;
+	width: 350px;
+	height: 40px;
+	border: 1px solid lightgrey;
+	border-radius: 5px;
+`;
+
+export const EmailConfirmBtn = styled.button`
+	width: 85px;
+	height: 45px;
+	margin-left: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	
+`;
+
+export const InputConfirmCode = styled.input`
+	margin-top: 8px;
+	margin-bottom: 24px;
+	width: 450px;
+	height: 40px;
+	border: 1px solid lightgrey;
+	border-radius: 5px;
+	display: ${(props) => (props.visible ? 'block' : 'none')};
+`;
+
+export const InputDefault2 = styled.input`
 	margin-top: 8px;
 	margin-bottom: 24px;
 	width: 452px;
