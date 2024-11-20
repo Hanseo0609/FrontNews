@@ -45,8 +45,10 @@ export default function Navbar(props) {
       // localStorage.removeItem('nickname');
       // localStorage.removeItem('userEmail');
       // localStorage.removeItem('phoneNumber');
+      alert("로그아웃 되었습니다.");
       localStorage.clear();
       setStatus("400");
+      window.location.href = '/';
     };
     return (
       <styleD.Profile>

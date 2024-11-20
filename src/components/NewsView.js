@@ -187,7 +187,7 @@ export default function NewsView() {
       }
     } catch (error) {
       console.error(error);
-      alert("서버 오류임");
+      // alert("서버 오류임");
     }
   }
 
