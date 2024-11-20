@@ -74,3 +74,30 @@ export  const ArticalContent = styled.p`
   width: 500px;
   height: 200px;
 `;
+
+export const Pagination = styled.div`
+  display: flex;
+  margin-right: 200px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+
+  button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: none;
+    background: #f1f1f1;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button.active {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background: #d1d1d1;
+  }
+`;

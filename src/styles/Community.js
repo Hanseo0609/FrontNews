@@ -30,10 +30,14 @@ export const CommunitySearch = styled.input`
 
 export const CommunityCotentComent = styled.div`
     display: flex;
+    border: 1px solid;
+    margin-top: 20px;
 `;
 
 export const CommunityCotentComentFont = styled.h3`
     text-align: center;
+    text-decoration-line: none;
+    color: black;
 `
 
 export const HeaderSearchBtn = styled.button`
@@ -105,4 +109,22 @@ export const WriteSubmitBtn = styled.button`
 
 export const PostHeader = styled.div`
     padding: 30px 0px 0px 0px;
+`;
+
+export const PostWrapper = styled.div`
+
+`;
+
+export const PostTitle = styled.h1`
+    font-size: 48px;
+    margin-left: 24px;
+`;
+
+export const PostDate = styled.p`
+    margin-right: 24px;
+    float: right;
+`;
+
+export const PostContent = styled.p`
+    
 `;
