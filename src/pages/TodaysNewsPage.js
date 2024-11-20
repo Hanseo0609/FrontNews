@@ -4,7 +4,7 @@ import Line from '../components/Line';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import * as styleD from '../styles/TodaysNewsPage';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import axios from 'axios';
 import parse from 'html-react-parser';
 
