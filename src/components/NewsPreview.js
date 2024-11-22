@@ -33,6 +33,13 @@ export default function NewsPreview() {
     article_image: 'image.png'
   });
 
+  const baseURL = "http://210.181.138.119/news/recommned/50";
+  const param = "some-valid-param"; // undefined가 되는 변수 확인
+  axios.get(`${baseURL}/${param}`)
+    .then(response => console.log(response))
+    .catch(error => console.error(error));
+  
+
   const newsPreviewLoad = async () => {
     try {
       const response = await axios.get(`${serverURL}/news/recommned/${data[clickData]}`,{});

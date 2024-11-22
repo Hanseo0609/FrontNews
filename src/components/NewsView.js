@@ -168,6 +168,8 @@ export default function NewsView() {
     }
   }
 
+
+  
   useEffect(() => {
     getNewsData();
   }, []);
