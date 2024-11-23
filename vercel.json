@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://<백엔드-서버-IP 또는 도메인>/api/$1"
+    }
+  ]
+}
