@@ -1,8 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "http://<백엔드-서버-IP 또는 도메인>/api/$1"
+      "source": "/news/:path*", 
+      "destination": "http://210.181.138.119/news/:path*"
+    },
+    {
+      "source": "/:path*", 
+      "destination": "http://210.181.138.119/:path*"
     }
   ]
 }

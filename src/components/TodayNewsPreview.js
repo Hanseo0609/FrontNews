@@ -8,7 +8,7 @@ import axios from 'axios';
 import parse from 'html-react-parser'
 
 export default function TodayNewsPreview() {
-  const serverURL = process.env.REACT_APP_SERVER_URL;
+  // const serverURL = process.env.REACT_APP_SERVER_URL;
   
   const { news_id } = useParams();
   const [newsId, setNewsId] = useState(16);
@@ -52,7 +52,7 @@ export default function TodayNewsPreview() {
 
   const todaysnewsPreviewLoad = async () => {
     try {
-      const res1 = await axios.get(`${serverURL}/news/getNewsList/normal/1/3`);
+      const res1 = await axios.get(`/news/getNewsList/normal/1/3`);
       if (res1.data.status === 200) {
         console.log(res1.data.data.news);
         const newArticles = res1.data.data.news;
