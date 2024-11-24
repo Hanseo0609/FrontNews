@@ -1,12 +1,8 @@
 {
   "hosting": {
-    "site": "coin-news-site",
+    "site": "https://coin-news-cd1f1/",
     "public": "build",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
@@ -15,3 +11,8 @@
     ]
   }
 }
+
+
+
+
+

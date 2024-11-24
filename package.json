@@ -11,7 +11,7 @@
     "@toast-ui/editor": "^3.2.2",
     "@toast-ui/react-editor": "^3.2.3",
     "axios": "^1.7.7",
-    "firebase": "^10.14.0",
+    "firebase": "^10.14.1",
     "html-react-parser": "^5.1.18",
     "i": "^0.3.7",
     "react": "^18.3.1",
