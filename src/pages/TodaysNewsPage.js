@@ -18,7 +18,7 @@ export default function TodaysNewsPage() {
 
   const todaysnewsPreviewLoad = async () => {
     try {
-      const res1 = await axios.get(`${serverURL}/news/getNewsList/normal/1/5000`);
+      const res1 = await axios.get(`${serverURL}/news/getNewsList/normal/1/100`);
       if (res1.data.status === 200) {
         const newArticles = res1.data.data.news;
         console.log(res1.data.data.total);

@@ -52,8 +52,10 @@ export default function TodayNewsPreview() {
 
   const todaysnewsPreviewLoad = async () => {
     try {
+      console.log("전");
       const res1 = await axios.get(`${serverURL}/news/getNewsList/normal/1/3`);
       if (res1.data.status === 200) {
+        console.log(res1.data.status)
         console.log(res1.data.data.news);
         const newArticles = res1.data.data.news;
   
@@ -69,6 +71,7 @@ export default function TodayNewsPreview() {
         setNewsData(newArticles[0] || newsData);  // 첫 번째 기사나 기본 데이터를 설정
         
       } else {
+        console.log(res1);
         alert("뉴스 데이터 로딩 실패");
       }
     } catch (error) {
