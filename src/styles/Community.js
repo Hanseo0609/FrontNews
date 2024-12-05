@@ -115,9 +115,17 @@ export const PostWrapper = styled.div`
 
 `;
 
+export const PostTitleBox = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    margin: 60px 0px 30px 240px;
+`;
+
 export const PostTitle = styled.h1`
     font-size: 48px;
-    margin-left: 24px;
+    margin: 0px;
 `;
 
 export const PostDate = styled.p`
@@ -125,6 +133,20 @@ export const PostDate = styled.p`
     float: right;
 `;
 
+export const PostContentBox = styled.div`
+    margin: 20px 0px 0px 240px;
+`;
+
 export const PostContent = styled.p`
-    
+    font-size: 30px;
+`;
+
+export const PostSearch = styled.p`
+    font-size: 16px;
+    float: right;
+`;
+
+export const PostHeaderBox = styled.div`
+    display: flex;
+    margin-right: 240px;
 `;
