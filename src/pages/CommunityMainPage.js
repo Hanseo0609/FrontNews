@@ -30,6 +30,7 @@ export default function CommunityMain() {
 
       if (response.status === 200) {
         console.log(response);
+        console.log(response.data);
         const communityPosts = response.data.data;
         const totalDataCount = response.data.data.length; // 서버에서 총 데이터 수를 받아온다고 가정
         console.log(totalDataCount);

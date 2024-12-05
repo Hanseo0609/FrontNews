@@ -28,7 +28,8 @@ export default function CommunityPage() {
       });
 
       if (response.status === 200) {
-        console.log(response);
+        console.log(response.data.data[0].community_search);
+
         setPost(response.data.data[0]); // 게시글 데이터 설정
       } else {
         alert('게시글 데이터를 불러오지 못했습니다.');
@@ -74,9 +75,18 @@ export default function CommunityPage() {
       <div>
         {post ? (
           <styleD.PostWrapper>
-            <styleD.PostTitle>{post.community_title}</styleD.PostTitle>
-            <styleD.PostDate>{post.community_createat}</styleD.PostDate>
-            <styleD.PostContent>{post.community_content}</styleD.PostContent>
+            <styleD.PostTitleBox>
+              <styleD.PostTitle>{post.community_title}</styleD.PostTitle>
+              <styleD.PostHeaderBox>
+                <styleD.PostDate>작성일 {post.community_createat}</styleD.PostDate>
+                <styleD.PostSearch>조회수 {post.community_search}</styleD.PostSearch>
+              </styleD.PostHeaderBox>
+            </styleD.PostTitleBox>
+            <hr style={{ width: '1440px' }} />
+            <styleD.PostContentBox>
+              <styleD.PostContent>{post.community_content}</styleD.PostContent>
+            </styleD.PostContentBox>
+
             {loginId === post.community_writer && ( // 조건부 렌더링으로 수정/삭제 버튼 표시
               <div>
                 <button onClick={handleEdit}>수정</button>
